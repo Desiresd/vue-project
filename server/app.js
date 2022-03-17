@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 })
 
 // 新增文章
-app.post('/api/user', (req, res) => {
+app.post('/user', (req, res) => {
   let data = req.body
   let sql = 'INSERT INTO user SET ?'
   db.query(sql, data, (err, result) => {
@@ -37,7 +37,7 @@ app.post('/api/user', (req, res) => {
 })
 
 // 获取文章列表
-app.get('/api/user', (req, res) => {
+app.get('/getUserList', (req, res) => {
   let sql = 'SELECT * FROM user'
   db.query(sql, (err, result) => {
     if (err) {
@@ -50,7 +50,7 @@ app.get('/api/user', (req, res) => {
 })
 
 // 删除文章
-app.delete('/api/user/:id', (req, res) => {
+app.delete('/user/:id', (req, res) => {
   let sql = `DELETE FROM user WHERE id= ${req.params.id}`
   db.query(sql, (err, result) => {
     if (err) {
@@ -63,7 +63,7 @@ app.delete('/api/user/:id', (req, res) => {
 })
 
 // 获取文章详情
-app.get('/api/user/:id', (req, res) => {
+app.get('/user/:id', (req, res) => {
   let sql = `SELECT * FROM user WHERE id= ${req.params.id}`
   db.query(sql, (err, result) => {
     if (err) {
@@ -75,7 +75,7 @@ app.get('/api/user/:id', (req, res) => {
 })
 
 // 修改文章
-app.put('/api/user/:id', (req, res) => {
+app.put('/user/:id', (req, res) => {
   let newTitle = req.body.title
   let newBody = req.body.body
   let sql = `UPDATE user SET title = '${newTitle}',body = '${newBody}' WHERE ID = ${req.params.id}`

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { getUserList } from '@/api/user.js'
 export default {
   data () {
     return {
@@ -13,10 +14,22 @@ export default {
     }
   },
   created () {
-    this.$http.get(`/user`).then(res => {
-      console.log('请求数据')
+    getUserList().then(res => {
+      console.log('请求数据1')
       console.log(res)
     })
+    setTimeout(() => {
+      getUserList().then(res => {
+        console.log('请求数据2')
+        console.log(res)
+      })
+    }, 200)
+    setTimeout(() => {
+      getUserList().then(res => {
+        console.log('请求数据3')
+        console.log(res)
+      })
+    }, 400)
   }
 }
 </script>
