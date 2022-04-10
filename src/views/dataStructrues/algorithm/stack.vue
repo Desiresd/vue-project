@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>{{ nameArr }}</h3>
-    <div>
+    <div class="btn-group">
       <el-button type="success"
                  size="small"
                  @click="pushArr">向栈中添加元素</el-button>
@@ -26,24 +26,26 @@
       </div>
     </div>
     <h3>{{ nameObj }}</h3>
-    <el-button type="success"
-               size="small"
-               @click="pushObj">向栈中添加元素</el-button>
-    <el-button type="danger"
-               size="small"
-               @click="popObj">从栈中移除元素</el-button>
-    <el-button type="primary"
-               size="small"
-               @click="peekObj">查看栈顶元素</el-button>
-    <el-button type="info"
-               size="small"
-               @click="isEmptyObj">检查栈是否为空</el-button>
-    <el-button type="warning"
-               size="small"
-               @click="sizeObj">查看栈的大小</el-button>
-    <el-button type="warning"
-               size="small"
-               @click="clearObj">清空栈</el-button>
+    <div class="btn-group">
+      <el-button type="success"
+                 size="small"
+                 @click="pushObj">向栈中添加元素</el-button>
+      <el-button type="danger"
+                 size="small"
+                 @click="popObj">从栈中移除元素</el-button>
+      <el-button type="primary"
+                 size="small"
+                 @click="peekObj">查看栈顶元素</el-button>
+      <el-button type="info"
+                 size="small"
+                 @click="isEmptyObj">检查栈是否为空</el-button>
+      <el-button type="warning"
+                 size="small"
+                 @click="sizeObj">查看栈的大小</el-button>
+      <el-button type="warning"
+                 size="small"
+                 @click="clearObj">清空栈</el-button>
+    </div>
     <div>
       <br />
       {{ dataObjString }}
@@ -183,4 +185,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.btn-group {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: left;
+  & button {
+    margin-bottom: 10px;
+  }
+}
 </style>

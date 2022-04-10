@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>{{ name }}</h3>
-    <div>
+    <div class="btn-group">
       <el-button type="success"
                  size="small"
                  @click="addFront">队列前端添加一个元素</el-button>
@@ -14,7 +14,6 @@
       <el-button type="danger"
                  size="small"
                  @click="removeBack">队列后端移除第一个元素</el-button>
-      <br /><br />
       <el-button type="primary"
                  size="small"
                  @click="peekFront"> 查看队列前端的第一个元素</el-button>
@@ -142,4 +141,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.btn-group {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: left;
+  & button {
+    margin-bottom: 10px;
+  }
+}
 </style>

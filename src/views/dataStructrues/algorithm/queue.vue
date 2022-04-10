@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>{{ name }}</h3>
-    <div>
+    <div class="btn-group">
       <el-button type="success"
                  size="small"
                  @click="enQueue">向队列中添加元素</el-button>
@@ -102,4 +102,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.btn-group {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: left;
+  & button {
+    margin-bottom: 10px;
+  }
+}
 </style>
