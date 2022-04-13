@@ -1,0 +1,51 @@
+{
+  "id": "3320424",
+  "name": "moProject",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4937000",
+      "name": "github-fill",
+      "font_class": "github-fill",
+      "unicode": "e885",
+      "unicode_decimal": 59525
+    },
+    {
+      "icon_id": "7765186",
+      "name": "学校_学校信息",
+      "font_class": "xuexiao_xuexiaoxinxi",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "1177684",
+      "name": "联系 (1)",
+      "font_class": "lianxi",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "5122190",
+      "name": "职位",
+      "font_class": "zhiwei",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "7568862",
+      "name": "24gf-mailboxEmpty",
+      "font_class": "mailboxEmpty",
+      "unicode": "e964",
+      "unicode_decimal": 59748
+    },
+    {
+      "icon_id": "1261",
+      "name": "查找用户",
+      "font_class": "chazhaoyonghu",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}
