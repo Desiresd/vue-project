@@ -31,7 +31,7 @@ export default {
           id: '2',
           title: '学校',
           content: '韩山师范学院 - 软件工程专业',
-          icon: 'icon iconfont icon-xuexiao'
+          icon: 'icon iconfont icon-xuexiao_xuexiaoxinxi'
         },
         {
           id: '3',
