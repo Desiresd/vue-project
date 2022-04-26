@@ -18,7 +18,12 @@
             </span>
           </div>
           <div>{{ `所用技术：${item.skills}` }}</div>
-          <div>{{ `个人职责：${item.works}` }}</div>
+          <div class="des">
+            <span>个人职责：</span>
+            <span>
+              {{ item.works }}
+            </span>
+          </div>
           <div v-show="hasImages(item.imageUrl)"
                class="des">
             <span>作品截图：</span>
@@ -55,15 +60,15 @@ export default {
           project: [
             {
               name: '国际金融组织贷款项目管理信息系统（政府）',
-              skills: 'Vue、AntDesign、Axios 等',
-              works: '根据 UI 设计稿进行页面开发及优化',
+              skills: 'Vue、AntDesign、Axios、Echarts',
+              works: '高质量完成代码编写并符合团队规范，高度还原视觉稿',
               description: `本项目采用前后端分离、技术与业务分离、业务按功能分离的思想进行建设。前端使用Vue框架MVVM开发模型，使用Webpack进行代码管理。后端使用SpringBoot框架，同时引入Redis缓存，Logback日志组件等技术。`,
               imageUrl: []
             },
             {
               name: '封装组件、标准化前端代码',
-              skills: 'Vue、AntDesign',
-              works: '封装组件、标准化代码，通过界面化方式创建基本结构的前端页面',
+              skills: 'Vue、AntDesign、HighLight（代码块）、Iconfont',
+              works: '负责前端通用框架搭建、封装组件、标准化代码，通过界面化方式创建基本结构的前端页面',
               description: `根据已有的AntDesign UI组件库进行二次封装及标准化前端代码。`
             }
           ]
@@ -74,7 +79,7 @@ export default {
           project: [
             {
               name: '七三课堂（教育）',
-              skills: 'Vue、Element、flyio 等',
+              skills: 'Vue、Element、flyio、Iconfont',
               works: '根据 UI 设计稿进行页面开发及优化',
               description: `本项目采用前后端分离技术，前端通过Flyio请求数据。`,
               imageUrl: [
@@ -87,7 +92,7 @@ export default {
             },
             {
               name: '3D 组课（教育）',
-              skills: 'Vue、Element、flyio 等',
+              skills: 'Vue、Element、flyio、Echarts',
               works: '根据 UI 设计稿进行页面开发及优化',
               description: '本项目采用前后端分离技术，前端通过Flyio请求数据。',
               imageUrl: [
@@ -98,7 +103,7 @@ export default {
             },
             {
               name: '产品合集后台（教育）',
-              skills: 'Vue、Element、Axios 等',
+              skills: 'Vue、Element、Axios',
               works: '根据 UI 设计稿进行页面开发及优化',
               description: '本项目采用前后端分离技术，前端通过Flyio请求数据。',
               imageUrl: [
@@ -115,8 +120,8 @@ export default {
           project: [
             {
               name: '同城酒柜商城 (新零售)',
-              skills: 'H5、CSS3、JS、JQuery、Uni-app等',
-              works: '根据 UI 设计稿进行页面开发及优化',
+              skills: 'H5、CSS3、JS、JQuery、Uni-app、Layui、BootStrap',
+              works: '负责PC端、移动H5和小程序等前端业务开发，高度还原 UI 设计稿',
               description: '本项目用“线上商城+线下前置仓”模式，通过线上自建微信商城端、小程序、PC端等平台，打破酒类传统渠道，成为酒水市场新零售的领潮者。',
               imageUrl: [
                 '/tz/1.png',
@@ -129,7 +134,7 @@ export default {
             },
             {
               name: '同城酒帮小程序 (新零售)',
-              skills: '微信小程序（原生）等',
+              skills: '微信小程序（原生）',
               works: '根据 UI 设计稿进行页面开发及优化',
               description: '本项目用“线上商城+线下前置仓”模式，通过线上自建小程序、PC端等平台，打破酒类传统渠道，成为酒水市场新零售的领潮者。',
               imageUrl: [
@@ -138,7 +143,7 @@ export default {
             },
             {
               name: '同城酒柜后台管理系统 (新零售)',
-              skills: 'Vue、Element、Layui、BootStrap、Axios 等',
+              skills: 'Vue、Element、Axios、Echarts、Iconfont',
               works: '根据 UI 设计稿进行页面开发及优化',
               description: '本系统采用前后端分离技术，集合商铺、酒的信息和订单信息。',
               imageUrl: [
@@ -164,10 +169,15 @@ export default {
     reviewImages () {
       return (value) => {
         if (!!value === false) return []
-        const array = JSON.parse(JSON.stringify(value))
-        for (let i = 0; i < value.length; i++) {
-          array[i] = require(`@/assets/works${value[i]}`)
-        }
+        // 基础本
+        // const array = []
+        // for (let i = 0; i < value.length; i++) {
+        //   array[i] = require(`@/assets/works${value[i]}`)
+        // }
+        // 优化版
+        const array = value.map(item => {
+          return require(`@/assets/works${item}`)
+        })
         return array
       }
     }

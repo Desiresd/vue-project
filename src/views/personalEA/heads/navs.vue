@@ -29,12 +29,12 @@ export default {
           id: '#works',
           nameCn: '过往经历',
           nameEn: 'Experience'
+        },
+        {
+          id: '#collection',
+          nameCn: '个人作品集',
+          nameEn: 'collection'
         }
-        // {
-        //   id: '3',
-        //   nameCn: '个人作品集',
-        //   nameEn: 'Works'
-        // }
       ]
     }
   },
@@ -52,11 +52,12 @@ export default {
   list-style: none;
   display: flex;
   font-size: 16px;
+  margin: unset;
   &::before {
     content: "";
     position: absolute;
     left: -100px;
-    top: -5px;
+    top: 0;
     width: 50px;
     height: 50px;
     overflow: hidden;

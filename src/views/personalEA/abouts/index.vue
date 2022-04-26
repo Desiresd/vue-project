@@ -56,6 +56,12 @@ export default {
           title: 'Github',
           content: 'https://github.com/Desiresd/vue-project',
           icon: 'icon iconfont icon-github-fill'
+        },
+        {
+          id: '7',
+          title: '线上访问',
+          content: 'http://101.132.226.7/vue-project',
+          icon: 'icon iconfont icon-github-fill'
         }
       ]
     }

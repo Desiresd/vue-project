@@ -5,7 +5,11 @@
     <skills />
     <majors />
     <works id="works" />
-    <!-- <collection /> -->
+    <collection id="collection" />
+    <!-- 回到顶部 -->
+    <el-backtop>
+      <span class="back-top">Top</span>
+    </el-backtop>
   </div>
 </template>
 
@@ -38,5 +42,16 @@ export default {
 .personal-ea {
   min-width: 900px;
   overflow: auto;
+}
+
+.el-backtop {
+  width: 50px;
+  height: 50px;
+}
+
+.back-top {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #e66948;
 }
 </style>
