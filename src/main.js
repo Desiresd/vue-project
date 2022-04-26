@@ -20,11 +20,19 @@ import 'vue-code-highlight/themes/prism.css' // registers the v-highlight direct
 
 // // 导入ICon 资源
 import './assets/icon/iconfont.css'
+Vue.use(ElementUI)
 Vue.use(VueCodeHighlight)
 Vue.use(Viser)
 Vue.config.productionTip = false
 
-Vue.use(ElementUI)
+// 路由守护
+// router.beforeEach((to, from, next) => { // 全局路由守护
+//   if (store.getters.user != null || ['/login'].indexOf(to.path) !== -1) { // 如果当前user不为空
+//     next()
+//   } else {
+//     next('/login') // 当前路由不在登录页，去登录页
+//   }
+// })
 
 /* eslint-disable no-new */
 new Vue({
