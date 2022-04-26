@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3320424 */
-  src: url('iconfont.woff2?t=1649818530864') format('woff2'),
-       url('iconfont.woff?t=1649818530864') format('woff'),
-       url('iconfont.ttf?t=1649818530864') format('truetype');
+  src: url('iconfont.woff2?t=1650969028945') format('woff2'),
+       url('iconfont.woff?t=1650969028945') format('woff'),
+       url('iconfont.ttf?t=1650969028945') format('truetype');
 }
 
 .iconfont {
@@ -13,11 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-dabao:before {
+  content: "\e606";
+}
+
 .icon-github-fill:before {
   content: "\e885";
 }
 
-.icon-xuexiao:before {
+.icon-xuexiao_xuexiaoxinxi:before {
   content: "\e661";
 }
 
