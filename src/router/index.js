@@ -8,7 +8,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'hash', // 打包调用
+  mode: 'history', // 测试调用
   routes: [
     {
       path: '/',
