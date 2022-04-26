@@ -59,9 +59,9 @@ export default {
         },
         {
           id: '7',
-          title: '线上访问',
-          content: 'http://101.132.226.7/vue-project',
-          icon: 'icon iconfont icon-github-fill'
+          title: '线上访问（已打包）',
+          content: 'http://101.132.226.7/vue-project/index.html',
+          icon: 'icon iconfont icon-dabao'
         }
       ]
     }

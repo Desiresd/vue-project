@@ -31,7 +31,7 @@ export default {
 .mains {
   position: relative;
   font-family: "Lucida Console", Courier, monospace;
-  background: url(~@/assets/home/scene.jpg);
+  background: url(~@/assets/home/firmament.jpg);
   background-size: cover;
   width: 100%;
   height: 100vh;
