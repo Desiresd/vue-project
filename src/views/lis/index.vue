@@ -105,8 +105,8 @@ export default {
             },
             {
               key: '0-6',
-              name: 'LisTime',
-              route: '/lis/LisTime'
+              name: 'LisDateArea',
+              route: '/lis/LisDateArea'
             },
             {
               key: '0-7',

@@ -1,20 +1,50 @@
 <template>
-  <lis-form-item :label="label">
-    <a-input :placeholder="this.$Lis.getPlaceholder(placeholder,this.label)"
-             v-decorator="[name,{ 'rules': verify}]" />
-  </lis-form-item>
+  <a-input :placeholder="placeholder || label"
+           v-model="valueD"
+           :type="type"
+           :disabled="disabled"
+           :size="size"
+           :allowClear="allowClear"
+           :addonBefore="addonBefore"
+           :addonAfter="addonAfter"
+           @change="change">
+    <slot></slot>
+  </a-input>
 </template>
 
 <script>
 
 export default {
   name: 'LisInput',
-  // components: { LisFormItem },
   props: {
-    'label': String,
-    'placeholder': String,
-    'name': String,
-    'verify': Array
+    type: String,
+    value: String,
+    label: String,
+    placeholder: String,
+    disabled: Boolean,
+    size: String,
+    allowClear: Boolean,
+    addonBefore: String,
+    addonAfter: String
+  },
+  watch: {
+    value: {
+      handler (newName) {
+        this.valueD = newName
+      },
+      immediate: true
+    }
+  },
+  data () {
+    return {
+      valueD: ''
+    }
+  },
+  methods: {
+    change (e) {
+      this.$emit('input', this.valueD)
+      this.$emit('change', this.valueD)
+    }
   }
 }
 </script>

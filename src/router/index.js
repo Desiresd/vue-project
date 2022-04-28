@@ -67,9 +67,9 @@ export default new Router({
           component: () => import('@/views/lis/LisDate')
         },
         {
-          path: 'LisTime',
-          name: 'LisTime',
-          component: () => import('@/views/lis/LisTime')
+          path: 'LisDateArea',
+          name: 'LisDateArea',
+          component: () => import('@/views/lis/LisDateArea')
         },
         {
           path: 'LisSpin',

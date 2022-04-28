@@ -1,36 +1,36 @@
 <template>
   <div>
     <div>
-      <lis-steps v-model="currentH"
-                 size="small"
-                 :initial="1"
-                 :progressDot="true">
+      <a-steps v-model="currentH"
+               size="small"
+               :initial="1"
+               :progressDot="true">
         <a-step title="8"></a-step>
         <a-step title="16"></a-step>
         <a-step title="24"></a-step>
         <a-step title="32"
                 subTitle="水平间距（Gutter）"></a-step>
-      </lis-steps>
-      <lis-steps v-model="currentV"
-                 size="small"
-                 :initial="1"
-                 :progressDot="true">
+      </a-steps>
+      <a-steps v-model="currentV"
+               size="small"
+               :initial="1"
+               :progressDot="true">
         <a-step title="8"></a-step>
         <a-step title="16"></a-step>
         <a-step title="24"></a-step>
         <a-step title="32"
                 subTitle="垂直间距（Gutter）"></a-step>
-      </lis-steps>
-      <lis-steps v-model="currentC"
-                 size="small"
-                 :initial="1"
-                 :progressDot="true">
+      </a-steps>
+      <a-steps v-model="currentC"
+               size="small"
+               :initial="1"
+               :progressDot="true">
         <a-step title="2"></a-step>
         <a-step title="4"></a-step>
         <a-step title="6"></a-step>
         <a-step title="8"
                 subTitle="一行数目(Number)"></a-step>
-      </lis-steps>
+      </a-steps>
     </div>
     <lis-row :gutter="[currentH*8,currentV*8]">
       <lis-col v-for="(item,index) in currentC * 2"
@@ -47,21 +47,30 @@
       </lis-col>
     </lis-row>
     <high-light :key="key">{{ msg }}</high-light>
+    <lis-row>
+      <lis-col v-for="item in 8"
+               :key="item"
+               :xs="12"
+               :sm="12"
+               :md="8"
+               :lg="6"
+               :xl="4"
+               :xxl="3">
+        <div>Column</div>
+      </lis-col>
+    </lis-row>
+    <high-light>{{ msgAdep }}</high-light>
   </div>
 </template>
 
 <script>
 import HighLight from '@/components/lis/HighLight'
-import LisSteps from '@/components/lis/LisSteps'
-import LisStep from '@/components/lis/LisStep'
 import LisRow from '@/components/lis/LisRow'
 import LisCol from '@/components/lis/LisCol'
 export default {
   name: 'rowCol',
   components: {
     HighLight,
-    LisSteps,
-    LisStep,
     LisRow,
     LisCol
   },
@@ -78,10 +87,25 @@ export default {
     return {
       key: 0,
       msg: '',
+      msgAdep: '',
       currentH: 1,
       currentV: 1,
       currentC: 1
     }
+  },
+  created () {
+    this.msgAdep = `<template>
+      <lis-row>
+        <lis-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" > Column </lis-col>
+        <lis-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" > Column </lis-col>
+        <lis-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" > Column </lis-col>
+        <lis-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" > Column </lis-col>
+        <lis-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" > Column </lis-col>
+        <lis-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" > Column </lis-col>
+        <lis-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" > Column </lis-col>
+        <lis-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" :xxl="3" > Column </lis-col>
+      </lis-row>
+    <template>`
   },
   computed: {
     currentD () {
@@ -99,9 +123,7 @@ export default {
       let num = Array.from({ length: this.currentC * 2 }, (_, i) => 1 + (i))
       let col = num.map(item => {
         return `
-        <lis-col :span="${24 / (this.currentC * 2)}" >
-          Column
-        </lis-col>`
+        <lis-col :span="${24 / (this.currentC * 2)}" > Column </lis-col>`
       }).join('\n')
       let msg =
         `<template>
@@ -119,6 +141,7 @@ export default {
 .ant-col {
   text-align: center;
   color: #fff;
+  padding: 4px;
 }
 .ant-row .ant-col div {
   padding: 10px;

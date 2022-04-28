@@ -1,30 +1,43 @@
 <template>
-  <lis-form-item :label="label">
-    <a-input-number :placeholder="this.$Lis.getPlaceholder(placeholder,this.label)"
-                    v-decorator="[name,{ 'rules': verify}]"
-                    style="width: 100%" />
-    <!--v-model="value" :min="1" :max="10"/>-->
-
-  </lis-form-item>
+  <a-input-number v-model="valueD"
+                  :placeholder="placeholder || label"
+                  :disabled="disabled"
+                  :step="step"
+                  :formatter="formatter"
+                  style="width: 100%"
+                  @change="change" />
 </template>
 
 <script>
-import LisFormItem from './LisFormItem'
-
 export default {
   name: 'LisInputNumber',
-  components: { LisFormItem },
+  props: {
+    value: Number,
+    label: String,
+    placeholder: String,
+    min: Int8Array,
+    disabled: Boolean,
+    step: Number | String,
+    formatter: Function
+  },
   data () {
     return {
-      value: 3
+      valueD: null
     }
   },
-  props: {
-    'label': String,
-    'placeholder': String,
-    'name': String,
-    'verify': Array,
-    'min': Int8Array
+  watch: {
+    value: {
+      handler (newName) {
+        this.valueD = newName
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    change (e) {
+      this.$emit('input', this.valueD)
+      this.$emit('change', this.valueD)
+    }
   }
 }
 </script>
