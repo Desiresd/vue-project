@@ -1,16 +1,13 @@
 <template>
-  <a-date-picker :value="strToMoment(value)"
+  <a-date-picker :value="momentDate(value)"
                  :placeholder="placeholder || '请选择日期'"
                  :disabled="disabled"
                  :allowClear="allowClear"
-                 :open="open"
-                 :disabledDate="disabledDates"
-                 @openChange="openChange"
                  @change="changed" />
 </template>
 
 <script>
-import Moment from 'moment'
+import { momentDate, momentStr } from '@/common/date-pick/exchange.js'
 export default {
   name: 'LisDate',
   props: {
@@ -18,23 +15,13 @@ export default {
     placeholder: String,
     disabled: Boolean,
     allowClear: Boolean,
-    open: Boolean,
-    disabledDate: Boolean || false
+    open: Boolean
   },
   methods: {
-    strToMoment (str) {
-      if (!!str === false) return null
-      return Moment(str)
-    },
-    openChange (open) {
-      this.$emit('openChange', open)
-    },
+    momentDate,
     changed (date, dateString) {
-      this.$emit('input', dateString)
+      this.$emit('input', momentStr(dateString))
       this.$emit('change', date, dateString)
-    },
-    disabledDates (value) {
-      return this.disabledDate
     }
   }
 }

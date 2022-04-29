@@ -7,13 +7,12 @@
                :lg="12"
                :xl="8"
                :xxl="8">
-        <lis-date-area :timeS="timeS"
-                       :timeE="timeE"
+        <lis-date-area v-model="value"
                        @change="change" />
       </lis-col>
     </lis-row>
     <div style="margin-top: 20px">
-      <p>date1: {{ timeS }} ~ {{ timeE }}</p>
+      <p>date1: {{ value[0] }} ~ {{ value[1] }}</p>
     </div>
     <high-light>{{ msg }}</high-light>
   </div>
@@ -35,33 +34,29 @@ export default {
   data () {
     return {
       msg: '',
-      timeS: '',
-      timeE: ''
+      value: [null, null]
     }
   },
   created () {
     this.msg = `<template>
-      <lis-date-area :timeS="timeS" :timeE="timeE" @change="change" />
+      <lis-date-area v-model="value" @change="change" />
     </template>
     export default {
       data () {
         return {
-          timeS: '', // 开始时间
-          timeE: '' // 结束时间
+          value: [null, null] // 开始时间-结束时间
         }
       },
       methods: {
-        change (timeS, timeE) {
-          this.timeS = timeS
-          this.timeE = timeE
+        change (value) {
+           console.log(value)
         }
       }
     }`
   },
   methods: {
-    change (timeS, timeE) {
-      this.timeS = timeS
-      this.timeE = timeE
+    change (value) {
+      console.log(value)
     }
   }
 }

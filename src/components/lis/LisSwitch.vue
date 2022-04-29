@@ -1,28 +1,27 @@
 <template>
-  <lis-form-item :label="label">
+  <a-switch :value="value"
+            :checked-children="checkChildren"
+            :un-checked-children="unCheckChildren"
+            :checked="checked"
+            @change="change">
+  </a-switch>
 
-    <div>
-      <a-switch :checked-children="checkChildren"
-                :un-checked-children="unCheckChildren"
-                :default-checked="checked" />
-    </div>
-
-  </lis-form-item>
 </template>
 
 <script>
-import LisFormItem from './LisFormItem'
-
 export default {
   name: 'LisSwitch',
-  components: { LisFormItem },
   props: {
-    'label': String,
-    'name': String,
-    'verify': Array,
-    'checkChildren': String,
-    'unCheckChildren': String,
-    'checked': Boolean
+    value: Boolean,
+    checkChildren: String,
+    unCheckChildren: String,
+    checked: Boolean
+  },
+  methods: {
+    change (value) {
+      this.$emit('input', value)
+      this.$emit('change', value)
+    }
   }
 }
 </script>

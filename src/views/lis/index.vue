@@ -110,16 +110,26 @@ export default {
             },
             {
               key: '0-7',
+              name: 'LisDateYear',
+              route: '/lis/LisDateYear'
+            },
+            {
+              key: '0-8',
+              name: 'LisTabs',
+              route: '/lis/LisTabs'
+            },
+            {
+              key: '0-9',
               name: 'LisSpin',
               route: '/lis/LisSpin'
             },
             {
-              key: '0-8',
+              key: '0-10',
               name: 'LisSwitch',
               route: '/lis/LisSwitch'
             },
             {
-              key: '0-9',
+              key: '0-11',
               name: 'LisButton',
               route: '/lis/LisButton'
             }
