@@ -37,6 +37,11 @@ export default new Router({
           component: () => import('@/views/lis/LisRowCol')
         },
         {
+          path: 'Verify',
+          name: 'Verify',
+          component: () => import('@/views/lis/Verify')
+        },
+        {
           path: 'LisRowCol',
           name: 'LisRowCol',
           component: () => import('@/views/lis/LisRowCol')

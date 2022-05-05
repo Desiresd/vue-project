@@ -7,7 +7,8 @@
                :lg="6"
                :xl="4"
                :xxl="3">
-        <lis-switch v-model="check1" />
+        <lis-switch v-model="check1"
+                    :checked="check1" />
       </lis-col>
       <lis-col :xs="6"
                :sm="6"
@@ -17,7 +18,8 @@
                :xxl="3">
         <lis-switch v-model="check2"
                     checkChildren="开"
-                    unCheckChildren="关" />
+                    unCheckChildren="关"
+                    :checked="check2" />
       </lis-col>
       <lis-col :xs="6"
                :sm="6"
@@ -27,7 +29,8 @@
                :xxl="3">
         <lis-switch v-model="check3"
                     checkChildren="是"
-                    unCheckChildren="否" />
+                    unCheckChildren="否"
+                    :checked="check3" />
       </lis-col>
       <lis-col :xs="6"
                :sm="6"
@@ -76,9 +79,9 @@ export default {
   },
   created () {
     this.msg = `<template>
-      <lis-switch v-model="check1" />
-      <lis-switch v-model="check2" checkChildren="开" unCheckChildren="关" />
-      <lis-switch v-model="check3" checkChildren="是" unCheckChildren="否" />
+      <lis-switch v-model="check1" :checked="check1"/>
+      <lis-switch v-model="check2" checkChildren="开" unCheckChildren="关" :checked="check2"/>
+      <lis-switch v-model="check3" checkChildren="是" unCheckChildren="否" :checked="check3"/>
       <lis-switch v-model="check4" checkChildren="1" unCheckChildren="0" :checked="check4"/>
     </template>
     

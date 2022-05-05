@@ -26,6 +26,7 @@ export default {
     momentDate,
     change (value) {
       this.$emit('input', momentStr(value, 'YYYY'))
+      this.$emit('change', momentStr(value, 'YYYY'))
       this.open = false
     }
   }

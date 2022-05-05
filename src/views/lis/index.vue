@@ -74,6 +74,11 @@ export default {
           name: '布局前端化',
           children: [
             {
+              key: '0-0-0',
+              name: '表单校验',
+              route: '/lis/Verify'
+            },
+            {
               key: '0-0',
               name: 'LisRowCol',
               route: '/lis/LisRowCol'

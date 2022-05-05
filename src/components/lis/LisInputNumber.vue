@@ -1,5 +1,5 @@
 <template>
-  <a-input-number v-model="valueD"
+  <a-input-number :value="value"
                   :placeholder="placeholder || label"
                   :disabled="disabled"
                   :step="step"
@@ -12,7 +12,7 @@
 export default {
   name: 'LisInputNumber',
   props: {
-    value: Number,
+    value: Number | String,
     label: String,
     placeholder: String,
     min: Int8Array,
@@ -20,23 +20,10 @@ export default {
     step: Number | String,
     formatter: Function
   },
-  data () {
-    return {
-      valueD: null
-    }
-  },
-  watch: {
-    value: {
-      handler (newName) {
-        this.valueD = newName
-      },
-      immediate: true
-    }
-  },
   methods: {
-    change (e) {
-      this.$emit('input', this.valueD)
-      this.$emit('change', this.valueD)
+    change (value) {
+      this.$emit('input', value)
+      this.$emit('change', value)
     }
   }
 }
