@@ -7,7 +7,8 @@
                :lg="6"
                :xl="4"
                :xxl="3">
-        <a-select default-value="lucy"
+        <a-select v-model="value"
+                  placeholder="select"
                   allowClear
                   @change="handleChange">
           <a-select-option value="lucy">lucy</a-select-option>
@@ -36,6 +37,9 @@
         </a-select>
       </lis-col>
     </lis-row>
+    <div style="margin-top: 20px">
+      <p>value: {{ value }}</p>
+    </div>
     <high-light>{{ msg }}</high-light>
 
     <lis-row>
@@ -83,13 +87,14 @@ export default {
   },
   data () {
     return {
+      value: undefined,
       msg: '',
       msgSearch: ''
     }
   },
   created () {
     this.msg = `<template>
-      <a-select default-value="lucy" allowClear @change="handleChange">
+      <a-select v-model="value" placeholder="select" allowClear @change="handleChange">
         <a-select-option value="lucy">lucy</a-select-option>
       </a-select>
       <a-select default-value="Lasck" disabled>
@@ -101,6 +106,11 @@ export default {
     </template>
 
     export default {
+      data () {
+        return {
+          value: undefined
+        }
+      },
       methods: {
         handleChange (value) {
           this.$message.success('selected:' + value )

@@ -34,7 +34,7 @@ export default new Router({
         {
           path: '',
           name: '',
-          component: () => import('@/views/lis/LisRowCol')
+          component: () => import('@/views/lis/Verify')
         },
         {
           path: 'Verify',
@@ -100,6 +100,11 @@ export default new Router({
           path: 'LisButton',
           name: 'LisButton',
           component: () => import('@/views/lis/LisButton')
+        },
+        {
+          path: 'LisModal',
+          name: 'LisModal',
+          component: () => import('@/views/lis/LisModal')
         }
       ]
     }
