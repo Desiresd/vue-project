@@ -38,6 +38,11 @@ export default {
         id: '1',
         name: '两数相加求目标值',
         route: '/leetCode/twoSum'
+      },
+      {
+        id: '2',
+        name: '两个数组的交集',
+        route: '/leetCode/interSection'
       }
     ]
     return {

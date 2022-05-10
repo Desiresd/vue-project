@@ -40,6 +40,11 @@ export default new Router({
           path: 'twoSum',
           name: 'twoSum',
           component: () => import('@/views/LeetCode/twoSum')
+        },
+        {
+          path: 'interSection',
+          name: 'interSection',
+          component: () => import('@/views/LeetCode/interSection')
         }
       ]
     },
