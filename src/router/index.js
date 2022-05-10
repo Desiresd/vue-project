@@ -105,6 +105,46 @@ export default new Router({
           path: 'LisModal',
           name: 'LisModal',
           component: () => import('@/views/lis/LisModal')
+        },
+        {
+          path: 'LisToolTip',
+          name: 'LisToolTip',
+          component: () => import('@/views/lis/LisToolTip')
+        },
+        {
+          path: 'LisEllipsisTip',
+          name: 'LisEllipsisTip',
+          component: () => import('@/views/lis/LisEllipsisTip')
+        },
+        {
+          path: 'LisAlert',
+          name: 'LisAlert',
+          component: () => import('@/views/lis/LisAlert')
+        },
+        {
+          path: 'LisNotification',
+          name: 'LisNotification',
+          component: () => import('@/views/lis/LisNotification')
+        },
+        {
+          path: 'LisMessage',
+          name: 'LisMessage',
+          component: () => import('@/views/lis/LisMessage')
+        },
+        {
+          path: 'LisPopConfirm',
+          name: 'LisPopConfirm',
+          component: () => import('@/views/lis/LisPopConfirm')
+        },
+        {
+          path: 'LisProgress',
+          name: 'LisProgress',
+          component: () => import('@/views/lis/LisProgress')
+        },
+        {
+          path: 'LisAnchor',
+          name: 'LisAnchor',
+          component: () => import('@/views/lis/LisAnchor')
         }
       ]
     }

@@ -142,6 +142,46 @@ export default {
               key: '0-12',
               name: 'LisModal',
               route: '/lis/LisModal'
+            },
+            {
+              key: '0-13',
+              name: 'LisToolTip',
+              route: '/lis/LisToolTip'
+            },
+            {
+              key: '0-14',
+              name: 'LisEllipsisTip',
+              route: '/lis/LisEllipsisTip'
+            },
+            {
+              key: '0-15',
+              name: 'LisAlert',
+              route: '/lis/LisAlert'
+            },
+            {
+              key: '0-16',
+              name: 'LisNotification',
+              route: '/lis/LisNotification'
+            },
+            {
+              key: '0-17',
+              name: 'LisMessage',
+              route: '/lis/LisMessage'
+            },
+            {
+              key: '0-18',
+              name: 'LisPopConfirm',
+              route: '/lis/LisPopConfirm'
+            },
+            {
+              key: '0-19',
+              name: 'LisProgress',
+              route: '/lis/LisProgress'
+            },
+            {
+              key: '0-20',
+              name: 'LisAnchor',
+              route: '/lis/LisAnchor'
             }
           ]
         }

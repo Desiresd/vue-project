@@ -32,7 +32,6 @@ export default {
   },
   data () {
     return {
-      visible: false
     }
   },
   created () {
@@ -50,7 +49,6 @@ export default {
     export default {
       data () {
         return {
-          visible: false
         }
       },
       methods: {
