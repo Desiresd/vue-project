@@ -25,6 +25,9 @@
         <a-icon class="trigger"
                 :type="collapsed ? 'menu-unfold' : 'menu-fold'"
                 @click="() => (collapsed = !collapsed)" />
+
+        <lis-button type="primary"
+                    @click="showCode">显示代码</lis-button>
       </a-layout-header>
       <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff' }">
         <router-view />
@@ -34,6 +37,7 @@
 </template>
 <script>
 import { Menu } from 'ant-design-vue'
+import LisButton from '@/components/lis/LisButton'
 const SubMenu = {
   template: `
       <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
@@ -63,7 +67,8 @@ const SubMenu = {
 }
 export default {
   components: {
-    'sub-menu': SubMenu
+    'sub-menu': SubMenu,
+    LisButton
   },
   data () {
     return {
@@ -186,6 +191,12 @@ export default {
           ]
         }
       ]
+    }
+  },
+  methods: {
+    showCode () {
+      this.$message.success('展示代码')
+      window.open('./index', '_target')
     }
   }
 }

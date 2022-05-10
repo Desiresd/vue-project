@@ -3,7 +3,6 @@
     <lis-row :gutter="[8,8]">
       <lis-col :span="18">
         <lis-form-model ref="form"
-                        refs="form"
                         :model="form"
                         :rules="rules">
           <!-- lisInput name -->
@@ -68,7 +67,7 @@
                         :checked="form.switchCheck" />
           </lis-form-model-item>
 
-          <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
+          <lis-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
             <lis-button type="primary"
                         @click="onSubmit">
               Varify
@@ -77,7 +76,7 @@
                         @click="resetForm">
               Reset
             </lis-button>
-          </a-form-model-item>
+          </lis-form-model-item>
         </lis-form-model>
       </lis-col>
     </lis-row>
@@ -145,7 +144,7 @@ export default {
       <div>
         <lis-row :gutter="[8,8]">
           <lis-col :span="18">
-            <lis-form-model ref="form" refs="form" :model="form" :rules="rules">
+            <lis-form-model ref="form" :model="form" :rules="rules">
               <!-- lisInput name -->
               <lis-form-model-item label="name"  name="name">
                 <lis-input v-model="form.name" placeholder="name" />
@@ -252,12 +251,15 @@ export default {
       },
       methods: {
         onSubmit () {
-          let Bool = this.$refs.form.validate()
-          if (Bool) {
-            console.log('成功')
-          } else {
-            console.log('失败')
-          }
+          this.$refs.form.validate()
+          this.$nextTick(() => {
+            let Bool = this.$refs.form.validState
+            if (Bool) {
+              this.$message.success('校验通过')
+            } else {
+              this.$message.error('校验未通过')
+            }
+          })
         },
         resetForm () {
           this.$refs.form.reset()
@@ -267,12 +269,15 @@ export default {
   },
   methods: {
     onSubmit () {
-      let Bool = this.$refs.form.validate()
-      if (Bool) {
-        console.log('成功')
-      } else {
-        console.log('失败')
-      }
+      this.$refs.form.validate()
+      this.$nextTick(() => {
+        let Bool = this.$refs.form.validState
+        if (Bool) {
+          this.$message.success('校验通过')
+        } else {
+          this.$message.error('校验未通过')
+        }
+      })
     },
     resetForm () {
       this.$refs.form.reset()
@@ -281,5 +286,5 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style scoped>
 </style>

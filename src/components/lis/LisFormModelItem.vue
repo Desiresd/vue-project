@@ -3,7 +3,9 @@
                      :ref="name"
                      :prop="name"
                      :required="required"
-                     :rules="rules">
+                     :rules="rules"
+                     :label-col="labelCol || labelCols"
+                     :wrapper-col="wrapperCol || wrapperCols">
     <slot></slot>
   </a-form-model-item>
 </template>
@@ -15,15 +17,17 @@ export default {
     label: String,
     name: String,
     required: Boolean,
-    rules: Array
+    rules: Array,
+    labelCol: Object,
+    wrapperCol: Object
   },
   data () {
     return {
-      labelCol: {
+      labelCols: {
         xs: { span: 24 },
         sm: { span: 6 }
       },
-      wrapperCol: {
+      wrapperCols: {
         xs: { span: 24 },
         sm: { span: 18 }
       }

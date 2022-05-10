@@ -1,26 +1,23 @@
 <template>
-  <a-spin :spinning="loading">
-    <a-form-model :ref="refs"
-                  :model="model"
-                  :rules="rules"
-                  :label-col="labelCol"
-                  :wrapper-col="wrapperCol">
-      <slot></slot>
-    </a-form-model>
-  </a-spin>
+  <a-form-model ref="ruleForm"
+                :model="model"
+                :rules="rules"
+                :label-col="labelCol"
+                :wrapper-col="wrapperCol">
+    <slot></slot>
+  </a-form-model>
 </template>
 
 <script>
 export default {
   name: 'LisFormModel',
   props: {
-    refs: String,
     model: Object,
     rules: Object
   },
   data () {
     return {
-      loading: false,
+      validState: true,
       labelCol: {
         xs: { span: 24 },
         sm: { span: 6 }
@@ -33,16 +30,12 @@ export default {
   },
   methods: {
     validate () {
-      this.$refs[this.refs].validate(valid => {
-        if (valid) {
-          return true
-        } else {
-          return false
-        }
+      this.$refs.ruleForm.validate(valid => {
+        this.validState = valid
       })
     },
     reset () {
-      this.$refs[this.refs].resetFields()
+      this.$refs.ruleForm.resetFields()
     }
   }
 }
