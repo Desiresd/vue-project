@@ -43,6 +43,11 @@ export default {
         id: '2',
         name: '两个数组的交集',
         route: '/leetCode/interSection'
+      },
+      {
+        id: '3',
+        name: '两数相加（链表）',
+        route: '/leetCode/addTwoNumbers'
       }
     ]
     return {

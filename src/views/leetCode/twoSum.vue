@@ -24,8 +24,8 @@ export default {
   created () {
     let nums = [2, 7, 11, 15]
     let target = 9
-    let a = twoSum(nums, target)
-    console.log(a)
+    let result = twoSum(nums, target)
+    console.log(result)
 
     this.msg = `
       // Given nums = [2, 7, 11, 15], target = 9

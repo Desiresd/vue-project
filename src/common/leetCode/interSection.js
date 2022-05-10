@@ -3,8 +3,8 @@
  * @param {*} nums1
  * @param {*} nums2
  *
- * Given nums1 = [2, 7, 11, 15], nums2 = [7, 7, 3, 11]
- * return [7, 11]
+ * 输入 nums1 = [2, 7, 11, 15], nums2 = [7, 7, 3, 11]
+ * 输出 [7, 11]
  */
 
 // 基础版 数组搜索值includes - 复杂度为 O(n)

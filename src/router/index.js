@@ -45,6 +45,11 @@ export default new Router({
           path: 'interSection',
           name: 'interSection',
           component: () => import('@/views/LeetCode/interSection')
+        },
+        {
+          path: 'addTwoNumbers',
+          name: 'addTwoNumbers',
+          component: () => import('@/views/LeetCode/addTwoNumbers')
         }
       ]
     },
