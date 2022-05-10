@@ -1,7 +1,7 @@
 <template>
   <div v-highlight
        class="high-light">
-    <pre class="language-html">
+    <pre :class="language">
       <code><slot/></code>
     </pre>
   </div>
@@ -9,7 +9,13 @@
 
 <script>
 export default {
-  name: 'HighHight'
+  name: 'HighHight',
+  props: {
+    language: {
+      type: String,
+      default: () => { return 'language-html' }
+    }
+  }
 }
 </script>
 
@@ -17,6 +23,7 @@ export default {
 .high-light {
   margin: 20px 0;
 }
+
 pre[class*="language-"] {
   padding: 20px 0 0 0;
   width: 100%;
