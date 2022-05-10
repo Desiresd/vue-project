@@ -39,4 +39,13 @@ body {
   background: #0c0c0c49;
   border-radius: 10px;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
 </style>

@@ -66,9 +66,9 @@ export default {
         },
         {
           id: '5',
-          name: '占位（测试）',
-          image: '/qs/5.png',
-          route: '/'
+          name: 'LeetCode题目汇总',
+          image: '/zx/leetCode.png',
+          route: '/leetCode'
         },
         {
           id: '6',

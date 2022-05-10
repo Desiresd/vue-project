@@ -27,6 +27,23 @@ export default new Router({
       component: () => import('@/views/dataStructrues/index')
     },
     {
+      path: '/leetCode',
+      name: 'LeetCode',
+      component: () => import('@/views/LeetCode/index'),
+      children: [
+        {
+          path: '',
+          name: '',
+          component: () => import('@/views/LeetCode/twoSum')
+        },
+        {
+          path: 'twoSum',
+          name: 'twoSum',
+          component: () => import('@/views/LeetCode/twoSum')
+        }
+      ]
+    },
+    {
       path: '/lis',
       name: 'Lis',
       component: () => import('@/views/lis/index'),
