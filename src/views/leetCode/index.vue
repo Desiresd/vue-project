@@ -53,6 +53,11 @@ export default {
         id: '4',
         name: '两两交换链表中的节点（链表）',
         route: '/leetCode/swapPairs'
+      },
+      {
+        id: '5',
+        name: '反转链表（链表）',
+        route: '/leetCode/reverseList'
       }
     ]
     return {

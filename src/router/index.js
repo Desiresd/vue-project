@@ -55,6 +55,11 @@ export default new Router({
           path: 'swapPairs',
           name: 'swapPairs',
           component: () => import('@/views/LeetCode/swapPairs')
+        },
+        {
+          path: 'reverseList',
+          name: 'reverseList',
+          component: () => import('@/views/LeetCode/reverseList')
         }
       ]
     },
