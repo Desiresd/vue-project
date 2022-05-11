@@ -24,31 +24,35 @@ export default {
       majorsData: [
         {
           id: '1',
-          content: '熟练掌握 HTML/CSS/JS/jQuery，及 H5/C3/ES6 新特性；'
+          content: '熟练使用 HTML/CSS/JS/jQuery，及 H5/C3/ES6 新特性；'
         },
         {
           id: '2',
-          content: '熟悉使用 Vue 全家桶、微信小程序；'
+          content: '熟练使用 Vue 全家桶、微信小程序进行项目开发；'
         },
         {
           id: '3',
-          content: '了解 Element-ui/AntDesign/uni-app/Layui/Bootstrap 等前端框架；'
-        },
-        {
-          id: '4',
-          content: '熟悉 Swipe/ECharts 等前端开发常用插件；'
+          content: '熟练使用 Element-ui/AntDesign/uni-app/Layui/Bootstrap 等前端框架；'
         },
         {
           id: '5',
-          content: '了解 Webpack/Sass/Git/SVN 等构建工具管理；'
+          content: '熟练使用 Sass - CSS拓展语言；'
         },
         {
           id: '6',
-          content: '熟练掌握常见浏览器适配、移动端和响应式布局开发，前后端分离开发；'
+          content: '熟练使用 Swipe/ECharts/Sass 等前端开发常用插件；'
         },
         {
           id: '7',
-          content: '熟悉后端 java、php、node 语言。'
+          content: '了解 Webpack/Git/SVN 等构建工具管理；'
+        },
+        {
+          id: '8',
+          content: '熟练掌握常见浏览器适配、移动端和响应式布局开发，前后端分离开发；'
+        },
+        {
+          id: '9',
+          content: '了解后端 java、php、node 语言。'
         }
       ]
     }
@@ -69,6 +73,7 @@ export default {
   font-size: 18px;
   .content {
     width: 650px;
+    margin-top: 40px;
     li {
       line-height: 40px;
     }
