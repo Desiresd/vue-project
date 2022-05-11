@@ -50,6 +50,11 @@ export default new Router({
           path: 'addTwoNumbers',
           name: 'addTwoNumbers',
           component: () => import('@/views/LeetCode/addTwoNumbers')
+        },
+        {
+          path: 'swapPairs',
+          name: 'swapPairs',
+          component: () => import('@/views/LeetCode/swapPairs')
         }
       ]
     },

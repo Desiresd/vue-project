@@ -48,6 +48,11 @@ export default {
         id: '3',
         name: '两数相加（链表）',
         route: '/leetCode/addTwoNumbers'
+      },
+      {
+        id: '4',
+        name: '两两交换链表中的节点（链表）',
+        route: '/leetCode/swapPairs'
       }
     ]
     return {
