@@ -3,10 +3,10 @@
     <el-aside width="300px"
               style="background-color: rgb(238, 241, 246)">
       <el-menu>
-        <router-link v-for="item in sideData"
-                     :key="item.id"
+        <router-link v-for="(item,index) in sideData"
+                     :key="index"
                      :to="item.route">
-          <el-menu-item :index="item.id">
+          <el-menu-item :index="(index+1).toString()">
             {{ item.name }}
           </el-menu-item>
         </router-link>
@@ -35,29 +35,32 @@ export default {
   data () {
     const sideData = [
       {
-        id: '1',
         name: '两数相加求目标值',
         route: '/leetCode/twoSum'
       },
       {
-        id: '2',
         name: '两个数组的交集',
         route: '/leetCode/interSection'
       },
       {
-        id: '3',
         name: '两数相加（链表）',
         route: '/leetCode/addTwoNumbers'
       },
       {
-        id: '4',
         name: '两两交换链表中的节点（链表）',
         route: '/leetCode/swapPairs'
       },
       {
-        id: '5',
         name: '反转链表（链表）',
         route: '/leetCode/reverseList'
+      },
+      {
+        name: '旋转字符串',
+        route: '/leetCode/rotateString'
+      },
+      {
+        name: '重复的DNA序列',
+        route: '/leetCode/findRepeatedDnaSequences'
       }
     ]
     return {

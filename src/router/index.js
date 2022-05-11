@@ -60,6 +60,16 @@ export default new Router({
           path: 'reverseList',
           name: 'reverseList',
           component: () => import('@/views/LeetCode/reverseList')
+        },
+        {
+          path: 'rotateString',
+          name: 'rotateString',
+          component: () => import('@/views/LeetCode/rotateString')
+        },
+        {
+          path: 'findRepeatedDnaSequences',
+          name: 'findRepeatedDnaSequences',
+          component: () => import('@/views/LeetCode/findRepeatedDnaSequences')
         }
       ]
     },
