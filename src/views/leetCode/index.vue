@@ -61,6 +61,10 @@ export default {
       {
         name: '重复的DNA序列',
         route: '/leetCode/findRepeatedDnaSequences'
+      },
+      {
+        name: '无重复字符的最长子串',
+        route: '/leetCode/lengthOfLongestSubstring'
       }
     ]
     return {

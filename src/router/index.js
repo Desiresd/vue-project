@@ -70,6 +70,11 @@ export default new Router({
           path: 'findRepeatedDnaSequences',
           name: 'findRepeatedDnaSequences',
           component: () => import('@/views/LeetCode/findRepeatedDnaSequences')
+        },
+        {
+          path: 'lengthOfLongestSubstring',
+          name: 'lengthOfLongestSubstring',
+          component: () => import('@/views/LeetCode/lengthOfLongestSubstring')
         }
       ]
     },
