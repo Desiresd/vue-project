@@ -8,6 +8,7 @@
                      :to="item.route">
           <el-menu-item :index="(index+1).toString()">
             {{ item.name }}
+            {{ item.diff === '3'?'(困难)':item.diff === '2'?'(中等)':'(简单)' }}
           </el-menu-item>
         </router-link>
       </el-menu>
@@ -36,35 +37,48 @@ export default {
     const sideData = [
       {
         name: '两数相加求目标值',
-        route: '/leetCode/twoSum'
+        route: '/leetCode/twoSum',
+        diff: '1'
       },
       {
         name: '两个数组的交集',
-        route: '/leetCode/interSection'
+        route: '/leetCode/interSection',
+        diff: '1'
       },
       {
         name: '两数相加（链表）',
-        route: '/leetCode/addTwoNumbers'
+        route: '/leetCode/addTwoNumbers',
+        diff: '2'
       },
       {
         name: '两两交换链表中的节点（链表）',
-        route: '/leetCode/swapPairs'
+        route: '/leetCode/swapPairs',
+        diff: '2'
       },
       {
         name: '反转链表（链表）',
-        route: '/leetCode/reverseList'
+        route: '/leetCode/reverseList',
+        diff: '2'
       },
       {
         name: '旋转字符串',
-        route: '/leetCode/rotateString'
+        route: '/leetCode/rotateString',
+        diff: '1'
       },
       {
         name: '重复的DNA序列',
-        route: '/leetCode/findRepeatedDnaSequences'
+        route: '/leetCode/findRepeatedDnaSequences',
+        diff: '2'
       },
       {
         name: '无重复字符的最长子串',
-        route: '/leetCode/lengthOfLongestSubstring'
+        route: '/leetCode/lengthOfLongestSubstring',
+        diff: '2'
+      },
+      {
+        name: '检查是否是回文数',
+        route: '/leetCode/isPalindrome',
+        diff: '2'
       }
     ]
     return {

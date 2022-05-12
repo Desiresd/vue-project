@@ -75,6 +75,11 @@ export default new Router({
           path: 'lengthOfLongestSubstring',
           name: 'lengthOfLongestSubstring',
           component: () => import('@/views/LeetCode/lengthOfLongestSubstring')
+        },
+        {
+          path: 'isPalindrome',
+          name: 'isPalindrome',
+          component: () => import('@/views/LeetCode/isPalindrome')
         }
       ]
     },
