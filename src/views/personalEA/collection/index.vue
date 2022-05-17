@@ -9,14 +9,14 @@
               :md="8"
               :lg="6"
               :xl="6">
-        <div class="content-image">
+        <div class="content-image"
+             @click="toPath(item)">
           <el-image :title="item.name"
                     :style="{'height': imageHeight}"
                     :src="require(`@/assets/works${item.image}`)"
                     :preview-src-list="reviewImages(colData)">
           </el-image>
-          <div class="text"
-               @click="toPath(item)">
+          <div class="text">
             {{ item.name }}
           </div>
         </div>
@@ -132,11 +132,32 @@ export default {
   .content-image {
     box-sizing: border-box;
     padding: 20px 10px;
+    cursor: pointer;
+    &:hover {
+      .text {
+        opacity: 0.8;
+      }
+      .el-image::before {
+        content: "点击浏览";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .el-image {
+      position: relative;
+    }
     .text {
       height: 30px;
       font-size: 14px;
       letter-spacing: 1px;
-      cursor: pointer;
     }
   }
 }
