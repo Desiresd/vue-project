@@ -20,6 +20,17 @@ import 'vue-code-highlight/themes/prism.css' // registers the v-highlight direct
 
 // // 导入ICon 资源
 import './assets/icon/iconfont.css'
+
+// 使用 Vue-ls 本地缓存
+import Storage from 'vue-ls'
+
+const options = {
+  namespace: 'vuejs__', // key键前缀
+  name: 'ls', // 命名Vue变量.[ls]或this.[$ls],
+  storage: 'local' // 存储名称: session, local, memory
+}
+
+Vue.use(Storage, options)
 Vue.use(ElementUI)
 Vue.use(VueCodeHighlight)
 Vue.use(Viser)

@@ -99,6 +99,11 @@ export const routes = [
         component: () => import('@/views/lis/LisSelect')
       },
       {
+        path: 'LisDict',
+        name: 'LisDict',
+        component: () => import('@/views/lis/LisDict')
+      },
+      {
         path: 'LisInput',
         name: 'LisInput',
         component: () => import('@/views/lis/LisInput')
@@ -192,6 +197,11 @@ export const routes = [
         path: 'LisAnchor',
         name: 'LisAnchor',
         component: () => import('@/views/lis/LisAnchor')
+      },
+      {
+        path: 'LisTable',
+        name: 'LisTable',
+        component: () => import('@/views/lis/LisTable')
       }
     ]
   }

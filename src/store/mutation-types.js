@@ -1,0 +1,2 @@
+
+export const UI_CACHE_DB_DICT_DATA = 'UI_CACHE_DB_DICT_DATA'

@@ -29,6 +29,7 @@
     "viser-vue": "^2.4.8",
     "vue": "^2.5.2",
     "vue-code-highlight": "^0.7.8",
+    "vue-ls": "^4.2.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
