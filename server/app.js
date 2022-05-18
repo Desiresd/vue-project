@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
   res.send('index')
 })
 
-// 新增文章
+// 新增用户
 app.post('/user', (req, res) => {
   let data = req.body
   let sql = 'INSERT INTO user SET ?'
@@ -36,7 +36,7 @@ app.post('/user', (req, res) => {
   })
 })
 
-// 获取文章列表
+// 获取用户
 app.get('/getUserList', (req, res) => {
   let sql = 'SELECT * FROM user'
   db.query(sql, (err, result) => {
@@ -49,7 +49,7 @@ app.get('/getUserList', (req, res) => {
   })
 })
 
-// 删除文章
+// 删除用户
 app.delete('/user/:id', (req, res) => {
   let sql = `DELETE FROM user WHERE id= ${req.params.id}`
   db.query(sql, (err, result) => {
@@ -62,7 +62,7 @@ app.delete('/user/:id', (req, res) => {
   })
 })
 
-// 获取文章详情
+// 获取用户
 app.get('/user/:id', (req, res) => {
   let sql = `SELECT * FROM user WHERE id= ${req.params.id}`
   db.query(sql, (err, result) => {
@@ -74,11 +74,23 @@ app.get('/user/:id', (req, res) => {
   })
 })
 
-// 修改文章
+// 修改用户
 app.put('/user/:id', (req, res) => {
   let newTitle = req.body.title
   let newBody = req.body.body
   let sql = `UPDATE user SET title = '${newTitle}',body = '${newBody}' WHERE ID = ${req.params.id}`
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.json(result)
+    }
+  })
+})
+
+// 获取字典数据
+app.get('/sys/dict/getDictItems/:code', (req, res) => {
+  let sql = `select value.* from dict_text text,dict_value value where text.id = value.dict_id and text.name = '${req.params.code}'`
   db.query(sql, (err, result) => {
     if (err) {
       console.log(err)
