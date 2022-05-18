@@ -21,6 +21,13 @@
               <a-select-option value="女">女</a-select-option>
             </a-select>
           </lis-form-model-item>
+          <!-- LisDict sex -->
+          <lis-form-model-item label="dict"
+                               name="dict">
+            <lis-dict v-model="form.dict"
+                      type="select"
+                      dictCode="sex" />
+          </lis-form-model-item>
           <!-- lisInputNumber age -->
           <lis-form-model-item label="age"
                                name="age">
@@ -91,6 +98,7 @@ import LisCol from '@/components/lis/LisCol'
 import LisFormModel from '@/components/lis/LisFormModel'
 import LisFormModelItem from '@/components/lis/LisFormModelItem'
 import LisButton from '@/components/lis/LisButton'
+import LisDict from '@/components/lis/LisDict'
 import LisInput from '@/components/lis/LisInput'
 import LisInputNumber from '@/components/lis/LisInputNumber'
 import LisTextArea from '@/components/lis/LisTextArea'
@@ -107,6 +115,7 @@ export default {
     LisFormModel,
     LisFormModelItem,
     LisButton,
+    LisDict,
     LisInput,
     LisInputNumber,
     LisTextArea,
@@ -121,6 +130,7 @@ export default {
       form: {
         name: '',
         sex: undefined,
+        dict: '',
         age: null,
         desc: '',
         birthday: null,
@@ -132,6 +142,7 @@ export default {
       rules: {
         name: [{ required: true, message: 'Please input name', trigger: 'change' }],
         sex: [{ required: true, message: 'Please select sex', trigger: 'change' }],
+        dict: [{ required: true, message: 'Please select dict', trigger: 'change' }],
         age: [{ required: true, message: 'Please inputNumber age', trigger: 'change' }],
         desc: [{ required: true, message: 'Please textArea desc', trigger: 'change' }],
         birthday: [{ required: true, message: 'Please date birthday', trigger: 'change' }],
@@ -155,6 +166,10 @@ export default {
                   <a-select-option value="男">男</a-select-option>
                   <a-select-option value="女">女</a-select-option>
                 </a-select>
+              </lis-form-model-item>
+              <!-- LisDict sex -->
+              <lis-form-model-item label="dict" name="dict">
+                <lis-dict v-model="form.dict" type="select" dictCode="sex" />
               </lis-form-model-item>
               <!-- lisInputNumber age -->
               <lis-form-model-item label="age" name="age">
@@ -200,6 +215,7 @@ export default {
     import LisFormModel from '@/components/lis/LisFormModel'
     import LisFormModelItem from '@/components/lis/LisFormModelItem'
     import LisButton from '@/components/lis/LisButton'
+    import LisDict from '@/components/lis/LisDict'
     import LisInput from '@/components/lis/LisInput'
     import LisInputNumber from '@/components/lis/LisInputNumber'
     import LisTextArea from '@/components/lis/LisTextArea'
@@ -217,6 +233,7 @@ export default {
         LisFormModel,
         LisFormModelItem,
         LisButton,
+        LisDict,
         LisInput,
         LisInputNumber,
         LisTextArea,
@@ -242,6 +259,7 @@ export default {
           rules: {
             name: [{ required: true, message: 'Please input name', trigger: 'change' }],
             sex: [{ required: true, message: 'Please select sex', trigger: 'change' }],
+            dict: [{ required: true, message: 'Please select dict', trigger: 'change' }],
             age: [{ required: true, message: 'Please inputNumber age', trigger: 'change' }],
             desc: [{ required: true, message: 'Please textArea desc', trigger: 'change' }],
             birthday: [{ required: true, message: 'Please date birthday', trigger: 'change' }],
