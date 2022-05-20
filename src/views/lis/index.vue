@@ -79,8 +79,8 @@ export default {
   },
   methods: {
     showCode () {
-      this.$message.success('展示代码')
-      window.open('./index', '_target')
+      this.$message.success('展示代码（我暂时是摆设）')
+      // window.open('./index', '_target')
     }
   }
 }
