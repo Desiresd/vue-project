@@ -36,11 +36,11 @@ export default {
         },
         {
           id: '5',
-          content: '熟练使用 Sass - CSS拓展语言；'
+          content: '熟练使用 Sass/Less - CSS拓展语言；'
         },
         {
           id: '6',
-          content: '熟练使用 Swipe/ECharts/Sass 等前端开发常用插件；'
+          content: '熟练使用 Swipe/ECharts 等前端开发常用插件；'
         },
         {
           id: '7',
