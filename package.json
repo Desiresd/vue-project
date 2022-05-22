@@ -11,6 +11,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
+    "@antv/l7": "^2.8.35",
+    "@antv/l7-maps": "^2.8.35",
     "ant-design-vue": "^1.7.3",
     "axios": "^0.26.1",
     "core-js": "^3.21.1",

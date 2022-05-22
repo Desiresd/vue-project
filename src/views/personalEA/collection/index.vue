@@ -72,9 +72,15 @@ export default {
         },
         {
           id: '6',
-          name: '占位（测试）',
-          image: '/qs/5.png',
-          route: '/'
+          name: 'L7 地图',
+          image: '/zx/gaode.png',
+          route: '/L7'
+        },
+        {
+          id: '7',
+          name: '高德地图',
+          image: '/zx/gaode.png',
+          route: '/gaode'
         }
       ]
     }

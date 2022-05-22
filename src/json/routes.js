@@ -204,5 +204,15 @@ export const routes = [
         component: () => import('@/views/lis/LisTable')
       }
     ]
+  },
+  {
+    path: '/L7',
+    name: 'L7',
+    component: () => import('@/views/L7/index')
+  },
+  {
+    path: '/gaode',
+    name: 'gaode',
+    component: () => import('@/views/gaode/index')
   }
 ]
