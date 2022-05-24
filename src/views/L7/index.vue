@@ -23,7 +23,7 @@ export default {
         logoVisible: false,
         map: new GaodeMap({
           pitch: 0,
-          mapStyle: 'light', // light dark normal
+          mapStyle: 'amap://styles/7129aad59f7cf922bf7c5851f18d8ac2', // light dark normal
           center: [113.280637, 23.125178], // 初始化地图中心点位置
           zoom: 11, // 初始化地图级别
           labelzIndex: 120,
