@@ -96,5 +96,7 @@ export default {
   background: #4c6350;
   color: #ffffff;
   border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>
