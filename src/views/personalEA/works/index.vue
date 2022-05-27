@@ -56,7 +56,7 @@ export default {
       lives: [
         {
           company: '中科软科技股份有限公司',
-          timestamp: '2021-06 至 2022-07',
+          timestamp: '2021-06 至 至今',
           project: [
             {
               name: '国际金融组织贷款项目管理信息系统（政府）',

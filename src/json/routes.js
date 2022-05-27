@@ -214,5 +214,10 @@ export const routes = [
     path: '/gaode',
     name: 'gaode',
     component: () => import('@/views/gaode/index')
+  },
+  {
+    path: '/tianditu',
+    name: 'tianditu',
+    component: () => import('@/views/tianditu/index')
   }
 ]

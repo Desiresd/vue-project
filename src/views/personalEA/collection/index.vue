@@ -72,15 +72,15 @@ export default {
         },
         {
           id: '6',
-          name: 'L7 地图',
+          name: 'L7 + 高德地图',
           image: '/zx/gaode.png',
           route: '/L7'
         },
         {
           id: '7',
-          name: '高德地图',
+          name: 'Leaflet + 天地图',
           image: '/zx/gaode.png',
-          route: '/gaode'
+          route: '/tianditu'
         }
       ]
     }
