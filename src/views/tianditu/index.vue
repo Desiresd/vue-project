@@ -5,7 +5,7 @@
 <script>
 import L from 'leaflet'
 import Provider from '@/components/map/chinatmsproviders.js'
-import shandongJson from '@/json/shandong.json'
+import shandongJson from '@/components/map/shandong.json'
 import { DefaultIcon, RectangleIcon } from '@/components/map/markerIcon.js'
 import { DefaultConfig, RectangleConfig } from '@/components/map/markerTip.js'
 require('leaflet/dist/leaflet.css')
