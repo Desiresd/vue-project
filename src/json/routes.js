@@ -19,59 +19,7 @@ export const routes = [
   {
     path: '/leetCode',
     name: 'LeetCode',
-    component: () => import('@/views/LeetCode/index'),
-    children: [
-      {
-        path: '',
-        name: '',
-        component: () => import('@/views/LeetCode/twoSum')
-      },
-      {
-        path: 'twoSum',
-        name: 'twoSum',
-        component: () => import('@/views/LeetCode/twoSum')
-      },
-      {
-        path: 'interSection',
-        name: 'interSection',
-        component: () => import('@/views/LeetCode/interSection')
-      },
-      {
-        path: 'addTwoNumbers',
-        name: 'addTwoNumbers',
-        component: () => import('@/views/LeetCode/addTwoNumbers')
-      },
-      {
-        path: 'swapPairs',
-        name: 'swapPairs',
-        component: () => import('@/views/LeetCode/swapPairs')
-      },
-      {
-        path: 'reverseList',
-        name: 'reverseList',
-        component: () => import('@/views/LeetCode/reverseList')
-      },
-      {
-        path: 'rotateString',
-        name: 'rotateString',
-        component: () => import('@/views/LeetCode/rotateString')
-      },
-      {
-        path: 'findRepeatedDnaSequences',
-        name: 'findRepeatedDnaSequences',
-        component: () => import('@/views/LeetCode/findRepeatedDnaSequences')
-      },
-      {
-        path: 'lengthOfLongestSubstring',
-        name: 'lengthOfLongestSubstring',
-        component: () => import('@/views/LeetCode/lengthOfLongestSubstring')
-      },
-      {
-        path: 'isPalindrome',
-        name: 'isPalindrome',
-        component: () => import('@/views/LeetCode/isPalindrome')
-      }
-    ]
+    component: () => import('@/views/LeetCode/index')
   },
   {
     path: '/lis',

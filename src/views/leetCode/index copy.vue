@@ -1,14 +1,16 @@
 <template>
   <el-container style="height: 100vh; border: 1px solid #eee">
-    <el-aside :openedMenus="[]"
-              width="300px"
+    <el-aside width="300px"
               style="background-color: rgb(238, 241, 246)">
-      <el-menu :default-active="'1-1'"
-               :unique-opened="true">
-        <menu-tree v-for="item in sideData"
-                   :key="item.id"
-                   :item="item"
-                   @popDetails="popDetails"></menu-tree>
+      <el-menu>
+        <router-link v-for="(item,index) in sideData"
+                     :key="index"
+                     :to="item.route">
+          <el-menu-item :index="(index+1).toString()">
+            {{ item.name }}
+            {{ item.diff === '3'?'(困难)':item.diff === '2'?'(中等)':'(简单)' }}
+          </el-menu-item>
+        </router-link>
       </el-menu>
     </el-aside>
 
@@ -17,35 +19,19 @@
         <span style="font-size: 20px;font-weight: bold;">LeetCode题目汇总</span>
       </el-header>
       <el-main>
-        <container-view :details="details" />
+        <router-view />
       </el-main>
     </el-container>
   </el-container>
-
 </template>
 
 <script>
-import { leetContent } from '@/json/leetContent.js'
-import menuTree from './menuTree.vue'
-import containerView from './containerView.vue'
+import { leetSide } from '@/json/leetSide.js'
 export default {
   name: 'index',
-  components: {
-    menuTree,
-    containerView
-  },
   data () {
     return {
-      sideData: leetContent,
-      details: []
-    }
-  },
-  created () {
-    this.details = leetContent[0].children[0].details
-  },
-  methods: {
-    popDetails (details) {
-      this.details = details
+      sideData: leetSide
     }
   }
 }

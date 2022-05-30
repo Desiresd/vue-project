@@ -66,7 +66,7 @@ export default {
         },
         {
           id: '5',
-          name: 'LeetCode题目汇总',
+          name: '习题汇总（学习）',
           image: '/zx/leetCode.png',
           route: '/leetCode'
         },
