@@ -78,6 +78,12 @@ export default {
         let marker = L.marker(markers1[item]['lngLat'], { icon: RectangleIcon(markers1[item]['marker']) }).addTo(map)
         marker.bindTooltip(markers1[item]['marker'], RectangleConfig)
       }
+      // 监听鼠标缩放获取地图级别1234
+      map.on('zoomend', (e) => {
+        let scale = e.target.getZoom()
+        console.log('zoom=' + scale)
+      })
+      // 清除所有标记并请求该级别的标记信息
     }
   }
 }

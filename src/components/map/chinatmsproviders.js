@@ -28,7 +28,7 @@ export default function providers (L){
         Annotion: 'https://t{s}.tianditu.gov.cn/cta_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cta&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk={key}'
       },
       Subdomains: ['0', '1', '2', '3', '4', '5', '6', '7'],
-      key: '174705aebfe31b79b3587279e211cb9a'
+      key: '947bc9088c6cf8b9843825313f4ac2f2'
     },
     GaoDe: {
       Normal: {
