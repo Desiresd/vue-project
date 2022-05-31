@@ -11,6 +11,7 @@
 
 <script>
 import HighLight from '@/components/lis/HighLight'
+import { totalFruit } from '@/common/leetCode/totalFruit.js'
 export default {
   name: 'containerView',
   components: {
@@ -31,6 +32,10 @@ export default {
     return {
       key: 0
     }
+  },
+  created () {
+    let tree = [3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]
+    console.log(totalFruit(tree))
   }
 }
 </script>

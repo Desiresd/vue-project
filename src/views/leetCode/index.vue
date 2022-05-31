@@ -14,7 +14,7 @@
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <span style="font-size: 20px;font-weight: bold;">LeetCode题目汇总</span>
+        <span style="font-size: 20px;font-weight: bold;">习题汇总（学习）</span>
       </el-header>
       <el-main>
         <container-view :details="details" />
