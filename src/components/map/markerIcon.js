@@ -11,13 +11,22 @@ const DefaultIcon = L.icon({
   popupAnchor: [1, -24] // 该点是相对于iconAnchor弹出信息的位置  这个是我手动调出来的，文档默认原始值是[-1，-76]，我是去一半值，取一半值调出来的
 })
 
-const RectangleIcon = (value) => {
+const RectangleIcon = value => {
   let htmlStr = `<span>${value}</span>`
   return L.divIcon({
     html: htmlStr,
-    iconSize: [60, 30],
+    iconSize: [50, 25],
     className: 'map-rectangles'
   })
 }
 
-export { DefaultIcon, RectangleIcon }
+const CircleIcon = value => {
+  let htmlStr = `<div>${value}</div>`
+  return L.divIcon({
+    html: htmlStr,
+    iconSize: [35, 35],
+    className: 'map-circle'
+  })
+}
+
+export { DefaultIcon, RectangleIcon, CircleIcon }

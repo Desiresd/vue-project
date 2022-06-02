@@ -79,7 +79,7 @@ export default {
         {
           id: '7',
           name: 'Leaflet + 天地图',
-          image: '/zx/gaode.png',
+          image: '/zx/tianditu.png',
           route: '/tianditu'
         }
       ]

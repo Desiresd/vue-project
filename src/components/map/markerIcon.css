@@ -1,0 +1,44 @@
+/** 
+* 地图标记的样式
+**/
+
+.map-rectangles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #4c6350;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.map-circle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  z-index: 999;
+}
+
+.map-circle::before {
+  content: '';
+  position: absolute;
+  background: #d3eeba;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.map-circle::after {
+  content: '';
+  position: absolute;
+  background: #96d86c;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  z-index: -1;
+}

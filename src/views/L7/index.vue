@@ -23,7 +23,7 @@ export default {
         logoVisible: false,
         map: new GaodeMap({
           pitch: 0,
-          mapStyle: 'amap://styles/9e8976d70cdb46536021514b98af8367', // light dark normal
+          mapStyle: 'light', // light dark normal
           // center: [113.280637, 23.125178], // 初始化地图中心点位置
           zoom: 11, // 初始化地图级别
           labelzIndex: 120,
@@ -40,7 +40,7 @@ export default {
           subdistrict: 1, // 显示下级行政区级数
           extensions: 'all' // 是否返回行政区边界坐标点
         })
-        districtSearch.search('山东', function (status, result) {
+        districtSearch.search('南宁', function (status, result) {
           console.log(result)
           _this.handlePolygon(result, window.AMap, scene.map)
         })
