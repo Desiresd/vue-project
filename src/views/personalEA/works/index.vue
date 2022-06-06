@@ -224,10 +224,10 @@ export default {
     &::before {
       content: "";
       position: absolute;
-      left: -27px;
+      left: -28px;
       top: 10px;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background: #ffffff;
       border-radius: 50%;
     }
