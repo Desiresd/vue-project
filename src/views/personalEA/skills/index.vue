@@ -46,7 +46,7 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 400px;
-  background: top url(~@/assets/home/aurora.jpg);
+  background: top url(~@/assets/home/bizarre2.jpg);
   // background-size: cover;
   overflow: hidden;
   .square {
