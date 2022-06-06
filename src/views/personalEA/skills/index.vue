@@ -5,8 +5,8 @@
     <square title="CSS3"
             fontSize="26"
             backColor="#E66948" />
-    <square title="H5"
-            fontSize="26" />
+    <square title="ES系列"
+            fontSize="20" />
     <square title="VUE2"
             fontSize="26" />
     <square title="Element"
@@ -46,7 +46,7 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 400px;
-  background: url(~@/assets/home/bizarre2.jpg);
+  background: top url(~@/assets/home/aurora.jpg);
   // background-size: cover;
   overflow: hidden;
   .square {

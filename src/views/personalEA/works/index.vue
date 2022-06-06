@@ -6,11 +6,11 @@
                         :key="index"
                         :color="'#fff'"
                         :timestamp="live.timestamp">
-        <p class="text-bold">{{  `公司名称：${live.company}` }}</p>
+        <p class="text-size-lg text-bold">{{  `公司名称：${live.company}` }}</p>
         <div v-for="item in live.project"
              :key="item.name"
              class="project">
-          <div>{{ `项目名称：${item.name}` }}</div>
+          <div class="text-bold text-icon">{{ `项目名称：${item.name}` }}</div>
           <div class="des">
             <span>项目描述：</span>
             <span>
@@ -79,7 +79,7 @@ export default {
           project: [
             {
               name: '七三课堂（教育）',
-              skills: 'Vue、Element、flyio、Iconfont',
+              skills: 'Vue、Element、flyio',
               works: '根据 UI 设计稿进行页面开发及优化',
               description: `本项目采用前后端分离技术，前端通过Flyio请求数据。`,
               imageUrl: [
@@ -143,7 +143,7 @@ export default {
             },
             {
               name: '同城酒柜后台管理系统 (新零售)',
-              skills: 'Vue、Element、Axios、Echarts、Iconfont',
+              skills: 'Vue、Element、Axios、Echarts',
               works: '根据 UI 设计稿进行页面开发及优化',
               description: '本系统采用前后端分离技术，集合商铺、酒的信息和订单信息。',
               imageUrl: [
@@ -212,9 +212,25 @@ export default {
       line-height: 30px;
     }
   }
-  .text-bold {
+  .text-size-lg {
     font-size: 18px;
+  }
+  .text-bold {
     font-weight: bold;
+  }
+
+  .text-icon {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      left: -27px;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: #ffffff;
+      border-radius: 50%;
+    }
   }
   .des {
     display: flex;

@@ -36,7 +36,7 @@ export default {
         {
           id: '3',
           title: '职位',
-          content: 'Web前端开发工程师',
+          content: '前端开发工程师',
           icon: 'icon iconfont icon-zhiwei'
         },
         {

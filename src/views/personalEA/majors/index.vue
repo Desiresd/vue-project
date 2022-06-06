@@ -24,7 +24,7 @@ export default {
       majorsData: [
         {
           id: '1',
-          content: '熟练使用 HTML/CSS/JS/jQuery，及 H5/C3/ES6 新特性；'
+          content: '熟练使用 HTML/CSS/JS/jQuery，及 H5/C3/ES 新特性；'
         },
         {
           id: '2',
@@ -40,11 +40,11 @@ export default {
         },
         {
           id: '6',
-          content: '熟练使用 Swipe/ECharts 等前端开发常用插件；'
+          content: '熟练使用 Swiper/ECharts 等前端开发常用插件；'
         },
         {
           id: '7',
-          content: '了解 Webpack/Git/SVN 等构建工具管理；'
+          content: '熟练使用 高德地图/百度地图/天地图 等地图开发；'
         },
         {
           id: '8',
@@ -52,7 +52,11 @@ export default {
         },
         {
           id: '9',
-          content: '了解后端 java、php、node 语言。'
+          content: '了解 Webpack/Git/SVN 等构建工具管理；'
+        },
+        {
+          id: '10',
+          content: '了解后端 Java、Php、Node 语言。'
         }
       ]
     }
