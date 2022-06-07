@@ -51,7 +51,7 @@ export default {
           name: '定制电视墙（Vue、Swiper、html2canvas）',
           image: '/zx/htmlTv.png',
           // url: 'http://101.132.226.7/tv-wall-html/home.html'  // 线上
-          url: '/tv' // 本地
+          route: '/tv' // 本地
         },
         {
           id: '3',

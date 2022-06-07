@@ -224,7 +224,7 @@ export default {
     &::before {
       content: "";
       position: absolute;
-      left: -28px;
+      left: -29px;
       top: 10px;
       width: 10px;
       height: 10px;
