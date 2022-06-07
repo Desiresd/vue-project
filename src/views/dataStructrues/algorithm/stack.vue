@@ -20,11 +20,10 @@
       <el-button type="warning"
                  size="small"
                  @click="clearArr">清空栈</el-button>
-      <div>
-        <br />
-        {{ dataArrString }}
-      </div>
     </div>
+    <p>
+      {{ dataArrString }}
+    </p>
     <h3>{{ nameObj }}</h3>
     <div class="btn-group">
       <el-button type="success"
@@ -46,10 +45,9 @@
                  size="small"
                  @click="clearObj">清空栈</el-button>
     </div>
-    <div>
-      <br />
+    <p>
       {{ dataObjString }}
-    </div>
+    </p>
     <dialog-add ref="dialogAdd"
                 :title="'向栈中添加元素'"
                 @getForm="getForm" />

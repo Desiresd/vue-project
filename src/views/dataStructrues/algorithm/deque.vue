@@ -29,11 +29,10 @@
       <el-button type="warning"
                  size="small"
                  @click="clear">清空队列</el-button>
-      <div>
-        <br />
-        {{ dequeString }}
-      </div>
     </div>
+    <p>
+      {{ dequeString }}
+    </p>
     <dialog-add ref="dialogAdd"
                 :title="'向队列中添加元素'"
                 @getForm="getForm" />

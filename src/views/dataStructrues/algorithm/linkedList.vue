@@ -21,10 +21,9 @@
                  size="small"
                  @click="clear">清空链表</el-button>
     </div>
-    <div>
-      <br />
+    <p>
       {{ queueString }}
-    </div>
+    </p>
     <dialog-add ref="dialogAdd"
                 :title="title"
                 :content="content"
