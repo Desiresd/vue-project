@@ -62,7 +62,7 @@ export default {
               name: '国际金融组织贷款项目管理信息系统（政府）',
               skills: 'Vue、AntDesign、Axios、Echarts',
               works: '高质量完成代码编写并符合团队规范，高度还原视觉稿',
-              description: `本项目采用前后端分离、技术与业务分离、业务按功能分离的思想进行建设。前端使用Vue框架MVVM开发模型，使用Webpack进行代码管理。后端使用SpringBoot框架，同时引入Redis缓存，Logback日志组件等技术。`,
+              description: `本项目采用前后端分离、技术与业务分离、业务按功能分离的思想进行建设。前端使用Vue框架MVVM开发模型，使用Webpack进行代码管理。`,
               imageUrl: []
             },
             {
@@ -81,7 +81,7 @@ export default {
               name: '七三课堂（教育）',
               skills: 'Vue、Element、flyio',
               works: '根据 UI 设计稿进行页面开发及优化',
-              description: `本项目采用前后端分离技术，前端通过Flyio请求数据。`,
+              description: `本项目采用前后端分离技术，前端通过Flyio请求数据，页面集成课堂的视频教程内容。`,
               imageUrl: [
                 '/qs/1.png',
                 '/qs/2.png',
@@ -94,7 +94,7 @@ export default {
               name: '3D 组课（教育）',
               skills: 'Vue、Element、flyio、Echarts',
               works: '根据 UI 设计稿进行页面开发及优化',
-              description: '本项目采用前后端分离技术，前端通过Flyio请求数据。',
+              description: '本项目采用前后端分离技术，前端通过Flyio请求数据，页面集成课堂的视频教程内容。',
               imageUrl: [
                 '/qs/6.png',
                 '/qs/7.png',
@@ -105,7 +105,7 @@ export default {
               name: '产品合集后台（教育）',
               skills: 'Vue、Element、Axios',
               works: '根据 UI 设计稿进行页面开发及优化',
-              description: '本项目采用前后端分离技术，前端通过Flyio请求数据。',
+              description: '本项目采用前后端分离技术，前端通过Flyio请求数据，页面后台链接管理内容。',
               imageUrl: [
                 '/qs/9.png',
                 '/qs/10.png',

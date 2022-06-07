@@ -12,6 +12,16 @@ export const routes = [
     component: () => import('@/views/personalEA/index')
   },
   {
+    path: '/tv',
+    name: 'Tv',
+    component: () => import('@/views/tv/index')
+  },
+  {
+    path: '/tvMade',
+    name: 'TvMade',
+    component: () => import('@/views/tv/made')
+  },
+  {
     path: '/dataStructrues',
     name: 'DataStructrues',
     component: () => import('@/views/dataStructrues/index')

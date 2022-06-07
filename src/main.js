@@ -24,6 +24,21 @@ import './assets/icon/iconfont.css'
 // 使用 Vue-ls 本地缓存
 import Storage from 'vue-ls'
 
+// 使用swiper
+// 引入swiper轮播图插件
+import {
+  Swiper as SwiperClass,
+  Pagination,
+  Mousewheel,
+  Autoplay,
+  EffectFade
+} from 'swiper/core'
+import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter'
+import 'swiper/swiper-bundle.css'
+
+SwiperClass.use([Pagination, Mousewheel, Autoplay, EffectFade])
+Vue.use(getAwesomeSwiper(SwiperClass))
+
 const options = {
   namespace: 'vuejs__', // key键前缀
   name: 'ls', // 命名Vue变量.[ls]或this.[$ls],

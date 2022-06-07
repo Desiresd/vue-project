@@ -48,9 +48,10 @@ export default {
         },
         {
           id: '2',
-          name: '定制电视墙（HTML、CSS、JS、Swiper）',
+          name: '定制电视墙（Vue、Swiper、html2canvas）',
           image: '/zx/htmlTv.png',
-          url: 'http://101.132.226.7/tv-wall-html/home.html'
+          // url: 'http://101.132.226.7/tv-wall-html/home.html'  // 线上
+          url: '/tv' // 本地
         },
         {
           id: '3',
