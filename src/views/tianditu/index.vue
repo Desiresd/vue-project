@@ -9,6 +9,8 @@
 <script>
 import L from 'leaflet'
 import Provider from '@/components/map/chinatmsproviders.js'
+import testJson from '@/components/map/test.json'
+import mapJson from '@/components/map/map.json'
 import liaochengJson from '@/components/map/liaocheng.json'
 import { DefaultIcon, CircleIcon } from '@/components/map/markerIcon.js'
 // import { DefaultConfig, RectangleConfig } from '@/components/map/markerTip.js'
@@ -27,7 +29,7 @@ export default {
       map: null,
       mapKey: '947bc9088c6cf8b9843825313f4ac2f2',
       zoom: 9,
-      minZoom: 9,
+      minZoom: 1,
       maxZoom: 18,
       markersGroup: null,
       locateData: []
@@ -51,9 +53,46 @@ export default {
       L.tileLayer.chinaProvider('TianDiTu.Normal.Map', { maxZoom: 18, minZoom: 5, key: this.mapKey }).addTo(this.map)
       L.tileLayer.chinaProvider('TianDiTu.Normal.Annotion', { maxZoom: 18, minZoom: 5, key: this.mapKey }).addTo(this.map) // 设置地图图层，可以按需引入；this.mapKey是自己的天地图key值
       // 添加山东省行政边界填充颜色
+      let mapData = {
+        type: 'FeatureCollection',
+        features: []
+      }
+      mapData.features = mapJson.features.map(item => {
+        return {
+          ...item,
+          style: {
+            zIndex: -1,
+            weight: 1,
+            opacity: 1,
+            color: 'red',
+            dashArray: 0,
+            fillOpacity: 0.6,
+            fillColor: '#617DF5'
+          }
+        }
+      })
+
+      // console.log(mapData)
+      // L.geoJson(mapData, {
+      //   style: function (feature) {
+      //     return feature.style
+      //   }
+      // }).addTo(this.map)
+
       L.geoJson(liaochengJson, {
         style: {
           weight: 2,
+          opacity: 1,
+          color: 'red',
+          dashArray: 0,
+          fillOpacity: 0.2,
+          fillColor: '#ffffff'
+        }
+      }).addTo(this.map)
+      console.log(testJson)
+      L.geoJson(testJson, {
+        style: {
+          weight: 1,
           opacity: 1,
           color: 'red',
           dashArray: 0,

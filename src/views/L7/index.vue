@@ -40,7 +40,7 @@ export default {
           subdistrict: 1, // 显示下级行政区级数
           extensions: 'all' // 是否返回行政区边界坐标点
         })
-        districtSearch.search('南宁', function (status, result) {
+        districtSearch.search('聊城市', function (status, result) {
           console.log(result)
           _this.handlePolygon(result, window.AMap, scene.map)
         })
@@ -55,7 +55,7 @@ export default {
             map: map, // 指定地图对象
             strokeWeight: 2, // 轮廓线宽度
             path: bounds[i], // 轮廓线的节点坐标数组
-            fillOpacity: 0, // 透明度
+            fillOpacity: 0.8, // 透明度
             fillColor: '#FA5656', // 填充颜色
             strokeColor: '#FA5656' // 线条颜色
           })
