@@ -36,6 +36,34 @@ import {
 import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter'
 import 'swiper/swiper-bundle.css'
 
+// 按需引入echart
+import * as echarts from 'echarts/core'
+import {
+  TitleComponent,
+  ToolboxComponent,
+  TooltipComponent,
+  VisualMapComponent,
+  GeoComponent,
+  GridComponent,
+  LegendComponent
+} from 'echarts/components'
+// 标签自动布局，全局过渡动画等特性
+import { LabelLayout, UniversalTransition } from 'echarts/features'
+// 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
+import { CanvasRenderer } from 'echarts/renderers'
+echarts.use([
+  LabelLayout,
+  UniversalTransition,
+  TitleComponent,
+  ToolboxComponent,
+  TooltipComponent,
+  VisualMapComponent,
+  GeoComponent,
+  CanvasRenderer,
+  GridComponent,
+  LegendComponent
+])
+
 SwiperClass.use([Pagination, Mousewheel, Autoplay, EffectFade])
 Vue.use(getAwesomeSwiper(SwiperClass))
 

@@ -116,7 +116,7 @@ export default {
         },
         {
           company: '同征网络科技有限公司',
-          timestamp: '2020-01 至 2021-01',
+          timestamp: '2020-06 至 2021-01',
           project: [
             {
               name: '同城酒柜商城 (新零售)',

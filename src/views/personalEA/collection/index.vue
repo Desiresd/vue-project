@@ -82,6 +82,12 @@ export default {
           name: 'Leaflet + 天地图(离线)',
           image: '/zx/tianditu.png',
           route: '/tianditu'
+        },
+        {
+          id: '8',
+          name: '大屏数据展示',
+          image: '/zx/screen.png',
+          route: '/screen'
         }
       ]
     }

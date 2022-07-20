@@ -177,5 +177,10 @@ export const routes = [
     path: '/tianditu',
     name: 'tianditu',
     component: () => import('@/views/tianditu/index')
+  },
+  {
+    path: '/screen',
+    name: 'Screen',
+    component: () => import('@/views/home/index')
   }
 ]
