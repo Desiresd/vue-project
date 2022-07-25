@@ -181,6 +181,6 @@ export const routes = [
   {
     path: '/screen',
     name: 'Screen',
-    component: () => import('@/views/home/index')
+    component: () => import('@/views/multiScreen/index')
   }
 ]
