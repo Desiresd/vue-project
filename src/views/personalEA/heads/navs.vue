@@ -16,22 +16,22 @@ export default {
     return {
       navData: [
         {
-          id: '#home',
+          id: 'home',
           nameCn: '网站首页',
           nameEn: 'Home'
         },
         {
-          id: '#about',
+          id: 'about',
           nameCn: '个人简介',
           nameEn: 'Profile'
         },
         {
-          id: '#works',
+          id: 'works',
           nameCn: '过往经历',
           nameEn: 'Experience'
         },
         {
-          id: '#collection',
+          id: 'collection',
           nameCn: '个人作品集',
           nameEn: 'collection'
         }
@@ -39,8 +39,12 @@ export default {
     }
   },
   methods: {
-    toPath (name) {
-      location.href = name
+    toPath (ref) {
+      var element = document.getElementById(ref)
+      element.scrollIntoView({
+        behavior: 'smooth', // 平滑过渡
+        block: 'start' // 上边框与视窗顶部平齐。默认值
+      })
     }
   }
 }
