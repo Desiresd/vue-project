@@ -4,7 +4,7 @@ export const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/personalEA/index.vue')
+    component: () => import('@/views/home/index.vue')
   },
   {
     path: '/personalEA',
