@@ -39,10 +39,11 @@ export default {
 $color-text: #d9d7e1;
 .cover-page {
   position: relative;
-  width: 100vw;
+  // width: 100vw;
+  width: 100%;
   height: 100vh;
   min-width: 1100px;
-  min-height: 800px;
+  min-height: 700px;
   background: #1c1c28;
   color: $color-text;
   .resume {

@@ -4,7 +4,27 @@ export const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/home/index.vue')
+    component: () => import('@/views/home/index'),
+    children: [
+      {
+        path: '',
+        name: '',
+        component: () => import('@/views/home/cover/index')
+      },
+      {
+        path: '/cover',
+        name: 'Cover',
+        component: () => import('@/views/home/cover/index')
+      },
+      {
+        path: '/catalog',
+        name: 'Catelog',
+        component: () => import('@/views/home/catalog/index'),
+        meta: {
+          tx: 2
+        }
+      }
+    ]
   },
   {
     path: '/personalEA',

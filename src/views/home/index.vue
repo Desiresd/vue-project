@@ -1,20 +1,39 @@
 <template>
   <div>
-    <!-- 封面 -->
-    <cover-page />
+    <transition mode="out-in"
+                :enter-active-class="enterTransition"
+                :leave-active-class="leaveTransition">
+      <keep-alive>
+        <router-view class="router-view" />
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
 <script>
-import CoverPage from './cover/index'
 export default {
   name: 'index',
-  components: {
-    CoverPage
+  watch: {
+    // 监听路由上下级
+    // $route (to, from) {
+    //   let toDepth = to.meta.tx
+    //   let fromDepth = from.meta.tx
+    //   if (fromDepth > toDepth) {
+    //     this.enterTransition = 'animate__animated animate__fadeInLeft'
+    //     this.leaveTransition = 'animate__animated animate__fadeOutRight'
+    //   } else if (fromDepth < toDepth) {
+    //     this.enterTransition = 'animate__animated animate__fadeInRight'
+    //     this.leaveTransition = 'animate__animated animate__fadeOutLeft'
+    //   } else {
+    //     this.enterTransition = 'animate__animated animate__fadeIn'
+    //     this.leaveTransition = 'animate__animated animate__fadeOut'
+    //   }
+    // }
   },
   data () {
     return {
-
+      enterTransition: 'animate__animated animate__fadeIn',
+      leaveTransition: 'animate__animated animate__fadeOut'
     }
   }
 }
@@ -27,4 +46,12 @@ $color-text: #2e2e33; //标题正文
 $color-text-assist: #a1a1b3; // 辅助颜色
 $color-text-tip: #737880; // 提示文字
 $color-white: #ffffff; // 白色
+
+.router-view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
 </style>
