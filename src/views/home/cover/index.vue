@@ -36,6 +36,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+$color-back: #1c1c28;
 $color-text: #d9d7e1;
 .cover-page {
   position: relative;
@@ -44,7 +45,7 @@ $color-text: #d9d7e1;
   height: 100vh;
   min-width: 1100px;
   min-height: 700px;
-  background: #1c1c28;
+  background: $color-back;
   color: $color-text;
   .resume {
     position: absolute;
