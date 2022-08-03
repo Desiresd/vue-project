@@ -215,6 +215,7 @@ export default {
 $color-back: #f7f7f7;
 $color-text: #1d2033;
 .catalog {
+  font-family: ZGZY;
   position: relative;
   width: 100vw;
   height: 100vh;

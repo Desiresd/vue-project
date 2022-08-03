@@ -47,6 +47,7 @@ $color-text: #1d2033;
       cursor: pointer;
       box-sizing: border-box;
       padding: 10px 10px;
+      margin-top: -10px;
       &:hover {
         font-size: 15px;
         box-shadow: 0px 0px 20px 4px #918f8f;

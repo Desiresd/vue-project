@@ -57,6 +57,9 @@ import { CanvasRenderer } from 'echarts/renderers'
 // 引入 Animate 动画效果
 import animated from 'animate.css'
 
+// 引入自定义字体
+import './assets/font/font.css'
+
 echarts.use([
   LabelLayout,
   UniversalTransition,
