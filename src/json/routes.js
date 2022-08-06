@@ -35,6 +35,11 @@ export const routes = [
         path: '/works',
         name: 'Works',
         component: () => import('@/views/home/personal/works')
+      },
+      {
+        path: '/projects',
+        name: 'Projects',
+        component: () => import('@/views/home/personal/projects')
       }
     ]
   },

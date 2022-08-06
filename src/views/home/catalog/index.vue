@@ -45,14 +45,14 @@ export default {
             },
             {
               key: '四',
+              name: '项目经历',
+              router: 'projects'
+            },
+            {
+              key: '五',
               name: '线上简历（汇总）',
               router: 'personalEA'
             }
-            // {
-            //   key: '五',
-            //   name: '占位占位占位',
-            //   router: ''
-            // }
           ]
         },
         {
