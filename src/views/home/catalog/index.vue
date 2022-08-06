@@ -31,28 +31,28 @@ export default {
             {
               key: '一',
               name: '个人简介',
-              router: 'personalEA'
+              router: 'intro'
             },
             {
               key: '二',
               name: '职业技能',
-              router: ''
+              router: 'skills'
             },
             {
               key: '三',
               name: '工作经历',
-              router: ''
+              router: 'works'
             },
             {
               key: '四',
-              name: '占位占位占位',
-              router: ''
-            },
-            {
-              key: '五',
-              name: '占位占位占位',
-              router: ''
+              name: '线上简历（汇总）',
+              router: 'personalEA'
             }
+            // {
+            //   key: '五',
+            //   name: '占位占位占位',
+            //   router: ''
+            // }
           ]
         },
         {
@@ -215,7 +215,6 @@ export default {
 $color-back: #f7f7f7;
 $color-text: #1d2033;
 .catalog {
-  font-family: ZGZY;
   position: relative;
   width: 100vw;
   height: 100vh;

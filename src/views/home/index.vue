@@ -46,8 +46,11 @@ $color-text: #2e2e33; //标题正文
 $color-text-assist: #a1a1b3; // 辅助颜色
 $color-text-tip: #737880; // 提示文字
 $color-white: #ffffff; // 白色
+$color-back: #1c1c28; // 背景色
+$color-text: #d9d7e1; // 字体色
 
 .router-view {
+  font-family: ZGZY;
   position: absolute;
   left: 0;
   right: 0;

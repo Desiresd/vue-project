@@ -19,10 +19,22 @@ export const routes = [
       {
         path: '/catalog',
         name: 'Catelog',
-        component: () => import('@/views/home/catalog/index'),
-        meta: {
-          tx: 2
-        }
+        component: () => import('@/views/home/catalog/index')
+      },
+      {
+        path: '/intro',
+        name: 'Intro',
+        component: () => import('@/views/home/personal/intro')
+      },
+      {
+        path: '/skills',
+        name: 'Skills',
+        component: () => import('@/views/home/personal/skills')
+      },
+      {
+        path: '/works',
+        name: 'Works',
+        component: () => import('@/views/home/personal/works')
       }
     ]
   },

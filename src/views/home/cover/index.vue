@@ -39,7 +39,6 @@ export default {
 $color-back: #1c1c28;
 $color-text: #d9d7e1;
 .cover-page {
-  font-family: ZGZY;
   position: relative;
   // width: 100vw;
   width: 100%;
