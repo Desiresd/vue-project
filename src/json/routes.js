@@ -40,6 +40,16 @@ export const routes = [
         path: '/projects',
         name: 'Projects',
         component: () => import('@/views/home/personal/projects')
+      },
+      {
+        path: '/dataStructrues',
+        name: 'DataStructrues',
+        component: () => import('@/views/home/dataStructrues/index')
+      },
+      {
+        path: '/leetCode',
+        name: 'LeetCode',
+        component: () => import('@/views/home/LeetCode/index')
       }
     ]
   },

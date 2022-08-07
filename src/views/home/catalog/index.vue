@@ -60,13 +60,13 @@ export default {
           catalog: [
             {
               key: '一',
-              name: '算法练习',
-              router: ''
+              name: '数据结构练习',
+              router: 'dataStructrues'
             },
             {
               key: '二',
-              name: '习题汇总',
-              router: ''
+              name: '算法习题汇总',
+              router: 'LeetCode'
             },
             {
               key: '三',
