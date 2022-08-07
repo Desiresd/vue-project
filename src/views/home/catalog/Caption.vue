@@ -1,5 +1,7 @@
 <template>
   <div class="caption">
+    <el-image :src="require('@/assets/home/seal.png')"
+              class="image" />
     <span>目录</span>
     <span>Catalog</span>
   </div>
@@ -19,10 +21,16 @@ export default {
 <style lang='scss' scoped>
 $color-back: #1c1c28;
 .caption {
+  position: relative;
   display: flex;
   box-sizing: border-box;
   padding: 100px 120px;
   font-size: 60px;
+  .image {
+    position: absolute;
+    left: 260px;
+    bottom: 30px;
+  }
   span {
     writing-mode: vertical-lr;
     letter-spacing: 2px;
