@@ -50,12 +50,10 @@
 
 <script>
 import BackDrop from './../BackDrop'
-import AboutPage from './../../personalEA/abouts/index'
 export default {
   name: 'projects',
   components: {
-    BackDrop,
-    AboutPage
+    BackDrop
   },
   data () {
     return {

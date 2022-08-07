@@ -16,12 +16,10 @@
 
 <script>
 import BackDrop from './../BackDrop'
-import AboutPage from './../../personalEA/abouts/index'
 export default {
   name: 'intro',
   components: {
-    BackDrop,
-    AboutPage
+    BackDrop
   },
   data () {
     return {
