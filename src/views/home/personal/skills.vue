@@ -35,7 +35,7 @@ export default {
         },
         {
           id: '3',
-          content: '熟练使用 Element-ui/AntDesign/uni-app/Layui/Bootstrap 等前端框架；'
+          content: '熟练使用 Element-ui/AntDesign/UniApp/Layui/Bootstrap 等前端框架；'
         },
         {
           id: '5',

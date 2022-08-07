@@ -1,6 +1,6 @@
 <template>
   <div>
-    <back-drop icon="el-icon-setting"
+    <back-drop icon="el-icon-time"
                titleCN="项目经历"
                titleEN="Project Experience">
       <div class="means">

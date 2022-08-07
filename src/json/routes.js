@@ -182,6 +182,21 @@ export const routes = [
             component: () => import('@/views/home/lis/LisTable')
           }
         ]
+      },
+      {
+        path: '/L7',
+        name: 'L7',
+        component: () => import('@/views/home/map/L7/index')
+      },
+      {
+        path: '/gaode',
+        name: 'gaode',
+        component: () => import('@/views/home/map/gaode/index')
+      },
+      {
+        path: '/tianditu',
+        name: 'tianditu',
+        component: () => import('@/views/home/map/tianditu/index')
       }
     ]
   },
@@ -204,20 +219,5 @@ export const routes = [
     path: '/screen',
     name: 'Screen',
     component: () => import('@/views/project/multiScreen/index')
-  },
-  {
-    path: '/L7',
-    name: 'L7',
-    component: () => import('@/views/map/L7/index')
-  },
-  {
-    path: '/gaode',
-    name: 'gaode',
-    component: () => import('@/views/map/gaode/index')
-  },
-  {
-    path: '/tianditu',
-    name: 'tianditu',
-    component: () => import('@/views/map/tianditu/index')
   }
 ]

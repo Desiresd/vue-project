@@ -86,26 +86,26 @@ export default {
           ]
         },
         {
-          head: '第三章·作品合集①',
+          head: '第三章·作品(地图)',
           catalog: [
             {
               key: '一',
-              name: '占位占位占位',
-              router: ''
+              name: '高德地图',
+              router: 'gaode'
             },
             {
               key: '二',
-              name: '占位占位占位',
-              router: ''
+              name: '天地图',
+              router: 'tianditu'
             },
             {
               key: '三',
-              name: '占位占位占位',
-              router: ''
+              name: 'L7地图',
+              router: 'L7'
             },
             {
               key: '四',
-              name: '占位占位占位',
+              name: '百度地图',
               router: ''
             },
             {
@@ -120,13 +120,13 @@ export default {
           catalog: [
             {
               key: '一',
-              name: '占位占位占位',
-              router: ''
+              name: '大数据首屏',
+              router: 'screen'
             },
             {
               key: '二',
-              name: '占位占位占位',
-              router: ''
+              name: '电视墙定制',
+              router: 'tv'
             },
             {
               key: '三',

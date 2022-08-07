@@ -1,6 +1,6 @@
 <template>
   <div>
-    <back-drop icon="el-icon-setting"
+    <back-drop icon="el-icon-bell"
                titleCN="工作经历"
                titleEN="Work Experience">
       <div class="means">

@@ -84,5 +84,8 @@ $color-black: rgba(0, 0, 0, 0.9);
     font-size: 18px;
     letter-spacing: 1px;
   }
+  .iconfont {
+    font-size: 22px;
+  }
 }
 </style>
