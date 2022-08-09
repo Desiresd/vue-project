@@ -219,5 +219,10 @@ export const routes = [
     path: '/screen',
     name: 'Screen',
     component: () => import('@/views/project/multiScreen/index')
+  },
+  {
+    path: '/navigation',
+    name: 'Navigation',
+    component: () => import('@/views/project/navigation/index')
   }
 ]
