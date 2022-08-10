@@ -1,6 +1,7 @@
 <template>
   <div>
     <transition mode="out-in"
+                :duration="600"
                 :enter-active-class="enterTransition"
                 :leave-active-class="leaveTransition">
       <keep-alive>
