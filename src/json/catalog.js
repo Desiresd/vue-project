@@ -79,7 +79,7 @@ export const catalog = [
       },
       {
         key: '四',
-        name: '百度地图',
+        name: '百度地图(占位)',
         router: ''
       },
       {

@@ -27,9 +27,9 @@ export default {
   created () {
     // 分离出导航页
     this.navsArr = this.setNavs()
+    console.log(this.navsArr)
     // 分离出内容（一维数组变二维数组）
     this.navsTools = this.setTools()
-    console.log(this.navsTools)
   },
   methods: {
     setNavs () {
