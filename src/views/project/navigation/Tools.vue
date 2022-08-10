@@ -1,7 +1,7 @@
 <template>
   <div class="tools"
-       :id="tools[0].navsId">
-    <h3>{{ tools[0].navsName }}</h3>
+       :id=" title ? 0 :tools[0].navsId">
+    <h3>{{ title ? title : tools[0].navsName }}</h3>
     <el-row :gutter="20">
       <el-col :xs="8"
               :sm="8"
@@ -17,8 +17,8 @@
                       :style="{ width: '30px'}" />
           </div>
           <div class="des">
-            <span>{{ item.name }}</span>
-            <span>{{ item.des }}</span>
+            <span v-html="item.name"></span>
+            <span v-html="item.des"></span>
           </div>
         </div>
       </el-col>
@@ -30,6 +30,10 @@
 export default {
   name: 'Tools',
   props: {
+    title: {
+      type: String,
+      default: () => { return '' }
+    },
     tools: {
       type: Array,
       default: () => { return [] }
@@ -54,7 +58,7 @@ $color-hover: #f5f5f5;
 .tools {
   background: $color-back;
   border-radius: 4px;
-  margin-top: 10px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   padding: 20px 30px;
   .content {

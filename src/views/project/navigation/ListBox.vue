@@ -1,5 +1,8 @@
 <template>
   <div class="list-box">
+    <tools-page v-show="searchArr && searchArr.length > 0"
+                title="搜索·内容"
+                :tools="searchArr" />
     <navs-page :navs="navsArr" />
     <tools-page v-for="(item,index) in navsTools"
                 :key="index"
@@ -8,7 +11,6 @@
 </template>
 
 <script>
-import { navigation } from '@/json/navigation.js'
 import NavsPage from './Navs'
 import ToolsPage from './Tools'
 export default {
@@ -17,50 +19,23 @@ export default {
     NavsPage,
     ToolsPage
   },
-  data () {
-    return {
-      navigation: navigation,
-      navsArr: [],
-      navsTools: []
+  props: {
+    searchArr: {
+      type: Array,
+      default: () => { return [] }
+    },
+    navsArr: {
+      type: Array,
+      default: () => { return [] }
+    },
+    navsTools: {
+      type: Array,
+      default: () => { return [] }
     }
   },
-  created () {
-    // 分离出导航页
-    this.navsArr = this.setNavs()
-    console.log(this.navsArr)
-    // 分离出内容（一维数组变二维数组）
-    this.navsTools = this.setTools()
-  },
-  methods: {
-    setNavs () {
-      let navs = this.navigation
-      let navsArr = []
-      navs.forEach(items => {
-        let index = navsArr.findIndex(item => item.navsId === items.navsId)
-        if (index === -1) {
-          navsArr.push({
-            navsId: items.navsId,
-            navsName: items.navsName
-          })
-        }
-      })
-      return navsArr
-    },
-    setTools () {
-      let navs = this.navigation
-      let navsTools = new Map()
-      navs.forEach(item => {
-        if (navsTools.has(item.navsId)) {
-          let arr = navsTools.get(item.navsId)
-          arr.push(item)
-          navsTools.set(item.navsId, arr)
-        } else {
-          let arr = []
-          arr.push(item)
-          navsTools.set(item.navsId, arr)
-        }
-      })
-      return [...navsTools.values()]
+  data () {
+    return {
+
     }
   }
 }

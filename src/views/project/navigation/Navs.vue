@@ -46,6 +46,7 @@ $color-back: #ffffff;
   position: relative;
   box-sizing: border-box;
   padding: 20px 40px 10px 40px;
+  margin-bottom: 10px;
   background: $color-back;
   border-radius: 4px;
   .el-col {
