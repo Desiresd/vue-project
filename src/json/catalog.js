@@ -49,12 +49,12 @@ export const catalog = [
       },
       {
         key: '四',
-        name: '占位占位占位',
+        name: '(placeholder)',
         router: ''
       },
       {
         key: '五',
-        name: '占位占位占位',
+        name: '(placeholder)',
         router: ''
       }
     ]
@@ -84,7 +84,7 @@ export const catalog = [
       },
       {
         key: '五',
-        name: '占位占位占位',
+        name: '(placeholder)',
         router: ''
       }
     ]
@@ -104,77 +104,77 @@ export const catalog = [
       },
       {
         key: '三',
-        name: '占位占位占位',
-        router: ''
-      },
-      {
-        key: '四',
-        name: '占位占位占位',
-        router: ''
-      },
-      {
-        key: '五',
-        name: '占位占位占位',
-        router: ''
-      }
-    ]
-  },
-  {
-    head: '第五章·作品(导航)',
-    catalog: [
-      {
-        key: '一',
-        name: '链接导航',
+        name: '快捷导航网页',
         router: 'navigation'
       },
       {
-        key: '二',
-        name: '占位占位占位',
-        router: ''
-      },
-      {
-        key: '三',
-        name: '占位占位占位',
-        router: ''
-      },
-      {
         key: '四',
-        name: '占位占位占位',
+        name: '(placeholder)',
         router: ''
       },
       {
         key: '五',
-        name: '占位占位占位',
+        name: '(placeholder)',
         router: ''
       }
     ]
   },
   {
-    head: '第六章·作品(提升)',
+    head: '第五章·作品',
     catalog: [
       {
         key: '一',
-        name: '占位占位占位',
+        name: '(placeholder)',
         router: ''
       },
       {
         key: '二',
-        name: '占位占位占位',
+        name: '(placeholder)',
         router: ''
       },
       {
         key: '三',
-        name: '占位占位占位',
+        name: '(placeholder)',
         router: ''
       },
       {
         key: '四',
-        name: '占位占位占位',
+        name: '(placeholder)',
         router: ''
       },
       {
         key: '五',
-        name: '占位占位占位',
+        name: '(placeholder)',
+        router: ''
+      }
+    ]
+  },
+  {
+    head: '第六章·作品',
+    catalog: [
+      {
+        key: '一',
+        name: '(placeholder)',
+        router: ''
+      },
+      {
+        key: '二',
+        name: '(placeholder)',
+        router: ''
+      },
+      {
+        key: '三',
+        name: '(placeholder)',
+        router: ''
+      },
+      {
+        key: '四',
+        name: '(placeholder)',
+        router: ''
+      },
+      {
+        key: '五',
+        name: '(placeholder)',
         router: ''
       }
     ]

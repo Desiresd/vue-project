@@ -2,7 +2,8 @@
   <div class="catalogue">
     <h2>{{ list.head || '' }}</h2>
     <div v-for="(item,index) in list.catalog"
-         :key="index">
+         :key="index"
+         @click="tip(item.router)">
       <router-link :to="item.router">
         <span>
           {{ item.key }} &nbsp;
@@ -20,6 +21,16 @@ export default {
     list: {
       type: Object,
       default: () => { return {} }
+    }
+  },
+  methods: {
+    tip (router) {
+      if (!router) {
+        this.$message({
+          type: 'warning',
+          message: '馆主努力开发中...'
+        })
+      }
     }
   }
 }
