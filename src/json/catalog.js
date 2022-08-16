@@ -49,12 +49,12 @@ export const catalog = [
       },
       {
         key: '四',
-        name: '(placeholder)',
+        name: 'Canvas练习',
         router: ''
       },
       {
         key: '五',
-        name: '(placeholder)',
+        name: '动画练习',
         router: ''
       }
     ]

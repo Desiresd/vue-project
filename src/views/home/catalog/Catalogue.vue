@@ -2,10 +2,9 @@
   <div class="catalogue">
     <h2>{{ list.head || '' }}</h2>
     <div v-for="(item,index) in list.catalog"
-         :key="index"
-         @click="tip(item.router)">
+         :key="index">
       <router-link :to="item.router">
-        <span>
+        <span @click="tip(item.router)">
           {{ item.key }} &nbsp;
           {{ item.name }}
         </span>
