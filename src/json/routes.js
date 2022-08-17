@@ -224,5 +224,10 @@ export const routes = [
     path: '/navigation',
     name: 'Navigation',
     component: () => import('@/views/project/navigation/index')
+  },
+  {
+    path: '/note',
+    name: 'Note',
+    component: () => import('@/views/project/note/index')
   }
 ]

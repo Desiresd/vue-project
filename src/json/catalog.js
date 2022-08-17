@@ -109,8 +109,8 @@ export const catalog = [
       },
       {
         key: '四',
-        name: '(placeholder)',
-        router: ''
+        name: '格言便签',
+        router: 'note'
       },
       {
         key: '五',
