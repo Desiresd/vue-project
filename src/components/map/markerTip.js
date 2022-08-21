@@ -2,17 +2,17 @@
 const DefaultConfig = {
   direction: 'top',
   permanent: false,
-  offset: [-15, -32],
+  offset: [-18, 0],
   opacity: 1,
   className: ''
 }
 
-const RectangleConfig = {
+const CircleConfig = {
   direction: 'top',
   permanent: false,
-  offset: [0, -15],
+  offset: [0, 0],
   opacity: 1,
   className: ''
 }
 
-export { DefaultConfig, RectangleConfig }
+export { DefaultConfig, CircleConfig }

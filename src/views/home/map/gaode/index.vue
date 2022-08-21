@@ -38,7 +38,7 @@ export default {
             extensions: 'all'
           })
           // 搜索所有省/直辖市信息
-          districtSearch.search('山西', (status, result) => {
+          districtSearch.search('广西', (status, result) => {
             // 查询成功时，result即为对应的行政区信息
             this.handlePolygon(result, AMap)
           })
@@ -55,7 +55,7 @@ export default {
             extensions: 'all'
           })
           // 搜索所有省/直辖市信息
-          districtSearch.search('太原', (status, result) => {
+          districtSearch.search('南宁', (status, result) => {
             // 查询成功时，result即为对应的行政区信息
             this.handlePolygonCity(result, AMap)
           })

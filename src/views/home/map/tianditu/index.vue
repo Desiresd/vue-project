@@ -9,11 +9,9 @@
 <script>
 import L from 'leaflet'
 import Provider from '@/components/map/chinatmsproviders.js'
-import testJson from '@/components/map/test.json'
-import mapJson from '@/components/map/map.json'
 import liaochengJson from '@/components/map/liaocheng.json'
 import { DefaultIcon, CircleIcon } from '@/components/map/markerIcon.js'
-// import { DefaultConfig, RectangleConfig } from '@/components/map/markerTip.js'
+import { DefaultConfig, CircleConfig } from '@/components/map/markerTip.js'
 
 import LocateLayer from './LocateLayer'
 require('leaflet/dist/leaflet.css')
@@ -39,6 +37,17 @@ export default {
     Provider(L)
     this.initMap()
   },
+  computed: {
+    setMarkerTip: function () {
+      return function (item) {
+        let tip = `
+          <p>项目名称：${item.name || '-'}</p>
+          <p>总投资：${item.total || '-'}</p>
+        `
+        return tip
+      }
+    }
+  },
   methods: {
     initMap () {
       // 创建一个地图
@@ -52,54 +61,18 @@ export default {
       // 使用天地图作为底图
       L.tileLayer.chinaProvider('TianDiTu.Normal.Map', { maxZoom: 18, minZoom: 5, key: this.mapKey }).addTo(this.map)
       L.tileLayer.chinaProvider('TianDiTu.Normal.Annotion', { maxZoom: 18, minZoom: 5, key: this.mapKey }).addTo(this.map) // 设置地图图层，可以按需引入；this.mapKey是自己的天地图key值
-      // 添加山东省行政边界填充颜色
-      let mapData = {
-        type: 'FeatureCollection',
-        features: []
-      }
-      mapData.features = mapJson.features.map(item => {
-        return {
-          ...item,
-          style: {
-            zIndex: -1,
-            weight: 1,
-            opacity: 1,
-            color: 'red',
-            dashArray: 0,
-            fillOpacity: 0.6,
-            fillColor: '#617DF5'
-          }
-        }
-      })
 
-      // console.log(mapData)
-      // L.geoJson(mapData, {
-      //   style: function (feature) {
-      //     return feature.style
-      //   }
-      // }).addTo(this.map)
-
+      // 聊城市添加边界
       L.geoJson(liaochengJson, {
         style: {
           weight: 2,
           opacity: 1,
-          color: 'red',
+          color: '#3E9254',
           dashArray: 0,
-          fillOpacity: 0.2,
-          fillColor: '#ffffff'
+          fillOpacity: 0.2
         }
       }).addTo(this.map)
-      console.log(testJson)
-      L.geoJson(testJson, {
-        style: {
-          weight: 1,
-          opacity: 1,
-          color: 'red',
-          dashArray: 0,
-          fillOpacity: 0.2,
-          fillColor: '#ffffff'
-        }
-      }).addTo(this.map)
+
       // 监听鼠标缩放获取地图级别
       this.getMarker(this.zoom)
       this.map.on('zoomend', e => {
@@ -404,11 +377,10 @@ export default {
       let markers = zoom === 9 ? JSON.parse(JSON.stringify(markers1)) : zoom === 10 ? JSON.parse(JSON.stringify(markers2)) : zoom === 11 ? JSON.parse(JSON.stringify(markers3)) : zoom === 12 ? JSON.parse(JSON.stringify(markers4)) : zoom === 13 ? JSON.parse(JSON.stringify(markers5)) : JSON.parse(JSON.stringify(markers6))
       let marker = []
       for (let item in markers) {
-        marker.push(new L.Marker(markers[item]['lngLat'], { icon: markers[item]['icon'] === 'Circle' ? CircleIcon(markers[item]['marker']) : DefaultIcon }))
-        // 添加标记
-        // let marker = L.marker(markers[item]['lngLat'], { icon: markers[item]['icon'] === 'Rectangle' ? RectangleIcon(markers[item]['marker']) : DefaultIcon }).addTo(this.map)
-        // 添加标记提示
-        // marker.bindTooltip(markers[item]['marker'], markers[item]['icon'] === 'Rectangle' ? RectangleConfig : DefaultConfig)
+        // 添加标记 添加标记提示
+        let mark = new L.Marker(markers[item]['lngLat'], { icon: markers[item]['icon'] === 'Circle' ? CircleIcon(markers[item]['marker']) : DefaultIcon })
+        mark.bindPopup(this.setMarkerTip(markers[item]), markers[item]['icon'] === 'Circle' ? CircleConfig : DefaultConfig)
+        marker.push(mark)
       }
       this.markersGroup = L.layerGroup(marker)
       this.map.addLayer(this.markersGroup)
