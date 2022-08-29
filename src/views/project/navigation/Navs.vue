@@ -5,7 +5,7 @@
               :sm="6"
               :md="4"
               :lg="3"
-              :xl="1"
+              :xl="3"
               v-for="item in navs"
               :key="item.navsId">
         <span @click="toPath(item.navsId)">{{ item.navsName }}</span>

@@ -10,17 +10,16 @@
                :unique-opened="true">
         <menu-tree v-for="item in sideData"
                    :key="item.id"
-                   :item="item"
-                   @popDetails="popDetails"></menu-tree>
+                   :item="item"></menu-tree>
       </el-menu>
     </el-aside>
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <span style="font-size: 20px;font-weight: bold;">习题汇总（学习）</span>
+        <span style="font-size: 20px;font-weight: bold;">Canvas（学习）</span>
       </el-header>
       <el-main>
-        <container-view :details="details" />
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -28,27 +27,40 @@
 </template>
 
 <script>
-import { leetContent } from '@/json/leetContent.js'
 import menuTree from './menuTree.vue'
-import containerView from './containerView.vue'
 export default {
   name: 'index',
   components: {
-    menuTree,
-    containerView
+    menuTree
   },
   data () {
     return {
-      sideData: leetContent,
-      details: []
-    }
-  },
-  created () {
-    this.details = leetContent[0].children[0].details
-  },
-  methods: {
-    popDetails (details) {
-      this.details = details
+      sideData: [
+        {
+          id: '1',
+          icon: 'el-icon-s-help',
+          title: '基础',
+          children: [
+            {
+              id: '1-1',
+              title: '表格',
+              router: 'table'
+            }
+          ]
+        },
+        {
+          id: '2',
+          icon: 'el-icon-more',
+          title: '图形',
+          children: [
+            {
+              id: '2-1',
+              title: '圆形',
+              router: ''
+            }
+          ]
+        }
+      ]
     }
   }
 }
@@ -67,7 +79,6 @@ export default {
     font-weight: bold;
   }
 }
-
 .el-header {
   background-color: #b3c0d1;
   color: #333;

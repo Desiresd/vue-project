@@ -50,7 +50,7 @@ export const catalog = [
       {
         key: '四',
         name: 'Canvas练习',
-        router: ''
+        router: 'canvas'
       },
       {
         key: '五',

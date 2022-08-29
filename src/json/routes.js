@@ -201,6 +201,23 @@ export const routes = [
     ]
   },
   {
+    path: '/canvas',
+    name: 'Canvas',
+    component: () => import('@/views/home/canvas/index'),
+    children: [
+      {
+        path: '',
+        name: '',
+        component: () => import('@/views/home/canvas/topic/table/index')
+      },
+      {
+        path: 'table',
+        name: 'Table',
+        component: () => import('@/views/home/canvas/topic/table/index')
+      }
+    ]
+  },
+  {
     path: '/personalEA',
     name: 'PersonalEA',
     component: () => import('@/views/project/personalEA/index')
