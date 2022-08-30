@@ -104,18 +104,18 @@ export const catalog = [
       },
       {
         key: '三',
-        name: '快捷导航网页',
-        router: 'navigation'
-      },
-      {
-        key: '四',
         name: '格言便签',
         router: 'note'
       },
       {
+        key: '四',
+        name: '快捷导航网页',
+        router: 'navigation'
+      },
+      {
         key: '五',
-        name: '(placeholder)',
-        router: ''
+        name: '组件库导航',
+        router: 'module'
       }
     ]
   },

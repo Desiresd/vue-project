@@ -246,5 +246,15 @@ export const routes = [
     path: '/note',
     name: 'Note',
     component: () => import('@/views/project/note/index')
+  },
+  {
+    path: '/module',
+    name: 'Module',
+    component: () => import('@/views/project/module/index')
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: () => import('@/views/project/module/test')
   }
 ]

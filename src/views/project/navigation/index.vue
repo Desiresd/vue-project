@@ -1,6 +1,7 @@
 <template>
   <div class="navs-page">
-    <search-page @search="search" />
+    <search-page :reminder="reminder"
+                 @search="search" />
     <list-box :searchArr="searchArr"
               :navsArr="navsArr"
               :navsTools="navsTools" />
@@ -22,7 +23,8 @@ export default {
       navigation: navigation,
       searchArr: [],
       navsArr: [],
-      navsTools: []
+      navsTools: [],
+      reminder: ['Github', 'Element', 'ECharts', 'Iconfont', '力扣']
     }
   },
   created () {
@@ -97,5 +99,6 @@ $color-back: #f7f7f7;
 .navs-page {
   background: $color-back;
   min-width: 700px;
+  min-height: 100vh;
 }
 </style>

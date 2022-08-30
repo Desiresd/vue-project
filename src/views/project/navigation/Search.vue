@@ -22,10 +22,15 @@
 <script>
 export default {
   name: 'Search',
+  props: {
+    reminder: {
+      type: Array,
+      default: () => { return [] }
+    }
+  },
   data () {
     return {
-      input: '',
-      reminder: ['Github', 'Element', 'ECharts', 'Iconfont', '力扣']
+      input: ''
     }
   },
   methods: {
