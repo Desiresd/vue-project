@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import CircleCollect from './CircleCollect'
+import CircleCollect from '@/components/module/CircleCollect'
 import ColumnCollect from './ColumnCollect'
 export default {
   name: 'Index',

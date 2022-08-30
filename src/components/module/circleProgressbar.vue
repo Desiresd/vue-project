@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'circleProgressbar',
+  name: 'CircleProgressbar',
   props: {
     id: { // 组件的id，多组件共存时使用
       type: [String, Number],
