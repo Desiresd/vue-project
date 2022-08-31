@@ -14,7 +14,9 @@
                       :title="'AQI'"
                       :value="57.83" />
       <circle-progressbar v-else-if="element === 'CircleProgressbar'" />
-
+      <sticky-note v-else-if="element === 'StickyNote'"
+                   :note="note" />
+      <div v-else>空</div>
     </div>
     <span slot="footer"
           class="dialog-footer">
@@ -28,16 +30,24 @@
 <script>
 import CircleCollect from '@/components/module/CircleCollect'
 import CircleProgressbar from '@/components/module/CircleProgressbar'
+import StickyNote from '@/components/module/StickyNote'
 export default {
   name: 'index',
   components: {
     CircleCollect,
-    CircleProgressbar
+    CircleProgressbar,
+    StickyNote
   },
   data () {
     return {
       visible: false,
-      element: ''
+      element: '',
+      note: [
+        '一路上追逐奔波，',
+        '最后想要的，',
+        '只不过是宁静的幸福。',
+        '张小娴'
+      ]
     }
   }
 }

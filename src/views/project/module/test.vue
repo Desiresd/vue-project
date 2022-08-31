@@ -1,27 +1,24 @@
 <template>
   <div>
-    <circle-collect class="circle"
-                    :id="1"
-                    :width="42"
-                    :radius="6"
-                    :progress="57.83"
-                    barColor="#61A28B"
-                    backgroundColor="#152528"
-                    :title="'AQI'"
-                    :value="57.83" />
+    <stick-note :item="item" />
   </div>
 </template>
 
 <script>
-import CircleCollect from '@/components/module/CircleCollect'
+import StickyNote from '@/components/module/StickyNote'
 export default {
   name: 'test',
   components: {
-    CircleCollect
+    StickyNote
   },
   data () {
     return {
-
+      item: [
+        '一路上追逐奔波，',
+        '最后想要的，',
+        '只不过是宁静的幸福。',
+        '张小娴'
+      ]
     }
   }
 }
