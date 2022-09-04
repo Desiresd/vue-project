@@ -111,6 +111,47 @@ export const leetContent = [
             `
           }
         ]
+      },
+      {
+        id: '1-4',
+        grade: '1',
+        title: '罗马数字转整数',
+        details: [
+          {
+            html: `
+              <h1>题目：罗马数字转整数</h1>
+              <h4>描述：罗马数字包含以下七种字符：I->1,V->5,X->10,L->50,C->100,D->500,M->1000。通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如4不写做IIII，而是IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字9表示为IX。
+              ①I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。②X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。③C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。</h4>
+              <p>思路：使用Map集合进行叠加</p>
+            `,
+            highLight: `
+    /**
+     * 罗马数字转整数
+     * @param {string} s
+     * @return {number}
+     *
+     * 输入 s = 'IV'
+     * 输出 4
+     * 原因 旋转过程中 I = 1 , V = 4 且I在V前面。
+     *
+     * 输入 s = 'LVIII'
+     * 输出 58
+     * 原因  L = 50, V= 5, III = 3.
+     */
+
+    var romanToInt = function(s) {
+      let map = new Map([['I',1],['V',5],['X',10],['L',50],['C',100],['D',500],['M',1000]])
+      let num = 0
+      for(let i=0; i<s.length;i++){
+          let left = map.get(s[i])
+          let right = map.get(s[i+1])
+          num += left < right ? -left : left
+      }
+      return num
+    };
+            `
+          }
+        ]
       }
     ]
   },
