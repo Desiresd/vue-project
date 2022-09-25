@@ -69,7 +69,7 @@ export const catalog = [
       },
       {
         key: '二',
-        name: '天地图',
+        name: '天地图(leaflet)',
         router: 'tianditu'
       },
       {

@@ -81,15 +81,31 @@ export const leetContent = [
       {
         id: '1-3',
         grade: '1',
-        title: '字符匹配',
+        title: '有效的括号',
         details: [
           {
             html: `
-        <h1>题目：字符匹配</h1>
-        <h4>描述：字符匹配 [(()] 和 （[][])</h4>
+        <h1>题目：字符匹配(有效的括号)</h1>
+        <h4>描述：给定一个只包括 '('，')'，'{'，'}'，'['，']'的字符串 s ，判断字符串是否有效。
+        有效字符串需满足：1、左括号必须用相同类型的右括号闭合。2、左括号必须以正确的顺序闭合。3、每个右括号都有一个对应的相同类型的左括号。</h4>
         <p>思路：基于栈的写法（后进先出）</p>
       `,
             highLight: `
+    /**
+     * 字符匹配(有效的括号)
+     * @param {string} str
+     * @return {boolean}
+     *
+     * 输入 s = "()"
+     * 输出 true
+     *
+     * 输入 s = "()[]{}"
+     * 输出 true
+     * 
+     * 输入 s = "(]"
+     * 输出 false
+     */
+
     function is_balance(str){
       const [first, ...others] = str
       const stack = [first]
@@ -358,6 +374,99 @@ export const leetContent = [
             `
           }
         ]
+      },
+      {
+        id: '3-6',
+        grade: '1',
+        title: '最长公共前缀',
+        details: [
+          {
+            html: `
+              <h1>题目：最长公共前缀</h1>
+              <h4>描述：编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。</h4>
+              <p>思路：使用链表思维，获取数组数值最少长度进行减一并一一匹配</p>
+            `,
+            highLight: `
+    /**
+     * 最长公共前缀
+     * @param {string[]} strs
+     * @return {string}
+     *
+     * 输入 strs = ["flower","flow","flight"]
+     * 输出 "fl"
+     *
+     * 输入 strs = ["dog","racecar","car"]
+     * 输出 ""
+     * 原因 输入不存在公共前缀。
+     */
+
+     var longestCommonPrefix = function(strs) {
+         if(strs.length === 0) return ''
+         if(strs.length === 1) return strs[0]
+         let doing = true
+         let min = 200
+         strs.forEach(val=>{
+             val.length < min ? (min = val.length) : null
+         })
+         while(doing){
+             let str = strs[0].substring(0,min)
+             let isPrefix = true
+             for(let i=0; i<strs.length; i++){
+                 if(str !== strs[i].substring(0,min)){
+                     isPrefix = false
+                     break
+                 }
+             }
+             isPrefix === true || min === 0 ?(doing = false):null
+             min--
+         }
+         min++
+         return min === 0 ? '' : strs[0].substring(0,min)
+     };
+            `
+          }
+        ]
+      },
+      {
+        id: '3-7',
+        grade: '1',
+        title: '删除有序数组中的重复项',
+        details: [
+          {
+            html: `
+              <h1>删除有序数组中的重复项</h1>
+              <h4>描述：给你一个 升序排列 的数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。元素的 相对顺序 应该保持 一致 。</h4>
+              <p>思路：使用快慢链表思想解决</p>
+            `,
+            highLight: `
+    /**
+     * 删除有序数组中的重复项
+     * @param {number[]} nums
+     * @return {number}
+     *
+     * 输入 nums = [1,1,2]
+     * 输出 2
+     *
+     * 输入 nums = [0,0,1,1,1,2,2,3,3,4]
+     * 输出 5
+     * 原因 函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。
+     */
+
+    var removeDuplicates = function(nums) {
+      let show = 0
+      let fast = 1
+      while(fast < nums.length){
+          if(nums[show] != nums[fast]){
+              show += 1
+              nums[show] = nums[fast]
+          }
+          fast += 1
+      }
+      return show + 1
+    };
+            `
+          }
+        ]
       }
     ]
   },
@@ -569,6 +678,48 @@ export const leetContent = [
       curr2.next = curr
       return head
     }
+            `
+          }
+        ]
+      },
+      {
+        id: '3-4',
+        grade: '1',
+        title: '合并两个有序链表',
+        details: [
+          {
+            html: `
+              <h1>合并两个有序链表</h1>
+              <h4>描述：将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。</h4>
+              <p>思路：使用递归</p>
+            `,
+            highLight: `
+    /**
+     * 合并两个有序链表
+     * Definition for singly-linked list.
+     * function ListNode(val, next) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.next = (next===undefined ? null : next)
+     * }
+     * @param {ListNode} list1
+     * @param {ListNode} list2
+     * @return {ListNode}
+     *
+     * 输入 list1 = [1,2,4], list2 = [1,3,4]
+     * 输出 [1,1,2,3,4,4]
+     */
+
+    var mergeTwoLists = function(list1, list2) {
+      if(list1 === null) return list2
+      if(list2 === null) return list1
+      if(list1.val<list2.val){
+          list1.next = mergeTwoLists(list1.next,list2)
+          return list1
+      }else{
+          list2.next = mergeTwoLists(list1,list2.next)
+          return list2
+      }
+    };
             `
           }
         ]

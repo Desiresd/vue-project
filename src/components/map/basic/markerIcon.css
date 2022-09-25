@@ -2,6 +2,21 @@
 * 地图标记的样式
 **/
 
+.map-color{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.color-text{
+  position: absolute;
+  left: 40px;
+  top: 5px;
+  box-sizing: border-box;
+  padding: 0px 3px;
+  white-space: nowrap;
+}
+
 .map-rectangles {
   display: flex;
   justify-content: center;
@@ -14,7 +29,7 @@
 }
 
 .map-circle {
-  position: relative;
+  /* position: relative; */
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,26 +1,43 @@
 <template>
   <div class="map">
     <div id="map"></div>
-    <locate-layer :value="locateData"
-                  @select="selectSpan" />
+    <!-- 经纬度显示 -->
+    <coord class="coords"
+           :latlng="latlng" />
+
+    <!--工具显示 -->
+    <tools class="tools"
+           :name="toolsName"
+           @toDraw="toDraw" />
+
+    <!--编辑工具框显示 -->
+    <editor ref="editor"
+            class="editors"
+            :value="elEditor"
+            @editorChange="editorChange"
+            @editorDelete="editorDelete" />
   </div>
 </template>
 
 <script>
+import { message } from 'ant-design-vue'
 import L from 'leaflet'
-import Provider from '@/components/map/chinatmsproviders.js'
-import liaochengJson from '@/components/map/liaocheng.json'
-import { DefaultIcon, CircleIcon } from '@/components/map/markerIcon.js'
-import { DefaultConfig, CircleConfig } from '@/components/map/markerTip.js'
+import NnCity from '@/components/map/basic/NnCity.json'
+import Provider from '@/components/map/basic/chinatmsproviders.js'
+import { ColorIcon } from '@/components/map/basic/markerIcon.js'
 
-import LocateLayer from './LocateLayer'
+import Coord from '@/components/map/Coord'
+import Tools from '@/components/map/Tools'
+import Editor from '@/components/map/Editor'
 require('leaflet/dist/leaflet.css')
-require('@/components/map/markerIcon.css')
+require('@/components/map/basic/markerIcon.css')
 
 export default {
   name: 'Index',
   components: {
-    LocateLayer
+    Coord,
+    Tools,
+    Editor
   },
   data () {
     return {
@@ -29,367 +46,325 @@ export default {
       zoom: 9,
       minZoom: 1,
       maxZoom: 18,
-      markersGroup: null,
-      locateData: []
+      latlng: {}, // 实时经纬度
+      // 元素
+      elArr: [],
+      elTool: null,
+      isAllowDouble: false,
+      latlngs: [],
+      // 标注
+      toolsName: '',
+      elEditor: null,
+      // 线条
+      polylineArr: [],
+      polylineTool: null,
+      // 线面
+      polygonArr: [],
+      polygonTool: null,
+      // 圆形
+      circleArr: [],
+      circleTool: null
     }
+  },
+  created () {
+    // 配置提示弹出框
+    message.config({
+      duration: 2, // 持续时间
+      top: `130px`, // 到页面顶部距离
+      maxCount: 5 // 最大显示数, 超过限制时，最早的消息会被自动关闭
+    })
   },
   mounted () {
     Provider(L)
     this.initMap()
   },
-  computed: {
-    setMarkerTip: function () {
-      return function (item) {
-        let tip = `
-          <p>项目名称：${item.name || '-'}</p>
-          <p>总投资：${item.total || '-'}</p>
-        `
-        return tip
-      }
-    }
-  },
   methods: {
+    // 地图（绘制）
     initMap () {
-      // 创建一个地图
-      let myCenter = new L.LatLng(36.43452, 115.98847) // 设置地图中心
+      let myCenter = new L.LatLng(22.82, 108.37)
       this.map = L.map('map', {
         center: myCenter,
         zoom: this.zoom,
         minZoom: this.minZoom,
-        maxZoom: this.maxZoom
+        maxZoom: this.maxZoom,
+        attributionControl: false
       })
-      // 使用天地图作为底图
-      L.tileLayer.chinaProvider('TianDiTu.Normal.Map', { maxZoom: 18, minZoom: 5, key: this.mapKey }).addTo(this.map)
-      L.tileLayer.chinaProvider('TianDiTu.Normal.Annotion', { maxZoom: 18, minZoom: 5, key: this.mapKey }).addTo(this.map) // 设置地图图层，可以按需引入；this.mapKey是自己的天地图key值
-
-      // 聊城市添加边界
-      L.geoJson(liaochengJson, {
+      this.map.on('mousemove', (e) => {
+        let latlng = e.latlng
+        this.latlng = latlng
+        if (this.toolsName === 'wire') {
+          this.drawWireDouble(latlng)
+        } else if (this.toolsName === 'side') {
+          this.drawSideDouble(latlng)
+        } else if (this.toolsName === 'circle') {
+          this.drawCircleDouble(latlng)
+        }
+      })
+      // 使用天地图作为底图(地图) 可按需引入 this.mapKey是自己的天地图key值
+      L.tileLayer.chinaProvider('TianDiTu.Normal.Map', { maxZoom: 18, minZoom: 5, key: this.mapKey, zIndex: 1 }).addTo(this.map)
+      L.tileLayer.chinaProvider('TianDiTu.Normal.Annotion', { maxZoom: 18, minZoom: 5, key: this.mapKey, zIndex: 3 }).addTo(this.map)
+      // 南宁市边界
+      L.geoJSON(NnCity, {
         style: {
           weight: 2,
           opacity: 1,
           color: '#3E9254',
           dashArray: 0,
-          fillOpacity: 0.2
+          fillOpacity: 0.1
         }
       }).addTo(this.map)
-
-      // 监听鼠标缩放获取地图级别
-      this.getMarker(this.zoom)
-      this.map.on('zoomend', e => {
-        let zoom = e.target.getZoom()
-        this.getMarker(zoom)
-      })
     },
-    // 根据zoom的级别获取对应的标记
-    getMarker (zoom) {
-      // 存在标记情况时清除所有标记
-      if (this.markersGroup != null) {
-        this.markersGroup.clearLayers()
+    // 工具操作
+    toDraw (name) {
+      this.toolsName = name
+      this.editorStatus(false)
+      this.map.off('mouseup')
+      switch (name) {
+        case 'mark':
+          this.map.on('mouseup', (e) => {
+            let latlng = e.latlng
+            this.drawMarker(latlng)
+          })
+          break
+        case 'wire':
+          this.map.on('mouseup', (e) => {
+            let latlng = e.latlng
+            this.isAllowDouble = false
+            this.drawWire(latlng)
+          })
+          this.map.on('dblclick', (e) => {
+            this.isAllowDouble = false
+            this.clearPolyline()
+            let params = {
+              type: 'wire',
+              name: '线条',
+              desc: '',
+              color: '#FF0000',
+              weight: 3
+            }
+            this.toolsName = ''
+            this.map.off('mouseup').off('dblclick')
+            var polyline = L.polyline(this.latlngs, params).addTo(this.map).on('click', this.elClick)
+            this.elArr.push(polyline)
+            this.latlngs = []
+          })
+          break
+        case 'side':
+          this.map.on('mouseup', (e) => {
+            let latlng = e.latlng
+            this.isAllowDouble = false
+            this.drawSide(latlng)
+          })
+          this.map.on('dblclick', (e) => {
+            this.isAllowDouble = false
+            this.clearPolygon()
+            let params = {
+              type: 'side',
+              name: '线面',
+              desc: '',
+              color: '#FF0000',
+              fillOpacity: 0.2,
+              weight: 3
+            }
+            this.toolsName = ''
+            this.map.off('mouseup').off('dblclick')
+            var polygon = L.polygon(this.latlngs, params).addTo(this.map).on('click', this.elClick)
+            this.elArr.push(polygon)
+            this.latlngs = []
+          })
+          break
+        case 'circle':
+          this.map.on('mousedown', (e) => {
+            this.isAllowDouble = true
+            let latlng = e.latlng
+            this.drawCircle(latlng)
+            this.map.dragging.disable()
+          })
+          this.map.on('mouseup', (e) => {
+            this.isAllowDouble = false
+            this.toolsName = ''
+            this.map.off('mousedown').off('mouseup')
+            this.latlngs = []
+            this.map.dragging.enable()
+          })
+          break
+        case 'clear':
+          this.toolsName = ''
+          this.clearEl()
+          break
+        default:
+          break
       }
-      let markers1 = [
-        {
-          lngLat: [36.43452, 115.98847],
-          marker: zoom,
-          icon: 'Default',
-          name: '聊城市中心',
-          total: 1000,
-          zoom: 9
-        },
-        {
-          lngLat: [36.48335, 115.44263],
-          marker: zoom,
-          icon: 'Default',
-          name: '冠县',
-          total: 2000,
-          zoom: 9
-        },
-        {
-          lngLat: [36.12477509667906, 115.80792541015626],
-          marker: zoom,
-          icon: 'Circle',
-          name: '阳谷县',
-          total: 3000,
-          zoom: 9
-        },
-        {
-          lngLat: [36.237837561878145, 115.67334289062501],
-          marker: zoom,
-          icon: 'Circle',
-          name: '莘县',
-          total: 4000,
-          zoom: 9
-        },
-        {
-          lngLat: [36.84663690417282, 116.23016921875002],
-          marker: zoom,
-          icon: 'Circle',
-          name: '高唐县',
-          total: 5000,
-          zoom: 9
-        },
-        {
-          lngLat: [36.83344816009291, 115.72479812500002],
-          marker: zoom,
-          icon: 'Circle',
-          name: '临清市',
-          total: 6000,
-          zoom: 9
-        }
-      ]
-      let markers2 = [
-        {
-          lngLat: [36.43452, 115.98847],
-          marker: zoom,
-          icon: 'Default',
-          name: '聊城市中心',
-          total: 7000,
-          zoom: 10
-        },
-        {
-          lngLat: [36.436729693005404, 115.62592117187502],
-          marker: zoom,
-          icon: 'Default',
-          name: '桑阿镇',
-          total: 8000,
-          zoom: 10
-        },
-        {
-          lngLat: [36.498575549375566, 115.5311640917969],
-          marker: zoom,
-          icon: 'Circle',
-          name: '烟庄乡',
-          total: 9000,
-          zoom: 10
-        },
-        {
-          lngLat: [36.724554271680994, 115.70557205078127],
-          marker: zoom,
-          icon: 'Circle',
-          name: '尚店镇',
-          total: 10000,
-          zoom: 10
-        }
-      ]
-      let markers3 = [
-        {
-          lngLat: [36.43452, 115.98847],
-          marker: zoom,
-          icon: 'Default',
-          name: '聊城市中心',
-          total: 11000,
-          zoom: 11
-        },
-        {
-          lngLat: [36.505198964351976, 115.98366348144533],
-          marker: zoom,
-          icon: 'Default',
-          name: '聊城东站',
-          total: 12000,
-          zoom: 11
-        },
-        {
-          lngLat: [36.481462438363565, 115.59364883300783],
-          marker: zoom,
-          icon: 'Default',
-          name: '辛庄',
-          total: 13000,
-          zoom: 11
-        },
-        {
-          lngLat: [36.66674476272188, 115.71106521484377],
-          marker: zoom,
-          icon: 'Default',
-          name: '郭庄村',
-          total: 14000,
-          zoom: 11
-        },
-        {
-          lngLat: [36.65517764534131, 116.05095474121096],
-          marker: zoom,
-          icon: 'Circle',
-          name: '肖庄镇',
-          total: 15000,
-          zoom: 11
-        },
-        {
-          lngLat: [36.838943746532536, 115.86899368164065],
-          marker: zoom,
-          icon: 'Circle',
-          name: '老赵庄镇',
-          total: 16000,
-          zoom: 11
-        }
-      ]
-      let markers4 = [
-        {
-          lngLat: [36.43452, 115.98847],
-          marker: zoom,
-          icon: 'Default',
-          name: '聊城市中心',
-          total: 17000,
-          zoom: 12
-        },
-        {
-          lngLat: [36.43783451591615, 115.92323867675783],
-          marker: zoom,
-          icon: 'Default',
-          name: '八东村',
-          total: 18000,
-          zoom: 12
-        },
-        {
-          lngLat: [36.479254019619844, 115.90984908935549],
-          marker: zoom,
-          icon: 'Default',
-          name: '付庄',
-          total: 19000,
-          zoom: 12
-        },
-        {
-          lngLat: [36.497195599939275, 115.89062301513674],
-          marker: zoom,
-          icon: 'Circle',
-          name: '老吕庄村',
-          total: 20000,
-          zoom: 12
-        },
-        {
-          lngLat: [36.53858338432509, 115.92735854980471],
-          marker: zoom,
-          icon: 'Circle',
-          name: '周店村',
-          total: 21000,
-          zoom: 12
-        },
-        {
-          lngLat: [36.55016799659041, 116.07155410644533],
-          marker: zoom,
-          icon: 'Circle',
-          name: '乌庄村',
-          total: 22000,
-          zoom: 12
-        }
-      ]
-      let markers5 = [
-        {
-          lngLat: [36.43452, 115.98847],
-          marker: zoom,
-          icon: 'Default',
-          name: '聊城市中心',
-          total: 23000,
-          zoom: 13
-        },
-        {
-          lngLat: [36.47331858237398, 115.9325083911133],
-          marker: zoom,
-          icon: 'Default',
-          name: '郭庄',
-          total: 24000,
-          zoom: 13
-        },
-        {
-          lngLat: [36.486155119204476, 115.9186038195801],
-          marker: zoom,
-          icon: 'Circle',
-          name: '武镇',
-          total: 25000,
-          zoom: 13
-        },
-        {
-          lngLat: [36.43617727565312, 115.90126602050783],
-          marker: zoom,
-          icon: 'Circle',
-          name: '十二里营村',
-          total: 26000,
-          zoom: 13
-        }
-      ]
-      let markers6 = [
-        {
-          lngLat: [36.43452, 115.98847],
-          marker: zoom,
-          icon: 'Default',
-          name: '聊城市中心',
-          total: 27000,
-          zoom: 14
-        },
-        {
-          lngLat: [36.431412512774834, 115.96246330139162],
-          marker: zoom,
-          icon: 'Default',
-          name: '金凤广场',
-          total: 28000,
-          zoom: 14
-        },
-        {
-          lngLat: [36.44660348986534, 115.9423789202881],
-          marker: zoom,
-          icon: 'Default',
-          name: '西湖馨苑',
-          total: 29000,
-          zoom: 14
-        },
-        {
-          lngLat: [36.46814195788633, 115.95104781982424],
-          marker: zoom,
-          icon: 'Default',
-          name: '金城小区',
-          total: 30000,
-          zoom: 14
-        },
-        {
-          lngLat: [36.47863289050987, 115.9859809100342],
-          marker: zoom,
-          icon: 'Default',
-          name: '聊城万达广场',
-          total: 31000,
-          zoom: 14
-        },
-        {
-          lngLat: [36.467520739716704, 116.00743858215334],
-          marker: zoom,
-          icon: 'Default',
-          name: '亚太怡景花园',
-          total: 32000,
-          zoom: 14
-        },
-        {
-          lngLat: [36.45716637068455, 116.00040046569826],
-          marker: zoom,
-          icon: 'Circle',
-          name: '聊城人才大厦',
-          total: 33000,
-          zoom: 14
-        },
-        {
-          lngLat: [36.44170127224569, 115.99739639160158],
-          marker: zoom,
-          icon: 'Circle',
-          name: '聊城市中医医院',
-          total: 34000,
-          zoom: 14
-        }
-      ]
-      if (this.locateData && this.locateData.length === 0) {
-        let list = [...markers1, ...markers2, ...markers3, ...markers4, ...markers5, ...markers6]
-        this.locateData = list
-      }
-      let markers = zoom === 9 ? JSON.parse(JSON.stringify(markers1)) : zoom === 10 ? JSON.parse(JSON.stringify(markers2)) : zoom === 11 ? JSON.parse(JSON.stringify(markers3)) : zoom === 12 ? JSON.parse(JSON.stringify(markers4)) : zoom === 13 ? JSON.parse(JSON.stringify(markers5)) : JSON.parse(JSON.stringify(markers6))
-      let marker = []
-      for (let item in markers) {
-        // 添加标记 添加标记提示
-        let mark = new L.Marker(markers[item]['lngLat'], { icon: markers[item]['icon'] === 'Circle' ? CircleIcon(markers[item]['marker']) : DefaultIcon })
-        mark.bindPopup(this.setMarkerTip(markers[item]), markers[item]['icon'] === 'Circle' ? CircleConfig : DefaultConfig)
-        marker.push(mark)
-      }
-      this.markersGroup = L.layerGroup(marker)
-      this.map.addLayer(this.markersGroup)
     },
-    // 选中右侧图层
-    selectSpan (item) {
-      let center = L.latLng(item.lngLat[0], item.lngLat[1])
-      this.map.setView(center, item.zoom)
+    // 自定义标注点击
+    elClick (e) {
+      this.editorStatus(true)
+      this.elEditor = e.target
+      console.log(e.target)
+    },
+    // 自定义绘画标注
+    drawMarker (latlng) {
+      let params = {
+        type: 'mark',
+        name: '标注',
+        desc: '',
+        color: '#FF0000',
+        size: 32,
+        delivery: true
+      }
+      let marker = L.marker(latlng, { type: 'mark', icon: ColorIcon(params) }).addTo(this.map).on('click', this.elClick)
+      this.elArr.push(marker)
+      this.toolsName = ''
+      this.map.off('mouseup')
+    },
+    // 自定义绘画线条
+    drawWire (latlng) {
+      let params = {
+        color: '#FF0000',
+        weight: 3
+      }
+      let [lat, lng] = [latlng.lat, latlng.lng]
+      this.latlngs.push([lat, lng])
+      let polyline = L.polyline(this.latlngs, params).addTo(this.map)
+      this.polylineArr.push(polyline)
+    },
+    // 自定义绘画线条(虚拟)
+    drawWireDouble (latlng) {
+      let params = {
+        color: '#FF0000',
+        weight: 3
+      }
+      let [lat, lng] = [latlng.lat, latlng.lng]
+      if (this.isAllowDouble) {
+        this.isAllowDouble = false
+      } else {
+        this.latlngs.pop()
+      }
+      this.latlngs.push([lat, lng])
+      this.clearPolyline()
+      var polyline = L.polyline(this.latlngs, params).addTo(this.map)
+      this.polylineArr.push(polyline)
+    },
+    // 自定义绘画线面
+    drawSide (latlng) {
+      let params = {
+        color: '#FF0000',
+        weight: 3
+      }
+      let [lat, lng] = [latlng.lat, latlng.lng]
+      this.latlngs.push([lat, lng])
+      let polygon = L.polygon(this.latlngs, params).addTo(this.map)
+      this.polygonArr.push(polygon)
+    },
+    // 自定义绘画线面(虚拟)
+    drawSideDouble (latlng) {
+      let params = {
+        color: '#FF0000',
+        weight: 3
+      }
+      let [lat, lng] = [latlng.lat, latlng.lng]
+      if (this.isAllowDouble) {
+        this.isAllowDouble = false
+      } else {
+        this.latlngs.pop()
+      }
+      this.latlngs.push([lat, lng])
+      this.clearPolygon()
+      var polygon = L.polygon(this.latlngs, params).addTo(this.map)
+      this.polygonArr.push(polygon)
+    },
+    // 自定义画圆
+    drawCircle (latlng) {
+      // let params = {
+      //   strokeColor: '#000000', // 圆边线颜色
+      //   fillColor: '#FFFFFF', // 填充颜色。
+      //   strokeWeight: '3px', // 圆边线线的宽度，以像素为单位
+      //   strokeOpacity: 0.5, // 圆边线线的透明度，取值范围0 - 1
+      //   fillOpacity: 0.5, // 填充的透明度，取值范围0 - 1
+      //   strokeStyle: 'solid' // 圆边线线的样式，solid或dashed
+      // }
+      let [lat, lng] = [latlng.lat, latlng.lng]
+      this.latlngs.push([lat, lng])
+      let circle = L.circle(this.latlngs[0], { radius: 0 }).addTo(this.map)
+      this.circleArr.push(circle)
+    },
+    // 自定义画圆（虚拟）
+    drawCircleDouble (latlng) {
+      if (this.latlngs.length === 0) return
+      // let params = {
+      //   color: '#FF0000',
+      //   weight: 3
+      // }
+      let [lat, lng] = [latlng.lat, latlng.lng]
+      if (this.isAllowDouble) {
+        this.isAllowDouble = false
+      } else {
+        this.latlngs.pop()
+      }
+      this.latlngs.push([lat, lng])
+      console.log(this.latlngs)
+      this.clearCircle()
+      let radius = this.map.distance(this.latlngs[0], this.latlngs[1])
+      console.log('radius=' + radius)
+      let circle = L.circle(this.latlngs[0], { radius: radius }).addTo(this.map)
+      this.circleArr.push(circle)
+    },
+    // 编辑框状态变化
+    editorStatus (status = false) {
+      this.$refs.editor.editorView = status
+    },
+    editorChange (params) {
+      switch (params.type) {
+        case 'mark':
+          this.elEditor.setIcon(ColorIcon(params))
+          break
+        case 'wire':
+          this.elEditor.setStyle(params)
+          break
+        case 'side':
+          console.log('side')
+          console.log(params)
+          this.elEditor.setStyle(params)
+          break
+        default:
+          break
+      }
+    },
+    editorDelete () {
+      this.map.removeLayer(this.elEditor)
+    },
+    // 清空元素
+    clearEl () {
+      this.elTool = L.layerGroup(this.elArr).addTo(this.map)
+      this.elTool.clearLayers()
+      this.elArr = []
+    },
+    // 清空虚拟路径（线条）
+    clearPolyline () {
+      this.polylineTool = L.layerGroup(this.polylineArr).addTo(this.map)
+      this.polylineTool.clearLayers()
+      this.polylineArr = []
+    },
+    // 清空虚拟路径（线面）
+    clearPolygon () {
+      this.polygonTool = L.layerGroup(this.polygonArr).addTo(this.map)
+      this.polygonTool.clearLayers()
+      this.polygonArr = []
+    },
+    // 清空虚拟路径（圆形）
+    clearCircle () {
+      this.circleTool = L.layerGroup(this.circleArr).addTo(this.map)
+      this.circleTool.clearLayers()
+      this.circleArr = []
     }
+  },
+  destroyed () {
+    // 恢复默认配置提示弹出框
+    message.config({
+      duration: 2, // 持续时间
+      top: `10px`, // 到页面顶部距离
+      maxCount: 5 // 最大显示数, 超过限制时，最早的消息会被自动关闭
+    })
   }
 }
 </script>
@@ -399,10 +374,37 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  #map {
+    width: 100vw;
+    height: 100vh;
+  }
+  .coords {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+  }
+  .tools {
+    position: absolute;
+    right: 10px;
+    top: 100px;
+  }
+  .editors {
+    position: absolute;
+    right: 70px;
+    top: 100px;
+  }
+  .btn-color {
+    position: absolute;
+    right: 300px;
+    top: 8px;
+    z-index: 999;
+  }
 }
-
-#map {
-  width: 100vw;
-  height: 100vh;
+/deep/ .ant-message-notice {
+  padding-top: 50px;
+}
+/deep/ .leaflet-popup {
+  bottom: -13px !important;
+  left: -67px !important;
 }
 </style>
