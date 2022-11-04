@@ -198,7 +198,7 @@ export default {
       // .....
 
       // 这里做刷新操作 - 获取数据
-      this.$message.success('删除成功' + current)
+      this.$message.success('删除成功')
     }
   }
 }
