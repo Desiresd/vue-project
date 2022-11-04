@@ -3,10 +3,10 @@
     <a-table bordered
              class="table"
              size="middle"
-             :rowKey="(record,index)=>{ return index }"
+             :rowKey="(r,i)=>{ return i }"
              :data-source="tableData"
              :columns="columns"
-             :pagination="false"
+             :pagination="pagination"
              :loading="tableLoad"
              :scroll="scroll">
       <!-- lisInput -->
@@ -42,7 +42,8 @@
       <template slot="textArea"
                 slot-scope="text,record,index,column">
         <lis-text-area v-if="record.editable"
-                       v-model="record[column.dataIndex]" />
+                       v-model="record[column.dataIndex]"
+                       style="z-index: 1;" />
         <lis-ellipsis-tip v-else
                           :value="text"
                           :length="column.length || 10" />
@@ -64,7 +65,8 @@
                        :end.sync="record[column.dataIndexT]"
                        :startName="column.dataIndex"
                        :endName="column.dataIndexT"
-                       allowClear />
+                       allowClear
+                       style="position: relative;top: 12px;" />
         <span v-else>{{ `${text} ~ ${record[column.dataIndexT]}`  }}</span>
       </template>
       <!-- dateYear -->
@@ -131,38 +133,101 @@ export default {
     LisDateYear
   },
   props: {
+    // 分页配置
+    current: Number,
+    pageSize: Number,
+    total: Number,
+    size: String,
+    showSizeChanger: Boolean,
+    showQuickJumper: Boolean,
+    // 值属性配置
     value: Array,
     columns: Array,
+    // 滚动条配置
     scroll: Object
   },
   watch: {
     value: {
       handler (newName) {
-        console.log(newName)
+        this.tableLoad = true
         this.tableData = JSON.parse(JSON.stringify(newName))
+        this.tableLoad = false
       },
       immediate: true
     }
   },
   data () {
     return {
+      pagination: {
+        current: 1, // 默认当前页数
+        pageSize: 5, // 默认当前页显示数据的大小
+        total: 0, // 总数，必须先有
+        pages: 0,
+        size: 'small',
+        showSizeChanger: true,
+        showQuickJumper: true,
+        pageSizeOptions: ['5', '10', '15', '20'],
+        showTotal: (total) => `共 ${total} 条`, // 显示总数
+        onShowSizeChange: (current, pageSize) => {
+          this.pagination.current = 1
+          this.pagination.pageSize = pageSize
+        },
+        onChange: (current, size) => {
+          this.pagination.current = current
+          this.pagination.pageSize = size
+        }
+      },
       tableLoad: false,
-      tableData: []
+      tableData: [],
+      singleCopy: new Map()
     }
+  },
+  created () {
+    ({
+      current: this.pagination.current,
+      pageSize: this.pagination.pageSize,
+      total: this.pagination.total,
+      size: this.pagination.size,
+      showSizeChanger: this.pagination.showSizeChanger,
+      showQuickJumper: this.pagination.showQuickJumper
+    } = {
+      current: this.current || 1,
+      pageSize: this.pageSize || 5,
+      total: this.total || 0,
+      size: this.size || 'small',
+      showSizeChanger: this.showSizeChanger || false,
+      showQuickJumper: this.showQuickJumper || false
+    })
   },
   methods: {
     formatter (text) {
       return `${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
-    save () { },
-    cancel () { },
-    edit (index) {
-      this.tableLoad = true
-      this.tableData[index]['editable'] = true
-      this.tableLoad = false
-      console.log(this.tableData)
+    save (r, i) {
+      this.$emit('save', r, i)
     },
-    del () { }
+    handleSave (i) {
+      this.tableLoad = true
+      this.tableData[i]['editable'] = false
+      this.tableLoad = false
+    },
+    cancel (r, i) {
+      let singleData = this.singleCopy.get(i)
+      this.singleCopy.delete(i)
+      this.tableLoad = true
+      this.tableData[i] = singleData
+      this.tableData[i]['editable'] = false
+      this.tableLoad = false
+    },
+    edit (i) {
+      this.tableLoad = true
+      this.tableData[i]['editable'] = true
+      this.tableLoad = false
+      this.singleCopy.set(i, JSON.parse(JSON.stringify(this.tableData[i])))
+    },
+    del (record) {
+      this.$emit('deleted', record, this.pagination.current)
+    }
   }
 }
 </script>

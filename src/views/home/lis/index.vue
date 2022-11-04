@@ -3,7 +3,7 @@
     <a-layout-sider v-model="collapsed"
                     :trigger="null"
                     collapsible
-                    :style="{minHeight: '100vh'}">
+                    :style="{ 'height': '100vh', 'overflow-y':'scroll'}">
       <div class="logo" />
       <a-menu theme="dark"
               mode="inline"
@@ -15,7 +15,7 @@
             <span>{{ item.name }}</span>
           </a-menu-item>
           <sub-menu v-else
-                    :key="item.key"
+                    :key="item.name"
                     :menu-info="item" />
         </template>
       </a-menu>
@@ -29,7 +29,7 @@
         <lis-button type="primary"
                     @click="showCode">显示代码</lis-button>
       </a-layout-header>
-      <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff' }">
+      <a-layout-content :style="{ 'margin': '24px 16px', 'padding': '24px', 'background': '#fff','min-height': 'unset' }">
         <router-view />
       </a-layout-content>
     </a-layout>
