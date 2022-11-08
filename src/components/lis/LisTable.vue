@@ -1,113 +1,142 @@
 <template>
   <div>
-    <a-table bordered
-             class="table"
-             size="middle"
-             :rowKey="(r,i)=>{ return i }"
-             :data-source="tableData"
-             :columns="columns"
-             :pagination="pagination"
-             :loading="tableLoad"
-             :scroll="scroll">
-      <!-- lisInput -->
-      <template slot="input"
-                slot-scope="text,record,index,column">
-        <lis-input v-if="record.editable"
-                   v-model="record[column.dataIndex]"
-                   placeholder="请输入" />
-        <lis-ellipsis-tip v-else
-                          :value="text"
-                          :length="column.length || 10" />
-      </template>
-      <!-- LisDict -->
-      <template slot="select"
-                slot-scope="text,record,index,column">
-        <lis-dict v-if="record.editable"
-                  v-model="record[column.dataIndex]"
-                  type="select"
-                  dictCode="sex" />
-        <lis-dict v-else
-                  :value="text"
-                  dictCode="sex" />
-      </template>
-      <!-- lisInputNumber -->
-      <template slot="inputNumber"
-                slot-scope="text,record,index,column">
-        <lis-input-number v-if="record.editable"
-                          v-model="record[column.dataIndex]"
-                          :formatter="column.formatter ? value => formatter(value) : null" />
-        <span v-else>{{ column.formatter ? formatter(text) : text }}</span>
-      </template>
-      <!-- LisTextArea -->
-      <template slot="textArea"
-                slot-scope="text,record,index,column">
-        <lis-text-area v-if="record.editable"
-                       v-model="record[column.dataIndex]"
-                       style="z-index: 1;" />
-        <lis-ellipsis-tip v-else
-                          :value="text"
-                          :length="column.length || 10" />
-      </template>
-      <!-- LisDate -->
-      <template slot="date"
-                slot-scope="text,record,index,column">
-        <lis-date v-if="record.editable"
-                  v-model="record[column.dataIndex]"
-                  allowClear
-                  style="width: 100%" />
-        <span v-else>{{  text }}</span>
-      </template>
-      <!-- LisDate -->
-      <template slot="dateArea"
-                slot-scope="text,record,index,column">
-        <lis-date-area v-if="record.editable"
-                       v-model="record[column.dataIndex]"
-                       :end.sync="record[column.dataIndexT]"
-                       :startName="column.dataIndex"
-                       :endName="column.dataIndexT"
-                       allowClear
-                       style="position: relative;top: 12px;" />
-        <span v-else>{{ `${text} ~ ${record[column.dataIndexT]}`  }}</span>
-      </template>
-      <!-- dateYear -->
-      <template slot="dateYear"
-                slot-scope="text,record,index,column">
-        <lis-date-year v-if="record.editable"
-                       v-model="record[column.dataIndex]"
-                       style="width: 100%" />
-        <span v-else>{{  text }}</span>
-      </template>
-      <!-- Action -->
-      <template slot="action"
-                slot-scope="text,record,index">
-        <div v-if="record.editable">
-          <a @click="save(record,index)">保存</a>
-          <a-divider type="vertical" />
-          <a-popconfirm placement="topRight"
-                        ok-text="确定"
-                        cancel-text="取消"
-                        @confirm="cancel(record,index)">
-            <template slot="title">
-              <p>确定取消保存吗?</p>
-            </template>
-            <a class="red">取消</a>
-          </a-popconfirm>
-        </div>
-        <div v-else>
-          <a @click="edit(index)">编辑</a>
-          <a-divider type="vertical" />
-          <a-popconfirm placement="topRight"
-                        ok-text="确定"
-                        cancel-text="取消"
-                        @confirm="del(record,index)">
-            <template slot="title">
-              <p>确定要删除吗?</p>
-            </template>
-            <a class="red">删除</a>
-          </a-popconfirm>
-        </div>
-      </template>
-    </a-table>
+    <a-form-model ref="tableformRef"
+                  :model="form">
+      <a-table bordered
+               class="table"
+               size="middle"
+               :rowKey="(r,i)=>{ return i }"
+               :data-source="form.tableData"
+               :columns="columns"
+               :pagination="pagination"
+               :loading="tableLoad"
+               :scroll="scroll">
+        <!-- lisInput -->
+        <template slot="input"
+                  slot-scope="text,record,index,column">
+          <a-form-model-item v-if="record.editable"
+                             :prop="'tableData.'+ index + '.' + column.dataIndex"
+                             :rules='rules[column.dataIndex]'
+                             class="location">
+            <lis-input v-model="record[column.dataIndex]"
+                       placeholder="请输入" />
+          </a-form-model-item>
+          <lis-ellipsis-tip v-else
+                            :value="text"
+                            :length="column.length || 10" />
+        </template>
+        <!-- LisDict -->
+        <template slot="select"
+                  slot-scope="text,record,index,column">
+          <a-form-model-item v-if="record.editable"
+                             :prop="'tableData.'+ index + '.' + column.dataIndex"
+                             :rules='rules[column.dataIndex]'
+                             class="location">
+            <lis-dict v-model="record[column.dataIndex]"
+                      type="select"
+                      :dictCode="column['dictCode']" />
+          </a-form-model-item>
+          <lis-dict v-else
+                    :value="text"
+                    :dictCode="column['dictCode']" />
+        </template>
+        <!-- lisInputNumber -->
+        <template slot="inputNumber"
+                  slot-scope="text,record,index,column">
+          <a-form-model-item v-if="record.editable"
+                             :prop="'tableData.'+ index + '.' + column.dataIndex"
+                             :rules='rules[column.dataIndex]'
+                             class="location">
+            <lis-input-number v-model="record[column.dataIndex]"
+                              :formatter="column.formatter ? value => formatter(value) : null" />
+          </a-form-model-item>
+          <span v-else>{{ column.formatter ? formatter(text) : text }}</span>
+        </template>
+        <!-- LisTextArea -->
+        <template slot="textArea"
+                  slot-scope="text,record,index,column">
+          <a-form-model-item v-if="record.editable"
+                             :prop="'tableData.'+ index + '.' + column.dataIndex"
+                             :rules='rules[column.dataIndex]'
+                             class="location">
+            <lis-text-area v-model="record[column.dataIndex]"
+                           style="z-index: 1;" />
+          </a-form-model-item>
+          <lis-ellipsis-tip v-else
+                            :value="text"
+                            :length="column.length || 10" />
+        </template>
+        <!-- LisDate -->
+        <template slot="date"
+                  slot-scope="text,record,index,column">
+          <a-form-model-item v-if="record.editable"
+                             :prop="'tableData.'+ index + '.' + column.dataIndex"
+                             :rules='rules[column.dataIndex]'
+                             class="location">
+            <lis-date v-model="record[column.dataIndex]"
+                      allowClear
+                      style="width: 100%" />
+          </a-form-model-item>
+          <span v-else>{{  text }}</span>
+        </template>
+        <!-- LisDateArea -->
+        <template slot="dateArea"
+                  slot-scope="text,record,index,column">
+          <lis-date-area v-if="record.editable"
+                         v-model="record[column.dataIndex]"
+                         :end.sync="record[column.dataIndexT]"
+                         :startName="'tableData.'+ index + '.' + column.dataIndex"
+                         :endName="'tableData.'+ index + '.' + column.dataIndexT"
+                         :rules="rules[column.dataIndex]"
+                         allowClear
+                         class="location"
+                         style="z-index: 1;" />
+          <span v-else>{{ `${text} ~ ${record[column.dataIndexT]}`  }}</span>
+        </template>
+        <!-- dateYear -->
+        <template slot="dateYear"
+                  slot-scope="text,record,index,column">
+          <a-form-model-item v-if="record.editable"
+                             :prop="'tableData.'+ index + '.' + column.dataIndex"
+                             :rules='rules[column.dataIndex]'
+                             class="location">
+            <lis-date-year v-model="record[column.dataIndex]"
+                           style="width: 100%" />
+          </a-form-model-item>
+          <span v-else>{{  text }}</span>
+        </template>
+        <!-- Action -->
+        <template slot="action"
+                  slot-scope="text,record,index">
+          <div v-if="record.editable">
+            <a @click="save(record,index)">保存</a>
+            <a-divider type="vertical" />
+            <a-popconfirm placement="topRight"
+                          ok-text="确定"
+                          cancel-text="取消"
+                          @confirm="cancel(record,index)">
+              <template slot="title">
+                <p>确定取消保存吗?</p>
+              </template>
+              <a class="red">取消</a>
+            </a-popconfirm>
+          </div>
+          <div v-else>
+            <a @click="edit(index)">编辑</a>
+            <a-divider type="vertical" />
+            <a-popconfirm placement="topRight"
+                          ok-text="确定"
+                          cancel-text="取消"
+                          @confirm="del(record,index)">
+              <template slot="title">
+                <p>确定要删除吗?</p>
+              </template>
+              <a class="red">删除</a>
+            </a-popconfirm>
+          </div>
+        </template>
+      </a-table>
+    </a-form-model>
   </div>
 </template>
 
@@ -118,7 +147,7 @@ import LisInput from '@/components/lis/LisInput'
 import LisInputNumber from '@/components/lis/LisInputNumber'
 import LisTextArea from '@/components/lis/LisTextArea'
 import LisDate from '@/components/lis/LisDate'
-import LisDateArea from '@/components/lis/LisDateArea'
+import LisDateArea from '@/components/lis/LisDateAreaTable'
 import LisDateYear from '@/components/lis/LisDateYear'
 export default {
   name: 'LisTable',
@@ -143,6 +172,7 @@ export default {
     // 值属性配置
     value: Array,
     columns: Array,
+    rules: Object,
     // 滚动条配置
     scroll: Object
   },
@@ -150,7 +180,12 @@ export default {
     value: {
       handler (newName) {
         this.tableLoad = true
-        this.tableData = JSON.parse(JSON.stringify(newName))
+        this.form.tableData = newName.map(item => {
+          return {
+            ...item,
+            editable: false
+          }
+        })
         this.tableLoad = false
       },
       immediate: true
@@ -158,6 +193,8 @@ export default {
   },
   data () {
     return {
+      labelCol: { span: 0 },
+      wrapperCol: { span: 24 },
       pagination: {
         current: 1, // 默认当前页数
         pageSize: 5, // 默认当前页显示数据的大小
@@ -176,6 +213,9 @@ export default {
           this.pagination.current = current
           this.pagination.pageSize = size
         }
+      },
+      form: {
+        tableData: []
       },
       tableLoad: false,
       tableData: [],
@@ -204,26 +244,34 @@ export default {
       return `${text}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
     save (r, i) {
-      this.$emit('save', r, i)
+      // valid在全部validator通过才会返回true，否则为false
+      this.$refs.tableformRef.validate((valid) => {
+        if (!valid) {
+          this.$message.warning('请修改正确的数据格式！')
+        } else {
+          // 验证通过调用保存接口
+          this.$emit('save', r, i)
+        }
+      })
     },
     handleSave (i) {
       this.tableLoad = true
-      this.tableData[i]['editable'] = false
+      this.form.tableData[i]['editable'] = false
       this.tableLoad = false
     },
     cancel (r, i) {
       let singleData = this.singleCopy.get(i)
       this.singleCopy.delete(i)
       this.tableLoad = true
-      this.tableData[i] = singleData
-      this.tableData[i]['editable'] = false
+      this.form.tableData[i] = singleData
+      this.form.tableData[i]['editable'] = false
       this.tableLoad = false
     },
     edit (i) {
       this.tableLoad = true
-      this.tableData[i]['editable'] = true
+      this.form.tableData[i]['editable'] = true
       this.tableLoad = false
-      this.singleCopy.set(i, JSON.parse(JSON.stringify(this.tableData[i])))
+      this.singleCopy.set(i, JSON.parse(JSON.stringify(this.form.tableData[i])))
     },
     del (record) {
       this.$emit('deleted', record, this.pagination.current)
@@ -240,5 +288,10 @@ export default {
 
 .red {
   color: red;
+}
+
+.location {
+  position: relative;
+  top: 12px;
 }
 </style>

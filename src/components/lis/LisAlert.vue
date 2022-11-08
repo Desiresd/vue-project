@@ -16,9 +16,7 @@ export default {
     closable: Boolean
   },
   data () {
-    return {
-
-    }
+    return {}
   }
 }
 </script>

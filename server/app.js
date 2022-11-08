@@ -9,7 +9,7 @@ const mysql = require('mysql') // 调用 MySQL模块
 var db = mysql.createConnection({
   host: 'localhost',
   user: 'root', // 用户名
-  password: 'root', // 密码
+  password: 'Mysqlpwd1!', // 密码
   database: 'mo', // 数据库名
   port: 3306 // 端口号
 })

@@ -2,11 +2,14 @@
   <div>
     <lis-table ref="lisTable"
                :columns="columns"
+               :rules="rules"
                :value="tableData"
                :scroll="{x: 1200}"
+               :current="current"
+               :pageSize="pageSize"
+               :total="total"
                @save="save"
                @deleted="deleted">
-
     </lis-table>
   </div>
 </template>
@@ -106,9 +109,13 @@ export default {
   },
   data () {
     return {
+      current: 1,
+      pageSize: 5,
+      total: 0,
       columns: [
         {
           title: '姓名',
+          name: 'name',
           dataIndex: 'name',
           width: '200px',
           align: 'center',
@@ -117,6 +124,7 @@ export default {
         {
           title: '性别',
           dataIndex: 'sex',
+          dictCode: 'sex',
           width: '200px',
           align: 'center',
           scopedSlots: { customRender: 'select' }
@@ -175,7 +183,51 @@ export default {
           scopedSlots: { customRender: 'action' }
         }
       ],
-      tableData: []
+      tableData: [],
+      rules: {
+        name: [{
+          required: true,
+          trigger: 'change',
+          message: '请输入姓名'
+        }],
+        sex: [{
+          required: true,
+          trigger: 'change',
+          message: '请选择性别'
+        }],
+        age: [{
+          required: true,
+          trigger: 'change',
+          message: '请输入年龄'
+        }],
+        money: [{
+          required: true,
+          trigger: 'change',
+          message: '请输入存款'
+        }],
+        date: [{
+          required: true,
+          trigger: 'change',
+          message: '请选择时间'
+        }],
+        dateStart: [
+          {
+            required: true,
+            trigger: 'change',
+            message: '请选择开始时间'
+          },
+          {
+            required: true,
+            trigger: 'change',
+            message: '请选择结束时间'
+          }
+        ],
+        remark: [{
+          required: true,
+          trigger: 'change',
+          message: '请输入备注'
+        }]
+      }
     }
   },
   created () {
@@ -183,21 +235,25 @@ export default {
   },
   methods: {
     getData () {
-      this.tableData = DataJson
+      this.total = DataJson.length
+      let startSplit = (this.current - 1) * this.pageSize
+      let endSplit = (startSplit + this.pageSize) > this.total ? this.total : (startSplit + this.pageSize)
+      this.tableData = DataJson.split(startSplit, endSplit)
+      console.log(this.tableData)
     },
     save (record, index) {
       // 这里做保存的请求操作
       // .....
-
-      // 这里做刷新操作
+      // 这里做刷新操作(成功后操作)
       this.$refs.lisTable.handleSave(index)
       this.$message.success('保存成功')
     },
     deleted (record, current) {
-      // 这里做删除的请求操作
-      // .....
-
+      // 删除的请求
+      let deleteData = DataJson.filter(item => item.id !== record.id)
+      DataJson = deleteData
       // 这里做刷新操作 - 获取数据
+      this.tableData = deleteData
       this.$message.success('删除成功')
     }
   }

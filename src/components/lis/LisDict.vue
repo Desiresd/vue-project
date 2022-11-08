@@ -96,6 +96,7 @@ export default {
     },
     handleInput (e = '') {
       this.$emit('input', e)
+      this.$emit('change', e)
     }
   }
 }
