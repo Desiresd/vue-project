@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { momentDate, momentStr } from '@/common/date-pick/exchange.js'
+import { momentDate, momentStr } from './logic/exchange.js'
 export default {
   name: 'LisDate',
   props: {

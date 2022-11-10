@@ -26,8 +26,8 @@
                 :type="collapsed ? 'menu-unfold' : 'menu-fold'"
                 @click="() => (collapsed = !collapsed)" />
 
-        <lis-button type="primary"
-                    @click="showCode">显示代码</lis-button>
+        <!-- <lis-button type="primary"
+                    @click="showCode">显示代码</lis-button> -->
       </a-layout-header>
       <a-layout-content :style="{ 'margin': '24px 16px', 'padding': '24px', 'background': '#fff','min-height': 'unset' }">
         <router-view />

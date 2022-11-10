@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { momentDate, momentStr } from '@/common/date-pick/exchange.js'
+import { momentDate, momentStr } from './logic/exchange.js'
 import LisRow from '@/components/lisP/LisRow'
 import LisCol from '@/components/lisP/LisCol'
 import LisFormModelItem from '@/components/lisP/LisFormModelItem'

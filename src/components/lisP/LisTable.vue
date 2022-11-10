@@ -173,7 +173,7 @@ import LisDate from '@/components/lisP/LisDate'
 import LisDateArea from '@/components/lisP/LisDateAreaTable'
 import LisDateYear from '@/components/lisP/LisDateYear'
 // 引入策略类
-import { LisTable } from './strategy.js'
+import { LisTable } from './logic/strategy.js'
 export default {
   name: 'LisTable',
   components: {
