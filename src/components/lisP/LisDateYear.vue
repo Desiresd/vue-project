@@ -14,7 +14,7 @@ import { momentDate, momentStr } from './logic/exchange.js'
 export default {
   props: {
     name: String,
-    value: String || null,
+    value: String,
     placeholder: String
   },
   data () {

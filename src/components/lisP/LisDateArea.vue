@@ -50,8 +50,8 @@ export default {
     LisFormModelItem
   },
   props: {
-    value: String | null,
-    end: String | null,
+    value: String,
+    end: String,
     startName: String,
     endName: String
   },

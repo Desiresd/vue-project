@@ -40,11 +40,11 @@ import { momentDate, momentStr } from './logic/exchange.js'
 export default {
   name: 'LisDateArea',
   props: {
-    value: String | null,
-    end: String | null,
+    value: String,
+    end: String,
     startName: String,
     endName: String,
-    rules: Array | null
+    rules: Array
   },
   data () {
     return {
