@@ -7,6 +7,7 @@
              id="circle-bar"></div>
       </div>
       <div class="wrapper right-wrapper">
+
         <div class="circle-bar"></div>
       </div>
     </div>
