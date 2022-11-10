@@ -66,9 +66,9 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
-import LisButton from '@/components/lis/LisButton'
-import LisToolTip from '@/components/lis/LisToolTip'
+import HighLight from '@/components/lisP/HighLight'
+import LisButton from '@/components/lisP/LisButton'
+import LisToolTip from '@/components/lisP/LisToolTip'
 export default {
   name: 'LisToolTips',
   components: {

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import LisDict from '@/components/lis/LisDict'
+import LisDict from '@/components/lisP/LisDict'
 export default {
   name: 'SelectTitle',
   components: {

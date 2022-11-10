@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import LisTable from '@/components/lis/LisTable'
+import LisTable from '@/components/lisP/LisTable'
 let DataJson = [
   {
     id: '1',

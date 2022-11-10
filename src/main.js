@@ -9,7 +9,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 // ant-design-vue
-import './components/lis/lazy_antd.js'
+import './components/lisP/lazy_antd.js'
 import Viser from 'viser-vue'
 import 'ant-design-vue/dist/antd.less'
 

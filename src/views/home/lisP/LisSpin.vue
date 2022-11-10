@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
-import LisRow from '@/components/lis/LisRow'
-import LisCol from '@/components/lis/LisCol'
-import LisSpin from '@/components/lis/LisSpin'
-import LisButton from '@/components/lis/LisButton'
+import HighLight from '@/components/lisP/HighLight'
+import LisRow from '@/components/lisP/LisRow'
+import LisCol from '@/components/lisP/LisCol'
+import LisSpin from '@/components/lisP/LisSpin'
+import LisButton from '@/components/lisP/LisButton'
 export default {
   name: 'LisSpins',
   components: {

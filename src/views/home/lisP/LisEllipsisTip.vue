@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
-import LisRow from '@/components/lis/LisRow'
-import LisCol from '@/components/lis/LisCol'
-import LisEllipsisTip from '@/components/lis/LisEllipsisTip'
+import HighLight from '@/components/lisP/HighLight'
+import LisRow from '@/components/lisP/LisRow'
+import LisCol from '@/components/lisP/LisCol'
+import LisEllipsisTip from '@/components/lisP/LisEllipsisTip'
 export default {
   name: 'LisEllipsisTips',
   components: {

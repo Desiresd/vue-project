@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import LisDict from '@/components/lis/LisDict'
+import LisDict from '@/components/lisP/LisDict'
 import NameTitle from './../NameTitle'
 import AirStatistics from './air/index'
 import waterStatistics from './water/index'

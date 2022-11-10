@@ -45,7 +45,7 @@ export const catalog = [
       {
         key: '三',
         name: 'AntDesign二次封装',
-        router: 'lis'
+        router: 'lisP'
       },
       {
         key: '四',

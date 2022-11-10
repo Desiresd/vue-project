@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
-import LisRow from '@/components/lis/LisRow'
-import LisCol from '@/components/lis/LisCol'
-import LisDict from '@/components/lis/LisDict'
+import HighLight from '@/components/lisP/HighLight'
+import LisRow from '@/components/lisP/LisRow'
+import LisCol from '@/components/lisP/LisCol'
+import LisDict from '@/components/lisP/LisDict'
 export default {
   name: 'LisDicts',
   components: {

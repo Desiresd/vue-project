@@ -78,7 +78,7 @@
 
 <script>
 import ColorPicker from '@/components/common/ColorPicker'
-import LisSlider from '@/components/lis/LisSlider'
+import LisSlider from '@/components/lisP/LisSlider'
 export default {
   name: 'Editor',
   components: {

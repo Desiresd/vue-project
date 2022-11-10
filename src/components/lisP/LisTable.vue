@@ -164,14 +164,14 @@
 </template>
 
 <script>
-import LisEllipsisTip from '@/components/lis/LisEllipsisTip'
-import LisDict from '@/components/lis/LisDict'
-import LisInput from '@/components/lis/LisInput'
-import LisInputNumber from '@/components/lis/LisInputNumber'
-import LisTextArea from '@/components/lis/LisTextArea'
-import LisDate from '@/components/lis/LisDate'
-import LisDateArea from '@/components/lis/LisDateAreaTable'
-import LisDateYear from '@/components/lis/LisDateYear'
+import LisEllipsisTip from '@/components/lisP/LisEllipsisTip'
+import LisDict from '@/components/lisP/LisDict'
+import LisInput from '@/components/lisP/LisInput'
+import LisInputNumber from '@/components/lisP/LisInputNumber'
+import LisTextArea from '@/components/lisP/LisTextArea'
+import LisDate from '@/components/lisP/LisDate'
+import LisDateArea from '@/components/lisP/LisDateAreaTable'
+import LisDateYear from '@/components/lisP/LisDateYear'
 // 引入策略类
 import { LisTable } from './strategy.js'
 export default {

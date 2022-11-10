@@ -38,7 +38,7 @@
 <script>
 import { lisSide } from '@/json/lisSide.js'
 import { Menu } from 'ant-design-vue'
-import LisButton from '@/components/lis/LisButton'
+import LisButton from '@/components/lisP/LisButton'
 const SubMenu = {
   template: `
       <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">

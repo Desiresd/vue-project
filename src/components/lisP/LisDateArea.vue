@@ -39,9 +39,9 @@
 
 <script>
 import { momentDate, momentStr } from '@/common/date-pick/exchange.js'
-import LisRow from '@/components/lis/LisRow'
-import LisCol from '@/components/lis/LisCol'
-import LisFormModelItem from '@/components/lis/LisFormModelItem'
+import LisRow from '@/components/lisP/LisRow'
+import LisCol from '@/components/lisP/LisCol'
+import LisFormModelItem from '@/components/lisP/LisFormModelItem'
 export default {
   name: 'LisDateArea',
   components: {

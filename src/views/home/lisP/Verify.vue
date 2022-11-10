@@ -92,20 +92,20 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
-import LisRow from '@/components/lis/LisRow'
-import LisCol from '@/components/lis/LisCol'
-import LisFormModel from '@/components/lis/LisFormModel'
-import LisFormModelItem from '@/components/lis/LisFormModelItem'
-import LisButton from '@/components/lis/LisButton'
-import LisDict from '@/components/lis/LisDict'
-import LisInput from '@/components/lis/LisInput'
-import LisInputNumber from '@/components/lis/LisInputNumber'
-import LisTextArea from '@/components/lis/LisTextArea'
-import LisDate from '@/components/lis/LisDate'
-import LisDateArea from '@/components/lis/LisDateArea'
-import LisDateYear from '@/components/lis/LisDateYear'
-import LisSwitch from '@/components/lis/LisSwitch'
+import HighLight from '@/components/lisP/HighLight'
+import LisRow from '@/components/lisP/LisRow'
+import LisCol from '@/components/lisP/LisCol'
+import LisFormModel from '@/components/lisP/LisFormModel'
+import LisFormModelItem from '@/components/lisP/LisFormModelItem'
+import LisButton from '@/components/lisP/LisButton'
+import LisDict from '@/components/lisP/LisDict'
+import LisInput from '@/components/lisP/LisInput'
+import LisInputNumber from '@/components/lisP/LisInputNumber'
+import LisTextArea from '@/components/lisP/LisTextArea'
+import LisDate from '@/components/lisP/LisDate'
+import LisDateArea from '@/components/lisP/LisDateArea'
+import LisDateYear from '@/components/lisP/LisDateYear'
+import LisSwitch from '@/components/lisP/LisSwitch'
 export default {
   name: 'verify',
   components: {
@@ -210,19 +210,19 @@ export default {
         <high-light>{{ msg }}</high-light>
       </div>
     </template>
-    import LisRow from '@/components/lis/LisRow'
-    import LisCol from '@/components/lis/LisCol'
-    import LisFormModel from '@/components/lis/LisFormModel'
-    import LisFormModelItem from '@/components/lis/LisFormModelItem'
-    import LisButton from '@/components/lis/LisButton'
-    import LisDict from '@/components/lis/LisDict'
-    import LisInput from '@/components/lis/LisInput'
-    import LisInputNumber from '@/components/lis/LisInputNumber'
-    import LisTextArea from '@/components/lis/LisTextArea'
-    import LisDate from '@/components/lis/LisDate'
-    import LisDateArea from '@/components/lis/LisDateArea'
-    import LisDateYear from '@/components/lis/LisDateYear'
-    import LisSwitch from '@/components/lis/LisSwitch'
+    import LisRow from '@/components/lisP/LisRow'
+    import LisCol from '@/components/lisP/LisCol'
+    import LisFormModel from '@/components/lisP/LisFormModel'
+    import LisFormModelItem from '@/components/lisP/LisFormModelItem'
+    import LisButton from '@/components/lisP/LisButton'
+    import LisDict from '@/components/lisP/LisDict'
+    import LisInput from '@/components/lisP/LisInput'
+    import LisInputNumber from '@/components/lisP/LisInputNumber'
+    import LisTextArea from '@/components/lisP/LisTextArea'
+    import LisDate from '@/components/lisP/LisDate'
+    import LisDateArea from '@/components/lisP/LisDateArea'
+    import LisDateYear from '@/components/lisP/LisDateYear'
+    import LisSwitch from '@/components/lisP/LisSwitch'
     
     export default {
       name: 'verify',

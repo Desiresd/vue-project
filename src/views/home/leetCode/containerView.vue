@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
+import HighLight from '@/components/lisP/HighLight'
 import { totalFruit } from '@/common/leetCode/totalFruit.js'
 export default {
   name: 'containerView',

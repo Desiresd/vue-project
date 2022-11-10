@@ -3,9 +3,6 @@
     <lis-row>
       <lis-col :span="16">
         <high-light id="title1"> {{ msg }} </high-light>
-        <high-light id="title2"> {{ msg }} </high-light>
-        <high-light id="title3"> {{ msg }} </high-light>
-        <high-light id="title4"> {{ msg }} </high-light>
       </lis-col>
       <lis-col :span="2"></lis-col>
       <lis-col :span="4">
@@ -16,10 +13,10 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
-import LisRow from '@/components/lis/LisRow'
-import LisCol from '@/components/lis/LisCol'
-import LisAnchor from '@/components/lis/LisAnchor'
+import HighLight from '@/components/lisP/HighLight'
+import LisRow from '@/components/lisP/LisRow'
+import LisCol from '@/components/lisP/LisCol'
+import LisAnchor from '@/components/lisP/LisAnchor'
 export default {
   name: 'LisAnchors',
   components: {

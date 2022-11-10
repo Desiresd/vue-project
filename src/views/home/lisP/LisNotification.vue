@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
-import LisButton from '@/components/lis/LisButton'
+import HighLight from '@/components/lisP/HighLight'
+import LisButton from '@/components/lisP/LisButton'
 export default {
   name: 'LisPopConfirms',
   components: {

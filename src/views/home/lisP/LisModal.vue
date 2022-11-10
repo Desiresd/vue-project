@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
-import LisButton from '@/components/lis/LisButton'
-import LisModal from '@/components/lis/LisModal'
+import HighLight from '@/components/lisP/HighLight'
+import LisButton from '@/components/lisP/LisButton'
+import LisModal from '@/components/lisP/LisModal'
 export default {
   name: 'LisModals',
   components: {

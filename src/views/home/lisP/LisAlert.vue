@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import HighLight from '@/components/lis/HighLight'
-import LisAlert from '@/components/lis/LisAlert'
+import HighLight from '@/components/lisP/HighLight'
+import LisAlert from '@/components/lisP/LisAlert'
 export default {
   name: 'LisAlerts',
   components: {
