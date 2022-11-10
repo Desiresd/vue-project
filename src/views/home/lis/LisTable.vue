@@ -8,8 +8,14 @@
                :current="current"
                :pageSize="pageSize"
                :total="total"
+               :tableLoad="tableLoad"
+               :addLocation="'unshift'"
+               :hasAdd="true"
+               :hasDel="true"
                @save="save"
-               @deleted="deleted">
+               @deleted="deleted"
+               @deletedSelect="deletedSelect"
+               @paginationChange="paginationChange">
     </lis-table>
   </div>
 </template>
@@ -112,6 +118,7 @@ export default {
       current: 1,
       pageSize: 5,
       total: 0,
+      tableLoad: false,
       columns: [
         {
           title: '姓名',
@@ -119,6 +126,7 @@ export default {
           dataIndex: 'name',
           width: '200px',
           align: 'center',
+          placeholder: '请输入姓名',
           scopedSlots: { customRender: 'input' }
         },
         {
@@ -127,6 +135,7 @@ export default {
           dictCode: 'sex',
           width: '200px',
           align: 'center',
+          placeholder: '请选择性别',
           scopedSlots: { customRender: 'select' }
         },
         {
@@ -173,6 +182,7 @@ export default {
           dataIndex: 'remark',
           width: '200px',
           align: 'center',
+          placeholder: '请输入备注',
           scopedSlots: { customRender: 'textArea' }
         },
         {
@@ -210,6 +220,11 @@ export default {
           trigger: 'change',
           message: '请选择时间'
         }],
+        dateYear: [{
+          required: true,
+          trigger: 'change',
+          message: '请选择时间(年)'
+        }],
         dateStart: [
           {
             required: true,
@@ -238,23 +253,40 @@ export default {
       this.total = DataJson.length
       let startSplit = (this.current - 1) * this.pageSize
       let endSplit = (startSplit + this.pageSize) > this.total ? this.total : (startSplit + this.pageSize)
-      this.tableData = DataJson.split(startSplit, endSplit)
-      console.log(this.tableData)
+      this.tableData = DataJson.slice(startSplit, endSplit)
     },
     save (record, index) {
       // 这里做保存的请求操作
       // .....
+      DataJson.splice((this.current - 1) * this.pageSize + index, record.state === 'add' ? 0 : 1, record)
       // 这里做刷新操作(成功后操作)
       this.$refs.lisTable.handleSave(index)
       this.$message.success('保存成功')
     },
-    deleted (record, current) {
+    deleted (record, index, current) {
       // 删除的请求
-      let deleteData = DataJson.filter(item => item.id !== record.id)
-      DataJson = deleteData
+      DataJson.splice((this.current - 1) * this.pageSize + index, 1)
       // 这里做刷新操作 - 获取数据
-      this.tableData = deleteData
+      this.current = current
+      this.getData()
       this.$message.success('删除成功')
+    },
+    deletedSelect (keys, rows, current) {
+      // 删除的请求
+      let keysArr = keys.sort((a, b) => b - a)
+      for (let index of keysArr) {
+        DataJson.splice((this.current - 1) * this.pageSize + index, 1)
+      }
+      // 这里做刷新操作 - 获取数据
+      this.current = current
+      this.getData()
+      this.$refs.lisTable.clearSelect()
+      this.$message.success('删除成功')
+    },
+    paginationChange (current, pageSize) {
+      this.current = current
+      this.pageSize = pageSize
+      this.getData()
     }
   }
 }
