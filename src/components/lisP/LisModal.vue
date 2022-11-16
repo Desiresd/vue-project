@@ -8,14 +8,14 @@
            @cancel="cancel"
            :maskClosable="maskClosable"
            :mask="mask"
-           okText="确认"
-           cancelText="取消"
-           title="title">
+           :okText="okText"
+           :cancelText="cancelText"
+           :title="title">
     <slot></slot>
     <template v-if="showOnly"
               slot="footer">
       <a-button type="primary"
-                @click="ok">确定</a-button>
+                @click="closed">关闭</a-button>
     </template>
   </a-modal>
 </template>
@@ -30,12 +30,14 @@ export default {
     centered: Boolean,
     maskClosable: Boolean,
     mask: Boolean,
-    title: String
+    title: String,
+    okText: { type: String, default: () => { return '确认' } },
+    cancelText: { type: String, default: () => { return '取消' } },
+    showOnly: { type: Boolean, default: () => { return false } }
   },
   data () {
     return {
-      visible: false,
-      showOnly: false
+      visible: false
     }
   },
   methods: {
@@ -44,6 +46,9 @@ export default {
     },
     cancel (e) {
       this.$emit('cancel', e)
+    },
+    closed (e) {
+      this.$emit('closed', e)
     }
   }
 }

@@ -16,14 +16,14 @@
           </template>
           <a-button type="danger">删除</a-button>
         </a-popconfirm>
-
+        <slot name="btn"></slot>
       </div>
       <a-table bordered
                class="table"
                size="middle"
                ref="tableRef"
                :rowKey="(r,i)=>{ return i }"
-               :rowSelection="{ 'selectedRowKeys': selectedRowKeys, 'onChange': onSelectChange, 'columnTitle':' ' }"
+               :rowSelection="rowSelection ? { selectedRowKeys, onChange, 'columnTitle':' ' } : null"
                :data-source="form.tableData"
                :columns="columns"
                :pagination="pagination"
@@ -156,6 +156,8 @@
               </template>
               <a class="red">删除</a>
             </a-popconfirm>
+            <slot name="openrator"
+                  :scope="{ text, record, index }"></slot>
           </div>
         </template>
       </a-table>
@@ -204,7 +206,8 @@ export default {
     scroll: Object,
     loading: Boolean,
     // 表格首页添加 / 尾页添加 （默认首页）push / unshift
-    addLocation: { type: String, default: 'unshift' }
+    addLocation: { type: String, default: 'unshift' },
+    rowSelection: { type: Boolean, default: false }
   },
   watch: {
     value: {
@@ -393,13 +396,16 @@ export default {
       let index = arr.findIndex(item => item.editable === true)
       return index !== -1
     },
-    onSelectChange (selectedRowKeys, selectedRows) {
+    onChange (selectedRowKeys, selectedRows) {
       this.selectedRowKeys = selectedRowKeys
       this.selectedRows = selectedRows
     },
     clearSelect () {
       this.selectedRowKeys = []
       this.selectedRows = []
+    },
+    test () {
+      this.$emit('test', 'ceshi')
     }
   }
 }
@@ -424,7 +430,7 @@ export default {
   padding: 0 10px;
 }
 
-.btn-class .ant-btn:not(:first-child) {
+/* .btn-class .ant-btn:not(:first-child) {
   margin-left: 5px;
-}
+} */
 </style>

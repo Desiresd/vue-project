@@ -12,18 +12,32 @@
                :addLocation="'unshift'"
                :hasAdd="true"
                :hasDel="true"
+               :rowSelection="true"
                @save="save"
                @deleted="deleted"
                @deletedSelect="deletedSelect"
                @paginationChange="paginationChange">
+      <!-- 具名插槽-->
+      <template #btn>
+        <a-button type="primary"
+                  @click="refreshTable()">刷新</a-button>
+      </template>
+      <!-- 具名+作用域插槽 -->
+      <template #openrator="{ scope }">
+        <a-divider type="vertical" />
+        <a @click="details(scope)">详情</a>
+      </template>
     </lis-table>
     <high-light>{{ msg }}</high-light>
+    <lis-details ref="lisDetails"
+                 :information="detailedData" />
   </div>
 </template>
 
 <script>
 import HighLight from '@/components/lisP/HighLight'
 import LisTable from '@/components/lisP/LisTable'
+import LisDetails from './LisDetails'
 let DataJson = [
   {
     id: '1',
@@ -114,7 +128,8 @@ export default {
   name: 'LisTables',
   components: {
     HighLight,
-    LisTable
+    LisTable,
+    LisDetails
   },
   data () {
     return {
@@ -131,6 +146,7 @@ export default {
           width: '200px',
           align: 'center',
           placeholder: '请输入姓名',
+          fixed: 'left',
           scopedSlots: { customRender: 'input' }
         },
         {
@@ -191,7 +207,7 @@ export default {
         },
         {
           title: '操作',
-          width: 150,
+          width: '200px',
           align: 'center',
           fixed: 'right',
           scopedSlots: { customRender: 'action' }
@@ -246,29 +262,43 @@ export default {
           trigger: 'change',
           message: '请输入备注'
         }]
-      }
+      },
+      detailedData: {}
     }
   },
   created () {
     this.getData()
     this.msg = `<template>
-      <lis-table ref="lisTable"
-                :columns="columns"
-                :rules="rules"
-                :value="tableData"
-                :scroll="{x: 1200}"
-                :current="current"
-                :pageSize="pageSize"
-                :total="total"
-                :tableLoad="tableLoad"
-                :addLocation="'unshift'"
-                :hasAdd="true"
-                :hasDel="true"
-                @save="save"
-                @deleted="deleted"
-                @deletedSelect="deletedSelect"
-                @paginationChange="paginationChange">
-      </lis-table>
+      <div>
+        <lis-table ref="lisTable"
+                  :columns="columns"
+                  :rules="rules"
+                  :value="tableData"
+                  :scroll="{x: 1200}"
+                  :current="current"
+                  :pageSize="pageSize"
+                  :total="total"
+                  :tableLoad="tableLoad"
+                  :addLocation="'unshift'"
+                  :hasAdd="true"
+                  :hasDel="true"
+                  @save="save"
+                  @deleted="deleted"
+                  @deletedSelect="deletedSelect"
+                  @paginationChange="paginationChange">
+          <!-- 具名插槽-->
+          <template #btn>
+            <a-button type="primary" @click="refreshTable()">刷新</a-button>
+          </template>
+
+          <!-- 具名+作用域插槽 -->
+          <template #openrator="{ scope }">
+            <a-divider type="vertical" />
+            <a @click="details(scope)">详情</a>
+          </template>
+        </lis-table>
+        <lis-details ref="lisDetails" :information="detailedData" />
+      </div>
     </template>
 
     let DataJson = [
@@ -488,22 +518,27 @@ export default {
               trigger: 'change',
               message: '请输入备注'
             }]
-          }
+          },
+          detailedData: {}
         }
       },
       methods: {
-        getData () {
+        getData ({ refresh = false } = {}) {
           this.total = DataJson.length
           let startSplit = (this.current - 1) * this.pageSize
           let endSplit = (startSplit + this.pageSize) > this.total ? this.total : (startSplit + this.pageSize)
           this.tableData = DataJson.slice(startSplit, endSplit)
+          if (refresh) {
+            this.$message.success('刷新成功')
+          }
         },
         save (record, index) {
           // 这里做保存的请求操作
           // .....
           DataJson.splice((this.current - 1) * this.pageSize + index, record.state === 'add' ? 0 : 1, record)
           // 这里做刷新操作(成功后操作)
-          this.$refs.lisTable.handleSave(index)
+          // this.$refs.lisTable.handleSave(index)
+          this.getData()
           this.$message.success('保存成功')
         },
         deleted (record, index, current) {
@@ -530,23 +565,34 @@ export default {
           this.current = current
           this.pageSize = pageSize
           this.getData()
+        },
+        refreshTable () {
+          this.getData({ refresh: true })
+        },
+        details (scope) {
+          this.$refs.lisDetails.open()
+          this.detailedData = Object.assign({}, scope.text)
         }
       }
     }`
   },
   methods: {
-    getData () {
+    getData ({ refresh = false } = {}) {
       this.total = DataJson.length
       let startSplit = (this.current - 1) * this.pageSize
       let endSplit = (startSplit + this.pageSize) > this.total ? this.total : (startSplit + this.pageSize)
       this.tableData = DataJson.slice(startSplit, endSplit)
+      if (refresh) {
+        this.$message.success('刷新成功')
+      }
     },
     save (record, index) {
       // 这里做保存的请求操作
       // .....
       DataJson.splice((this.current - 1) * this.pageSize + index, record.state === 'add' ? 0 : 1, record)
       // 这里做刷新操作(成功后操作)
-      this.$refs.lisTable.handleSave(index)
+      // this.$refs.lisTable.handleSave(index)
+      this.getData()
       this.$message.success('保存成功')
     },
     deleted (record, index, current) {
@@ -573,6 +619,13 @@ export default {
       this.current = current
       this.pageSize = pageSize
       this.getData()
+    },
+    refreshTable () {
+      this.getData({ refresh: true })
+    },
+    details (scope) {
+      this.$refs.lisDetails.open()
+      this.detailedData = Object.assign({}, scope.text)
     }
   }
 }
