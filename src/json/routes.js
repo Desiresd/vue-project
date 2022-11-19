@@ -180,6 +180,11 @@ export const routes = [
             path: 'LisTable',
             name: 'LisTable',
             component: () => import('@/views/home/lisP/LisTable')
+          },
+          {
+            path: 'LisGroupQuery',
+            name: 'LisGroupQuery',
+            component: () => import('@/views/home/lisP/LisGroupQuery')
           }
         ]
       },

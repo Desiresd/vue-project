@@ -1,5 +1,10 @@
 <template>
   <div>
+    <lis-group-query :style="{ 'margin': '20px 0 30px 0' }"
+                     :formTypeData="formTypeData"
+                     @handleSearch="handleSearchForm"
+                     @resetSearch="resetSearchForm">
+    </lis-group-query>
     <lis-table ref="lisTable"
                :columns="columns"
                :rules="rules"
@@ -38,12 +43,13 @@
 import HighLight from '@/components/lisP/HighLight'
 import LisTable from '@/components/lisP/LisTable'
 import LisDetails from './LisDetails'
+import LisGroupQuery from '@/components/lisP/LisGroupQuery.vue'
 let DataJson = [
   {
     id: '1',
     name: 'mo1',
     sex: '0',
-    age: '18',
+    age: 18,
     money: 10000,
     date: '2022-05-01',
     dateStart: '2022-05-01',
@@ -55,7 +61,7 @@ let DataJson = [
     id: '2',
     name: 'mo2',
     sex: '1',
-    age: '22',
+    age: 22,
     money: 80000,
     date: '2022-05-01',
     dateStart: '2022-05-01',
@@ -67,7 +73,7 @@ let DataJson = [
     id: '3',
     name: 'mo3',
     sex: '1',
-    age: '33',
+    age: 33,
     money: 80000,
     date: '2022-05-01',
     dateStart: '2022-05-01',
@@ -79,7 +85,7 @@ let DataJson = [
     id: '4',
     name: 'mo4',
     sex: '1',
-    age: '44',
+    age: 44,
     money: 80000,
     date: '2022-05-01',
     dateStart: '2022-05-01',
@@ -91,7 +97,7 @@ let DataJson = [
     id: '5',
     name: 'mo5',
     sex: '1',
-    age: '55',
+    age: 55,
     money: 80000,
     date: '2022-05-01',
     dateStart: '2022-05-01',
@@ -103,7 +109,7 @@ let DataJson = [
     id: '6',
     name: 'mo6',
     sex: '1',
-    age: '66',
+    age: 66,
     money: 80000,
     date: '2022-05-01',
     dateStart: '2022-05-01',
@@ -115,7 +121,7 @@ let DataJson = [
     id: '7',
     name: 'mo7',
     sex: '1',
-    age: '77',
+    age: 77,
     money: 80000,
     date: '2022-05-01',
     dateStart: '2022-05-01',
@@ -129,7 +135,8 @@ export default {
   components: {
     HighLight,
     LisTable,
-    LisDetails
+    LisDetails,
+    LisGroupQuery
   },
   data () {
     return {
@@ -138,6 +145,7 @@ export default {
       pageSize: 5,
       total: 0,
       tableLoad: false,
+      tableParams: {},
       columns: [
         {
           title: '姓名',
@@ -263,7 +271,28 @@ export default {
           message: '请输入备注'
         }]
       },
-      detailedData: {}
+      detailedData: {},
+      formTypeData: [
+        {
+          name: '名字',
+          placeholderText: '名字',
+          type: 'input',
+          key: 'name'
+        },
+        {
+          name: '性别',
+          placeholderText: '性别',
+          type: 'dict',
+          dictCode: 'sex',
+          key: 'sex'
+        },
+        {
+          name: '年龄',
+          placeholderText: '年龄',
+          type: 'inputNumber',
+          key: 'age'
+        }
+      ]
     }
   },
   created () {
@@ -577,11 +606,29 @@ export default {
     }`
   },
   methods: {
-    getData ({ refresh = false } = {}) {
-      this.total = DataJson.length
+    getData ({ refresh = false, params = {} } = {}) {
+      let data = JSON.parse(JSON.stringify(DataJson))
+      let paramsKeys = Object.keys(this.tableParams)
+      data = data.filter(item => {
+        if (paramsKeys.length === 0) return true
+        return paramsKeys.every(key => {
+          let flag = true
+          if (key === 'name' && this.tableParams.name && !item.name.includes(this.tableParams.name)) {
+            flag = false
+          }
+          if (key === 'sex' && this.tableParams.sex && !(item.sex === this.tableParams.sex)) {
+            flag = false
+          }
+          if (key === 'age' && this.tableParams.age && !(item.age === this.tableParams.age)) {
+            flag = false
+          }
+          return flag
+        })
+      })
+      this.total = data.length
       let startSplit = (this.current - 1) * this.pageSize
       let endSplit = (startSplit + this.pageSize) > this.total ? this.total : (startSplit + this.pageSize)
-      this.tableData = DataJson.slice(startSplit, endSplit)
+      this.tableData = data.slice(startSplit, endSplit)
       if (refresh) {
         this.$message.success('刷新成功')
       }
@@ -626,6 +673,17 @@ export default {
     details (scope) {
       this.$refs.lisDetails.open()
       this.detailedData = Object.assign({}, scope.text)
+    },
+    handleSearchForm (params) {
+      this.current = 1
+      this.tableParams = Object.assign({}, params)
+      this.getData({ params })
+    },
+    resetSearchForm () {
+      this.current = 1
+      this.tableParams = Object.assign({}, {})
+      this.getData()
+      this.$message.success('重置成功')
     }
   }
 }

@@ -1,12 +1,13 @@
 // 策略类
 const LisTable = {
-  'input': undefined,
+  'input': null,
   'select': null,
-  'inputNumber': 0,
+  'dict': null,
+  'inputNumber': null,
   'date': null,
   'dateYear': null,
   'dateArea': null,
-  'textArea': undefined
+  'textArea': null
 }
 
 export { LisTable }
