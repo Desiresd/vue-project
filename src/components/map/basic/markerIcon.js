@@ -69,4 +69,24 @@ const CircleIcon = value => {
   })
 }
 
-export { DefaultIcon, SelectIcon, ColorIcon, RectangleIcon, CircleIcon }
+// 自定义透明标注
+// 图片 <img class="lucency-img" src="${require('@/assets/map/area.png')}" @click="test()"/>
+const LucencyIcon = (params) => {
+  let htmlStr = `<div class="map-lucency" style="width: ${params.size}px;height: ${params.size}px;">
+    <div class='lucency-text' style='color: ${params.color};border: 1px solid ${params.color};'>
+      ${params.name}
+    </div>
+  </div> `
+  return L.divIcon({
+    iconUrl: markerIcon,
+    iconSize: [12, 12],
+    html: htmlStr,
+    name: params.name,
+    color: params.color,
+    size: params.size,
+    className: 'map-lucency',
+    iconAnchor: [params.size / 2, params.size / 2 + 10]
+  })
+}
+
+export { DefaultIcon, SelectIcon, ColorIcon, RectangleIcon, CircleIcon, LucencyIcon }

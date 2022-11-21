@@ -53,8 +53,8 @@ export default {
         },
         {
           name: '画矩形',
-          src: 'areas.png',
-          alt: 'areas'
+          src: 'rectangle.png',
+          alt: 'rectangle'
         },
         {
           name: '测距',
@@ -92,8 +92,8 @@ export default {
   .all {
     background: #ffffff;
     box-sizing: border-box;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
