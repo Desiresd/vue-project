@@ -57,7 +57,7 @@ export default {
   },
   data () {
     return {
-      lccontryName: '东昌府区'
+      lccontryName: '青秀区'
     }
   }
 }

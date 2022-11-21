@@ -18,49 +18,49 @@ export default {
       warnData: [
         {
           reason: '有人落水之类的详细信息有人落水之类的详细信息',
-          location: '聊城市',
+          location: '南宁市',
           person: '人员1',
           time: '11:45'
         },
         {
           reason: '有人落水之类的详细信息',
-          location: '聊城市',
+          location: '南宁市',
           person: '人员1',
           time: '11:45'
         },
         {
           reason: '有人落水之类的详细信息',
-          location: '聊城市',
+          location: '南宁市',
           person: '人员1',
           time: '11:45'
         },
         {
           reason: '有人落水之类的详细信息',
-          location: '聊城市',
+          location: '南宁市',
           person: '人员1',
           time: '11:45'
         },
         {
           reason: '有人落水之类的详细信息',
-          location: '聊城市',
+          location: '南宁市',
           person: '人员1',
           time: '11:45'
         },
         {
           reason: '有人落水之类的详细信息',
-          location: '聊城市',
+          location: '南宁市',
           person: '人员1',
           time: '11:45'
         },
         {
           reason: '有人落水之类的详细信息',
-          location: '聊城市',
+          location: '南宁市',
           person: '人员1',
           time: '11:45'
         },
         {
           reason: '有人落水之类的详细信息',
-          location: '聊城市',
+          location: '南宁市',
           person: '人员1',
           time: '11:45'
         }

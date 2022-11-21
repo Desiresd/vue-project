@@ -38,6 +38,7 @@ import 'swiper/swiper-bundle.css'
 
 // 按需引入echart
 import * as echarts from 'echarts/core'
+import { MapChart } from 'echarts/charts'
 import {
   TitleComponent,
   ToolboxComponent,
@@ -70,7 +71,8 @@ echarts.use([
   GeoComponent,
   CanvasRenderer,
   GridComponent,
-  LegendComponent
+  LegendComponent,
+  MapChart
 ])
 
 SwiperClass.use([Pagination, Mousewheel, Autoplay, EffectFade])

@@ -59,7 +59,7 @@ export default {
       ],
       tableData: [
         {
-          name: '阳谷鑫协再生资源回收利用有限公司',
+          name: '南宁市再生资源回收利用有限公司',
           ex: '40%RH',
           hourCount: '40%RH',
           va1: '40%RH',
