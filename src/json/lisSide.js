@@ -129,6 +129,11 @@ export const lisSide = [
         key: '0-22',
         name: 'LisGroupQuery',
         route: '/lisP/LisGroupQuery'
+      },
+      {
+        key: '0-23',
+        name: 'LisTree',
+        route: '/lisP/LisTree'
       }
     ]
   }

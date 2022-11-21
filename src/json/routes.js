@@ -185,6 +185,11 @@ export const routes = [
             path: 'LisGroupQuery',
             name: 'LisGroupQuery',
             component: () => import('@/views/home/lisP/LisGroupQuery')
+          },
+          {
+            path: 'LisTree',
+            name: 'LisTree',
+            component: () => import('@/views/home/lisP/LisTree')
           }
         ]
       },
