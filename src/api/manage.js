@@ -41,3 +41,15 @@ export function deleteAction (url, parameter) {
     params: parameter
   })
 }
+
+// 预览测试
+export function filePreview () {
+  console.log('预览测试')
+  return {}
+}
+
+// 下载测试
+export function fileDownload () {
+  console.log('下载测试')
+  return {}
+}

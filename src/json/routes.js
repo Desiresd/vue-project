@@ -190,6 +190,16 @@ export const routes = [
             path: 'LisTree',
             name: 'LisTree',
             component: () => import('@/views/home/lisP/LisTree')
+          },
+          {
+            path: 'LisUploadTable',
+            name: 'LisUploadTable',
+            component: () => import('@/views/home/lisP/LisUploadTable')
+          },
+          {
+            path: 'LisUploadList',
+            name: 'LisUploadList',
+            component: () => import('@/views/home/lisP/LisUploadList')
           }
         ]
       },

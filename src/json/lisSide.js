@@ -134,6 +134,16 @@ export const lisSide = [
         key: '0-23',
         name: 'LisTree',
         route: '/lisP/LisTree'
+      },
+      {
+        key: '0-24',
+        name: 'LisUploadTable',
+        route: '/lisP/LisUploadTable'
+      },
+      {
+        key: '0-25',
+        name: 'LisUploadList',
+        route: '/lisP/LisUploadList'
       }
     ]
   }
