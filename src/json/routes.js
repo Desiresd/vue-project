@@ -200,6 +200,11 @@ export const routes = [
             path: 'LisUploadList',
             name: 'LisUploadList',
             component: () => import('@/views/home/lisP/LisUploadList')
+          },
+          {
+            path: 'LisImageView',
+            name: 'LisImageView',
+            component: () => import('@/views/home/lisP/LisImageView')
           }
         ]
       },

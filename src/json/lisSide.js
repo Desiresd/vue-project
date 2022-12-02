@@ -144,6 +144,11 @@ export const lisSide = [
         key: '0-25',
         name: 'LisUploadList',
         route: '/lisP/LisUploadList'
+      },
+      {
+        key: '0-26',
+        name: 'LisImageView',
+        route: '/lisP/LisImageView'
       }
     ]
   }
