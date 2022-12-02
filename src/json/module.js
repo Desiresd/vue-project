@@ -21,10 +21,10 @@ export const module = [
     element: 'StickyNote'
   },
   {
-    id: '1-1',
-    name: '圆形进度条',
-    des: '使用Canvas绘画使用Canvas绘画使用Canvas绘画',
-    image: 'CircleCollect.png',
-    element: ''
+    id: '1-4',
+    name: '图片预览组件',
+    des: '图片缩放拖拽等功能',
+    image: 'ImageView.png',
+    element: 'ImageView'
   }
 ]

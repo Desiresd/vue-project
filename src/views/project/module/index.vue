@@ -19,6 +19,10 @@
       </el-row>
     </div>
     <dialog-page ref="dialogPage" />
+    <lis-image-view ref="LisImageView"
+                    :imgIndex="imageIndex"
+                    :imgSrc="imgSrc"
+                    :imgArr="imgArr" />
   </div>
 </template>
 
@@ -27,17 +31,23 @@ import { module } from '@/json/module.js'
 import SearchPage from './../navigation/Search'
 import Boxs from './Boxs'
 import DialogPage from './dialog/index'
+import LisImageView from '@/components/lisP/LisImageView'
 export default {
   name: 'index',
   components: {
     SearchPage,
     Boxs,
-    DialogPage
+    DialogPage,
+    LisImageView
   },
   data () {
     return {
       module: module,
-      reminder: ['Github', 'Element', 'ECharts', 'Iconfont', '力扣']
+      reminder: ['Github', 'Element', 'ECharts', 'Iconfont', '力扣'],
+      // 图片预览组件信息
+      imageIndex: 0,
+      imgSrc: 'master.jpg',
+      imgArr: ['master.jpg', 'aurora.jpg', 'aboutme.jpg']
     }
   },
   methods: {
@@ -53,6 +63,10 @@ export default {
     },
     toDetail (element) {
       console.log(element)
+      if (element === 'ImageView') {
+        this.$refs.LisImageView.show()
+        return
+      }
       this.$refs.dialogPage.visible = true
       this.$refs.dialogPage.element = element
     }
