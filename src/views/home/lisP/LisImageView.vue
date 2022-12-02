@@ -2,7 +2,10 @@
   <div>
     <a-button type="primary"
               @click="open">打开模态框</a-button>
-    <lis-image-view ref="LisImageView"></lis-image-view>
+    <lis-image-view ref="LisImageView"
+                    :imgIndex="imageIndex"
+                    :imgSrc="imgSrc"
+                    :imgArr="imgArr" />
   </div>
 </template>
 
@@ -16,11 +19,10 @@ export default {
   },
   data () {
     return {
-
+      imageIndex: 0,
+      imgSrc: 'seal.png',
+      imgArr: ['seal.png', 'aurora.jpg', 'aboutme.jpg']
     }
-  },
-  mounted () {
-    this.open()
   },
   methods: {
     open () {

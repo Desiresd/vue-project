@@ -5,14 +5,14 @@
              :showOnly="true"
              @closed="closed">
     <div id="img-con"
-         class="img-con">
+         class="img-con"
+         @mousemove.prevent="move">
       <img ref="singleImg"
            height="80%"
            :src="require(`@/assets/home/${imageSrc}`)"
            draggable="true"
            @mousedown="start"
            @mouseup="stop"
-           @mousemove="move"
            @mouseenter="enter"
            @mouseleave="leave" />
     </div>
@@ -50,17 +50,21 @@
                     icon="arrow-right"
                     @click="nextCards()" />
     </div>
+    <lis-cut-tip v-if="isHint"
+                 ref="cutTip" />
   </lis-modal>
 </template>
 
 <script>
 import LisModal from './LisModal'
 import LisIconTip from './LisIconTip'
+import LisCutTip from './LisCutTip'
 export default {
   name: 'LisImageView',
   components: {
     LisModal,
-    LisIconTip
+    LisIconTip,
+    LisCutTip
   },
   props: {
     // 基础配置
@@ -75,9 +79,30 @@ export default {
     mousewheel: { type: Boolean, default: () => true }, // 是否需要滚轮缩放
     mouseDown: { type: Boolean, default: () => true }, // 是否需要拖拽功能
     // 数据配置
-    imgData: { type: String, default: () => '' }, // 图片地址（url）
+    imgIndex: { type: Number, default: () => 0 }, // 图片索引
+    imgSrc: { type: String, default: () => '' }, // 图片地址（url）
     imgArr: { type: Array, default: () => [] }, // 图片地址（数组）
     isHint: { type: Boolean, default: () => true } // 是否展示提示（第一张或最后一张）
+  },
+  watch: {
+    imgIndex: {
+      handler (newValue) {
+        this.imageIndex = newValue
+      },
+      immediate: true
+    },
+    imgSrc: {
+      handler (newValue) {
+        this.imageSrc = newValue
+      },
+      immediate: true
+    },
+    imgArr: {
+      handler (newValue) {
+        this.imageArr = newValue
+      },
+      immediate: true
+    }
   },
   data () {
     return {
@@ -95,11 +120,6 @@ export default {
       canDrag: false
     }
   },
-  created () {
-    this.imageIndex = 0
-    this.imageSrc = 'seal.png'
-    this.imageArr = ['seal.png', 'aurora.jpg', 'aboutme.jpg']
-  },
   methods: {
     getOrigin () { // 获取原始的X/Y
       this.$nextTick(() => {
@@ -108,7 +128,6 @@ export default {
         this.originY = img.offsetTop
         this.endX = this.originX
         this.endY = this.originY
-        console.log(`originX = ${this.originX} originY = ${this.originY}`)
       })
     },
     show () { // 打开图片预览
@@ -121,7 +140,9 @@ export default {
     lastCards () { // 上一张
       if (this.imageIndex <= 0) {
         this.imageIndex = 0
-        this.$message.warning('当前图片处于第一张')
+        if (this.isHint) {
+          this.$refs.cutTip.tiping('当前图片处于第一张')
+        }
         return
       }
       this.imageIndex -= 1
@@ -158,7 +179,6 @@ export default {
       this.$refs.singleImg.style = `transform: scale(${this.multiples}) rotateZ(${this.deg}deg); left:${this.endX}px; top:${this.endY}px`
     },
     rightRotates () { // 顺时针旋转
-      console.log('顺时针旋转')
       this.deg += 90
       if (this.deg >= 360) {
         this.deg = 0
@@ -172,7 +192,9 @@ export default {
       let length = this.imageArr.length
       if (this.imageIndex >= length - 1) {
         this.imageIndex = length - 1
-        this.$message.warning('当前图片处于最后一张')
+        if (this.isHint) {
+          this.$refs.cutTip.tiping('当前图片处于最后一张')
+        }
         return
       }
       this.imageIndex += 1
@@ -180,19 +202,17 @@ export default {
       this.reductions()
     },
     start (e) {
-      console.log('mousedown')
       if (e.button === 0) { // 鼠标左键点击
         this.canDrag = true
         this.startX = e.clientX
         this.startY = e.clientY
+        window.removeEventListener('mousewheel', this.handleScroll, true) || window.removeEventListener('DOMMouseScroll', this.handleScroll, true)
       }
     },
     stop (e) {
-      console.log('mouseup')
       this.canDrag = false
     },
     move (e) {
-      console.log('mousemove')
       if (this.canDrag) {
         this.endX = e.clientX
         this.endY = e.clientY
@@ -207,12 +227,14 @@ export default {
       }
     },
     enter () {
-      console.log('enter')
-      window.addEventListener('mousewheel', this.handleScroll, true) || window.addEventListener('DOMMouseScroll', this.handleScroll, false)
+      if (!this.canDrag) {
+        window.addEventListener('mousewheel', this.handleScroll, true) || window.addEventListener('DOMMouseScroll', this.handleScroll, false)
+      }
     },
     leave () {
-      console.log('leave')
-      window.removeEventListener('mousewheel', this.handleScroll, true) || window.removeEventListener('DOMMouseScroll', this.handleScroll, true)
+      if (!this.canDrag) {
+        window.removeEventListener('mousewheel', this.handleScroll, true) || window.removeEventListener('DOMMouseScroll', this.handleScroll, true)
+      }
     },
     handleScroll (e) {
       let deltaY = e.deltaY
@@ -250,5 +272,6 @@ export default {
 }
 .img-con img {
   position: absolute;
+  cursor: pointer;
 }
 </style>
