@@ -4,10 +4,17 @@
              title="图片预览"
              :showOnly="true"
              @closed="closed">
-    <div class="img-con">
+    <div id="img-con"
+         class="img-con">
       <img ref="singleImg"
-           :src="require('@/assets/home/seal.png')"
-           class="originStyle" />
+           height="80%"
+           :src="require(`@/assets/home/${imageSrc}`)"
+           draggable="true"
+           @mousedown="start"
+           @mouseup="stop"
+           @mousemove="move"
+           @mouseenter="enter"
+           @mouseleave="leave" />
     </div>
     <div class="icon-group">
       <lis-icon-tip v-if="lastCard"
@@ -74,42 +81,69 @@ export default {
   },
   data () {
     return {
-      imageSrc: '@/assets/home/aurora.jpg',
+      imageIndex: 0,
+      imageSrc: '',
+      imageArr: [],
       multiples: 1, // 放大或缩小
       deg: 0, // 旋转的角度
+      originX: 0,
+      originY: 0,
+      startX: 0,
+      srartY: 0,
       endX: 0,
-      endY: 0
+      endY: 0,
+      canDrag: false
     }
   },
+  created () {
+    this.imageIndex = 0
+    this.imageSrc = 'seal.png'
+    this.imageArr = ['seal.png', 'aurora.jpg', 'aboutme.jpg']
+  },
   methods: {
+    getOrigin () { // 获取原始的X/Y
+      this.$nextTick(() => {
+        let img = document.querySelector('#img-con img')
+        this.originX = img.offsetLeft
+        this.originY = img.offsetTop
+        this.endX = this.originX
+        this.endY = this.originY
+        console.log(`originX = ${this.originX} originY = ${this.originY}`)
+      })
+    },
     show () { // 打开图片预览
       this.$refs.modalImage.visible = true
+      this.getOrigin()
     },
     closed () { // 关闭图片预览
       this.$refs.modalImage.visible = false
     },
     lastCards () { // 上一张
-      console.log('上一张')
+      if (this.imageIndex <= 0) {
+        this.imageIndex = 0
+        this.$message.warning('当前图片处于第一张')
+        return
+      }
+      this.imageIndex -= 1
+      this.imageSrc = this.imageArr[this.imageIndex]
+      this.reductions()
     },
     narrows () { // 缩小
-      console.log('缩小')
       if (this.multiples <= 0.25) {
         return
       }
-      console.log('111')
       this.multiples -= 0.25
       this.$refs.singleImg.style = `transform: scale(${this.multiples}) rotateZ(${this.deg}deg); left:${this.endX}px; top:${this.endY}px`
     },
     reductions () { // 复原
-      console.log('复原')
       this.multiples = 1
       this.deg = 0
-      this.endX = 0
-      this.endY = 0
-      this.$refs.singleImg.style = `transform: scale(${this.multiples}) rotateZ(${this.deg}deg); left:${this.endX}px; top:${this.endY}px`
+      this.$refs.singleImg.style = `transform: scale(${this.multiples}) rotateZ(${this.deg}deg);`
+      setTimeout(() => {
+        this.getOrigin()
+      }, 100)
     },
     enlarges () { // 放大
-      console.log('放大')
       if (this.multiples >= 10) {
         return
       }
@@ -117,7 +151,6 @@ export default {
       this.$refs.singleImg.style = `transform: scale(${this.multiples}) rotateZ(${this.deg}deg); left:${this.endX}px; top:${this.endY}px`
     },
     leftRotates () { // 逆时针旋转
-      console.log('逆时针旋转')
       this.deg -= 90
       if (this.deg <= -360) {
         this.deg = 0
@@ -133,11 +166,61 @@ export default {
       this.$refs.singleImg.style = `transform: scale(${this.multiples}) rotateZ(${this.deg}deg); left:${this.endX}px; top:${this.endY}px`
     },
     downloadFiles () { // 下载
-      console.log('下载')
       this.$message.warning('下载功能完善中')
     },
     nextCards () { // 下一张
-      console.log('下一张')
+      let length = this.imageArr.length
+      if (this.imageIndex >= length - 1) {
+        this.imageIndex = length - 1
+        this.$message.warning('当前图片处于最后一张')
+        return
+      }
+      this.imageIndex += 1
+      this.imageSrc = this.imageArr[this.imageIndex]
+      this.reductions()
+    },
+    start (e) {
+      console.log('mousedown')
+      if (e.button === 0) { // 鼠标左键点击
+        this.canDrag = true
+        this.startX = e.clientX
+        this.startY = e.clientY
+      }
+    },
+    stop (e) {
+      console.log('mouseup')
+      this.canDrag = false
+    },
+    move (e) {
+      console.log('mousemove')
+      if (this.canDrag) {
+        this.endX = e.clientX
+        this.endY = e.clientY
+        let x = this.endX - this.startX
+        let y = this.endY - this.startY
+        let img = document.querySelector('.img-con img')
+        this.startX = this.endX
+        this.startY = this.endY
+        this.endX = img.offsetLeft + x
+        this.endY = img.offsetTop + y
+        this.$refs.singleImg.style = `transform: scale(${this.multiples}) rotateZ(${this.deg}deg); left:${this.endX}px; top:${this.endY}px`
+      }
+    },
+    enter () {
+      console.log('enter')
+      window.addEventListener('mousewheel', this.handleScroll, true) || window.addEventListener('DOMMouseScroll', this.handleScroll, false)
+    },
+    leave () {
+      console.log('leave')
+      window.removeEventListener('mousewheel', this.handleScroll, true) || window.removeEventListener('DOMMouseScroll', this.handleScroll, true)
+    },
+    handleScroll (e) {
+      let deltaY = e.deltaY
+      if (deltaY > 0) {
+        this.enlarges()
+      } else {
+        this.narrows()
+      }
     }
   }
 }
@@ -146,11 +229,13 @@ export default {
 <style scoped>
 .icon-group {
   position: relative;
-  font-size: 18px;
+  font-size: 0px;
   text-align: center;
+  margin-top: 30px;
   z-index: 99;
 }
 .icon-group i {
+  font-size: 18px;
   padding: 0 8px;
 }
 .img-con {
@@ -161,5 +246,9 @@ export default {
   justify-content: center;
   align-items: center;
   z-index: 1;
+  overflow: hidden;
+}
+.img-con img {
+  position: absolute;
 }
 </style>
