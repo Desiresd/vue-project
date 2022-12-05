@@ -1,6 +1,6 @@
 <template>
   <lis-modal ref="modalImage"
-             width="800px"
+             width="900px"
              title="图片预览"
              :showOnly="true"
              @closed="closed">
@@ -15,6 +15,12 @@
            @mouseup="stop"
            @mouseenter="enter"
            @mouseleave="leave" />
+      <a-icon type="left-circle"
+              class="left-circle"
+              @click="lastCards()" />
+      <a-icon type="right-circle"
+              class="right-circle"
+              @click="nextCards()" />
     </div>
     <div class="icon-group">
       <lis-icon-tip v-if="lastCard"
@@ -206,7 +212,6 @@ export default {
         this.canDrag = true
         this.startX = e.clientX
         this.startY = e.clientY
-        window.removeEventListener('mousewheel', this.handleScroll, true) || window.removeEventListener('DOMMouseScroll', this.handleScroll, true)
       }
     },
     stop (e) {
@@ -227,14 +232,10 @@ export default {
       }
     },
     enter () {
-      if (!this.canDrag) {
-        window.addEventListener('mousewheel', this.handleScroll, true) || window.addEventListener('DOMMouseScroll', this.handleScroll, false)
-      }
+      window.addEventListener('mousewheel', this.handleScroll, true) || window.addEventListener('DOMMouseScroll', this.handleScroll, false)
     },
     leave () {
-      if (!this.canDrag) {
-        window.removeEventListener('mousewheel', this.handleScroll, true) || window.removeEventListener('DOMMouseScroll', this.handleScroll, true)
-      }
+      window.removeEventListener('mousewheel', this.handleScroll, true) || window.removeEventListener('DOMMouseScroll', this.handleScroll, true)
     },
     handleScroll (e) {
       let deltaY = e.deltaY
@@ -273,5 +274,20 @@ export default {
 .img-con img {
   position: absolute;
   cursor: pointer;
+}
+
+.left-circle,
+.right-circle {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  z-index: 99;
+  cursor: pointer;
+}
+.left-circle {
+  left: 20px;
+}
+.right-circle {
+  right: 20px;
 }
 </style>
