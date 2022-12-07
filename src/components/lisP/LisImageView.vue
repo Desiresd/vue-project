@@ -279,15 +279,20 @@ export default {
 .left-circle,
 .right-circle {
   position: absolute;
-  top: 50%;
+  width: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
   font-size: 40px;
   z-index: 99;
   cursor: pointer;
 }
 .left-circle {
-  left: 20px;
+  left: 0;
 }
 .right-circle {
-  right: 20px;
+  right: 0;
 }
 </style>
