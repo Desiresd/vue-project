@@ -205,6 +205,16 @@ export const routes = [
             path: 'LisImageView',
             name: 'LisImageView',
             component: () => import('@/views/home/lisP/LisImageView')
+          },
+          {
+            path: 'LisIcon',
+            name: 'LisIcon',
+            component: () => import('@/views/home/lisP/LisIcon')
+          },
+          {
+            path: 'LisRate',
+            name: 'LisRate',
+            component: () => import('@/views/home/lisP/LisRate')
           }
         ]
       },

@@ -7,7 +7,8 @@
       <div class="logo" />
       <a-menu theme="dark"
               mode="inline"
-              :defaultOpenKeys="['0']">
+              :default-open-keys="['1']"
+              :default-selected-keys="['0-0-0']">
         <template v-for="item in sideData">
           <a-menu-item v-if="!item.children"
                        :key="item.key">
@@ -15,7 +16,7 @@
             <span>{{ item.name }}</span>
           </a-menu-item>
           <sub-menu v-else
-                    :key="item.name"
+                    :key="item.key"
                     :menu-info="item" />
         </template>
       </a-menu>

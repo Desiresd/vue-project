@@ -2,7 +2,7 @@
 
 export const lisSide = [
   {
-    key: '0',
+    key: '1',
     name: '布局前端化',
     children: [
       {
@@ -149,6 +149,16 @@ export const lisSide = [
         key: '0-26',
         name: 'LisImageView',
         route: '/lisP/LisImageView'
+      },
+      {
+        key: '0-27',
+        name: 'LisIcon',
+        route: '/lisP/LisIcon'
+      },
+      {
+        key: '0-28',
+        name: 'LisRate',
+        route: '/lisP/LisRate'
       }
     ]
   }
