@@ -291,5 +291,10 @@ export const routes = [
     path: '/test',
     name: 'Test',
     component: () => import('@/views/project/module/test')
+  },
+  {
+    path: '/login/waterDrop',
+    name: 'waterDrop',
+    component: () => import('@/views/login/waterDrop/index')
   }
 ]

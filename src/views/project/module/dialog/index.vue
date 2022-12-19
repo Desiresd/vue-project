@@ -14,6 +14,8 @@
                       :title="'AQI'"
                       :value="57.83" />
       <circle-progressbar v-else-if="element === 'CircleProgressbar'" />
+      <drop-shape v-else-if="element === 'DropShape'"
+                  :style="passStyle">水滴特效</drop-shape>
       <sticky-note v-else-if="element === 'StickyNote'"
                    :note="note" />
       <div v-else>空</div>
@@ -31,12 +33,14 @@
 import CircleCollect from '@/components/module/CircleCollect'
 import CircleProgressbar from '@/components/module/CircleProgressbar'
 import StickyNote from '@/components/module/StickyNote'
+import DropShape from '@/components/module/DropShape'
 export default {
   name: 'index',
   components: {
     CircleCollect,
     CircleProgressbar,
-    StickyNote
+    StickyNote,
+    DropShape
   },
   data () {
     return {
@@ -47,7 +51,17 @@ export default {
         '最后想要的，',
         '只不过是宁静的幸福。',
         '张小娴'
-      ]
+      ],
+      passStyle: {
+        'position': 'relative',
+        'width': '120px',
+        'height': '120px',
+        'right': '0',
+        'bottom': '0',
+        'background': '#c61dff',
+        'box-shadow': 'inset 10px 10px 10px rgba(190, 1, 254, 0.05), 25px 35px 20px rgba(190, 1, 254, 0.1), 25px 30px 30px rgba(190, 1, 254, 0.1), inset -20px -20px 25px rgba(255, 255, 255, 0.5)',
+        'border-radius': '32% 68% 56% 44% / 40% 36% 64% 60%'
+      }
     }
   }
 }

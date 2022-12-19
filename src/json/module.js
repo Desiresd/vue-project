@@ -26,5 +26,12 @@ export const module = [
     des: '图片缩放拖拽等功能',
     image: 'ImageView.png',
     element: 'ImageView'
+  },
+  {
+    id: '1-4',
+    name: '水滴特效',
+    des: '水滴特效',
+    image: 'DropShape.png',
+    element: 'DropShape'
   }
 ]

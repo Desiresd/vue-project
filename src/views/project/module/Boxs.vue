@@ -40,6 +40,7 @@ $color-hover: #f5f5f5;
   cursor: pointer;
   box-sizing: border-box;
   padding: 3px;
+  user-select: none;
   .image {
     flex: 2;
     display: flex;

@@ -124,8 +124,8 @@ export const catalog = [
     catalog: [
       {
         key: '一',
-        name: '(placeholder)',
-        router: ''
+        name: '登录 - 水滴特效',
+        router: 'login/waterDrop'
       },
       {
         key: '二',
