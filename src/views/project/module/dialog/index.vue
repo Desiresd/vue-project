@@ -14,10 +14,10 @@
                       :title="'AQI'"
                       :value="57.83" />
       <circle-progressbar v-else-if="element === 'CircleProgressbar'" />
+      <sticky-note v-else-if="element === 'StickyNote'"
+                   :note="[ '一路上追逐奔波，', '最后想要的，', '只不过是宁静的幸福。', '张小娴']" />
       <drop-shape v-else-if="element === 'DropShape'"
                   :style="passStyle">水滴特效</drop-shape>
-      <sticky-note v-else-if="element === 'StickyNote'"
-                   :note="note" />
       <div v-else>空</div>
     </div>
     <span slot="footer"
@@ -46,12 +46,6 @@ export default {
     return {
       visible: false,
       element: '',
-      note: [
-        '一路上追逐奔波，',
-        '最后想要的，',
-        '只不过是宁静的幸福。',
-        '张小娴'
-      ],
       passStyle: {
         'position': 'relative',
         'width': '120px',
