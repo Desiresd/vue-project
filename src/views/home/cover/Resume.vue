@@ -1,6 +1,6 @@
 <template>
   <div class="resume">
-    <span class="create-time">2020-2022</span>
+    <span class="create-time">2020-2023</span>
     <div class="title">
       <span>RESUME</span>
       <span>个人作品集</span>
