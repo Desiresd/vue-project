@@ -3,7 +3,7 @@
     <div class="container">
       <div class="drop">
         <div class="content">
-          <h2>Sign in</h2>
+          <h2>{{ title | formatTitle}}</h2>
           <form>
             <div class="inputBox">
               <input type="text"
@@ -35,6 +35,7 @@ export default {
   },
   data () {
     return {
+      title: '登陆',
       passStyle: {
         'width': '120px',
         'height': '120px',
@@ -53,6 +54,11 @@ export default {
         'box-shadow': 'inset 10px 10px 10px rgba(1, 180, 255, 0.05), 15px 25px 10px rgba(1, 180, 255, 0.1), 15px 20px 20px rgba(1, 180, 255, 0.1), inset -10px -10px 15px rgba(255, 255, 255, 0.5)',
         'border-radius': '51% 49% 33% 67% / 55% 34% 66% 45%'
       }
+    }
+  },
+  filters: {
+    formatTitle (value) {
+      return 'の' + value
     }
   }
 }
