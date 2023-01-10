@@ -11,15 +11,31 @@
         <a-button type="primary"
                   @click="saveTable">保存</a-button>
       </template>
+      <template #slotAction={item}>
+        <a-form-model-item v-if="item.record.editable"
+                           :prop="'tableData.'+ item.index + '.' + item.column.dataIndex"
+                           :rules='rules[item.column.dataIndex]'
+                           class="location">
+          <lis-input v-model="item.record[item.column.dataIndex]"
+                     :placeholder="item.column.placeholder || '请输入'" />
+        </a-form-model-item>
+        <lis-ellipsis-tip v-else
+                          :value="item.text"
+                          :length="item.column.length || 10" />
+      </template>
     </lis-upload-table>
   </div>
 </template>
 
 <script>
+import LisEllipsisTip from '@/components/lisP/LisEllipsisTip'
+import LisInput from '@/components/lisP/LisInput'
 import LisUploadTable from '@/components/lisP/LisUploadTable'
 export default {
   name: 'LisUploadTables',
   components: {
+    LisEllipsisTip,
+    LisInput,
     LisUploadTable
   },
   data () {
@@ -28,7 +44,8 @@ export default {
         {
           fileName: '我的文件',
           fileType: '2',
-          fileRemark: '我的描述'
+          fileRemark: '我的描述',
+          slotAction: '1111'
         }
       ],
       columns: [],
@@ -51,7 +68,7 @@ export default {
         name: 'fileName',
         dataIndex: 'fileName',
         width: '200px',
-        align: 'center',
+        align: 'left',
         placeholder: '请输入文件名称',
         scopedSlots: { customRender: 'fileChange' }
       },
@@ -62,6 +79,14 @@ export default {
         align: 'center',
         placeholder: '请输入文件描述',
         scopedSlots: { customRender: 'textArea' }
+      },
+      {
+        title: '插槽',
+        dataIndex: 'slotAction',
+        width: '200px',
+        align: 'center',
+        placeholder: '请输入文件描述',
+        scopedSlots: { customRender: 'slotAction' }
       },
       {
         title: '操作',
@@ -85,6 +110,11 @@ export default {
         required: true,
         trigger: 'change',
         message: '请输入文件描述'
+      }],
+      slotAction: [{
+        required: true,
+        trigger: 'change',
+        message: '请输入'
       }]
     }
   },
@@ -98,6 +128,7 @@ export default {
     save (data) {
       this.$message.success('校验通过')
       console.log('校验通过')
+      console.log(data)
       this.tableData = data.map(item => {
         return {
           ...item,

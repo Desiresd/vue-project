@@ -165,6 +165,12 @@
             <a class="red">去除</a>
           </a-popconfirm>
         </template>
+        <!-- SlotAction -->
+        <template slot="slotAction"
+                  slot-scope="text,record,index,column">
+          <slot :name="column.dataIndex"
+                :item="{text,record,index,column}"></slot>
+        </template>
       </a-table>
     </a-form-model>
   </div>
