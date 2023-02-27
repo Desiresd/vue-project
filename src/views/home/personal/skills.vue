@@ -43,7 +43,7 @@ export default {
         },
         {
           id: '6',
-          content: '熟练使用 Swiper/ECharts 等前端开发常用插件；'
+          content: ' 熟练使用Swiper/ECharts/Leaflet等前端图表化及地图常用插件；'
         },
         {
           id: '7',

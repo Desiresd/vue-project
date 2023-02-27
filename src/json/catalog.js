@@ -50,12 +50,14 @@ export const catalog = [
       {
         key: '四',
         name: 'Canvas练习',
-        router: 'canvas'
+        router: ''
+        // router: 'canvas'
       },
       {
         key: '五',
         name: '动画练习',
         router: ''
+        // router: ''
       }
     ]
   },
@@ -150,32 +152,37 @@ export const catalog = [
     ]
   },
   {
-    head: '第六章·作品',
+    head: '第六章·可视区域渲染',
     catalog: [
       {
         key: '一',
-        name: '(placeholder)',
+        name: '常规渲染',
         router: ''
+        // router: 'render/general'
       },
       {
         key: '二',
-        name: '(placeholder)',
+        name: '定时器渲染',
         router: ''
+        // router: 'render/timer'
       },
       {
         key: '三',
-        name: '(placeholder)',
+        name: 'requestAnimationFrame',
         router: ''
+        // router: 'render/requestAnimationFrame'
       },
       {
         key: '四',
-        name: '(placeholder)',
+        name: 'DocumentFragment',
         router: ''
+        // router: 'render/documentFragment'
       },
       {
         key: '五',
-        name: '(placeholder)',
+        name: '虚拟列表',
         router: ''
+        // router: 'render/virtualItem'
       }
     ]
   }

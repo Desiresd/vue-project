@@ -296,5 +296,29 @@ export const routes = [
     path: '/login/waterDrop',
     name: 'waterDrop',
     component: () => import('@/views/login/waterDrop/index')
+  },
+  {
+    path: '/render/general',
+    name: 'general',
+    component: () => import('@/views/project/render/general/index')
+  },
+  {
+    path: '/render/timer',
+    name: 'general',
+    component: () => import('@/views/project/render/timer/index')
+  },
+  {
+    path: '/render/requestAnimationFrame',
+    name: 'general',
+    component: () => import('@/views/project/render/requestAnimationFrame/index')
+  }, {
+    path: '/render/documentFragment',
+    name: 'general',
+    component: () => import('@/views/project/render/documentFragment/index')
+  },
+  {
+    path: '/render/virtualItem',
+    name: 'general',
+    component: () => import('@/views/project/render/virtualItem/index')
   }
 ]

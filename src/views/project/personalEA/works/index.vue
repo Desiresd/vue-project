@@ -55,7 +55,7 @@ export default {
     return {
       lives: [
         {
-          company: '中科软科技股份有限公司',
+          company: '中科软科技股份有限公司(南宁)',
           timestamp: '2021-06 至 至今',
           project: [
             {
@@ -66,10 +66,10 @@ export default {
               imageUrl: []
             },
             {
-              name: '封装组件、标准化前端代码',
-              skills: 'Vue、AntDesign、HighLight（代码块）、Iconfont',
-              works: '负责前端通用框架搭建、封装组件、标准化代码，通过界面化方式创建基本结构的前端页面',
-              description: `根据已有的AntDesign UI组件库进行二次封装及标准化前端代码。`
+              name: '聊城市三线一单减污降碳协同管控平台（政府）',
+              skills: 'Vue、AntDesign、Axios、Echarts、天地图、Leaflet等',
+              works: '完成山东省聊城市生态环境局智慧环境大数据平台开发，对大气污染物、二氧化碳污染物排放量情况进行实时展示和监测。',
+              description: `该信息系统平台主要功能是把“三线一单”和减污降碳协同起来，监管重点地区企业大气污染物和二氧化碳排放量情况。`
             }
           ]
         },
