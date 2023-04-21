@@ -35,7 +35,7 @@ export default {
   },
   data () {
     return {
-      title: '登陆',
+      title: '登陆（登录）',
       passStyle: {
         'width': '120px',
         'height': '120px',
