@@ -253,6 +253,11 @@ export const routes = [
     ]
   },
   {
+    path: '/vuePractice',
+    name: 'vuePractice',
+    component: () => import('@/views/home/vuePractice/index')
+  },
+  {
     path: '/personalEA',
     name: 'PersonalEA',
     component: () => import('@/views/project/personalEA/index')

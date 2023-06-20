@@ -55,9 +55,8 @@ export const catalog = [
       },
       {
         key: '五',
-        name: '动画练习',
-        router: ''
-        // router: ''
+        name: 'vue2练习',
+        router: 'vuePractice'
       }
     ]
   },
